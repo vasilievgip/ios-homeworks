@@ -8,9 +8,9 @@
 import UIKit
 
 class InfoViewController: UIViewController {
-
+    
     let deleteButton = UIButton()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemBackground
@@ -20,7 +20,7 @@ class InfoViewController: UIViewController {
         self.deleteButton.frame = CGRect(x: 100, y: 100, width: 200, height: 100)
         self.deleteButton.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
     }
-
+    
     @objc
     func handleButtonTap() {
         let alert = UIAlertController(title: "Удалить пост?", message: "Пост будет удален", preferredStyle: .alert)
@@ -28,5 +28,5 @@ class InfoViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "НЕТ", style: .cancel, handler: { action in print("Отмена удаления") }))
         self.present(alert, animated: true)
     }
-
+    
 }

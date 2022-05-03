@@ -12,6 +12,7 @@ class FeedViewController: UIViewController {
     let label = UILabel()
     let pushButton = UIButton()
     var post = Post(title: "Мой пост")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemBackground
