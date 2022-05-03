@@ -10,27 +10,44 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+
+//        func feedViewController() -> UINavigationController {
+//            let feedViewController = FeedViewController()
+//            feedViewController.title = "Лента пользователя"
+//            feedViewController.tabBarItem = UITabBarItem(title: "Лента", image: UIImage(systemName: "ellipsis.bubble"), tag: 0)
+//            return UINavigationController (rootViewController: feedViewController)
+//        }
+        let feedViewController = FeedViewController()
+
+//        func profileViewController() -> UINavigationController {
+//            let profileViewController = ProfileViewController()
+//            profileViewController.title = "Профиль пользователя"
+//            profileViewController.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person.fill"), tag: 1)
+//            return UINavigationController (rootViewController: profileViewController)
+//        }
+        let profileViewController = ProfileViewController()
+
+//        func tabBarController() -> UITabBarController {
+//            let tabBarController = UITabBarController()
+//            UITabBar.appearance().backgroundColor = .systemBackground
+//            tabBarController.viewControllers = [feedViewController(), profileViewController()]
+//            return tabBarController
+//        }
+        let navigationVC = UINavigationController(rootViewController: feedViewController)
+        let tabBarController = UITabBarController()
+        tabBarController.viewControllers = [
+            navigationVC,
+            profileViewController
+        ]
+        navigationVC.tabBarItem = UITabBarItem(title: "Лента", image: UIImage(systemName: "ellipsis.bubble"), tag: 0)
+
+        self.window?.rootViewController = tabBarController
+        self.window?.makeKeyAndVisible()
         return true
     }
-
-    // MARK: UISceneSession Lifecycle
-
-    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        // Called when a new scene session is being created.
-        // Use this method to select a configuration to create the new scene with.
-        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
-    }
-
-    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-        // Called when the user discards a scene session.
-        // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
-    }
-
-
 }
-
