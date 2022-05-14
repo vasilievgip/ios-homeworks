@@ -18,8 +18,8 @@ class PostViewController: UIViewController {
         self.view.addSubview(label)
         self.label.frame = CGRect(x: 160, y: 100, width: 200, height: 100)
         self.view.backgroundColor = .systemCyan
-        let barButtonItem = UIBarButtonItem(title: "Просмотр информации", style: .plain, target: self, action: #selector(handleButtonTap))
-        self.navigationItem.leftBarButtonItem = barButtonItem
+        let barButtonItem = UIBarButtonItem(title: "Информация", style: .plain, target: self, action: #selector(handleButtonTap))
+        self.navigationItem.rightBarButtonItem = barButtonItem
     }
     
     @objc
