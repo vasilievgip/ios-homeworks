@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5E890614282FEB690066A557 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E890613282FEB690066A557 /* ProfileHeaderView.swift */; };
 		5E890616282FEBB20066A557 /* ProfileViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E890615282FEBB20066A557 /* ProfileViewController1.swift */; };
+		5E89061828453DBF0066A557 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E89061728453DBF0066A557 /* Extension.swift */; };
 		5EAD6D782802C53D00091514 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAD6D772802C53D00091514 /* AppDelegate.swift */; };
 		5EAD6D7C2802C53D00091514 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAD6D7B2802C53D00091514 /* FeedViewController.swift */; };
 		5EAD6D812802C53F00091514 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EAD6D802802C53F00091514 /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 /* Begin PBXFileReference section */
 		5E890613282FEB690066A557 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		5E890615282FEBB20066A557 /* ProfileViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController1.swift; sourceTree = "<group>"; };
+		5E89061728453DBF0066A557 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		5EAD6D742802C53D00091514 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EAD6D772802C53D00091514 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5EAD6D7B2802C53D00091514 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
@@ -50,6 +52,7 @@
 			children = (
 				5E890613282FEB690066A557 /* ProfileHeaderView.swift */,
 				5E890615282FEBB20066A557 /* ProfileViewController1.swift */,
+				5E89061728453DBF0066A557 /* Extension.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -157,6 +160,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E89061828453DBF0066A557 /* Extension.swift in Sources */,
 				5EAD6D8E281E988700091514 /* PostViewController.swift in Sources */,
 				5EAD6D7C2802C53D00091514 /* FeedViewController.swift in Sources */,
 				5EAD6D8C280F21C600091514 /* ProfileViewController.swift in Sources */,

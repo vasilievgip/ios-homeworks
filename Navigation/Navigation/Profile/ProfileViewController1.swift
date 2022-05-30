@@ -8,10 +8,10 @@
 import UIKit
 
 class ProfileViewController1: UIViewController {
-
+    
     let profileHeaderView = ProfileHeaderView()
     let label = UILabel()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .lightGray
@@ -25,5 +25,5 @@ class ProfileViewController1: UIViewController {
         super.viewWillLayoutSubviews()
         profileHeaderView.frame = CGRect(x: 0, y: view.safeAreaInsets.top, width: view.bounds.width, height: view.bounds.width - view.safeAreaInsets.top - view.safeAreaInsets.bottom)
     }
-
+    
 }
