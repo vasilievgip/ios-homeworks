@@ -9,13 +9,13 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
+        
         self.window = UIWindow(frame: UIScreen.main.bounds)
-
+        
         let feedViewController = FeedViewController()
         let profileViewController = ProfileViewController1()
         let navigationVC = UINavigationController(rootViewController: feedViewController)
@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             profileViewController
         ]
         navigationVC.tabBarItem = UITabBarItem(title: "Лента", image: UIImage(systemName: "ellipsis.bubble"), tag: 0)
-
+        
         self.window?.rootViewController = tabBarController
         self.window?.makeKeyAndVisible()
         return true
