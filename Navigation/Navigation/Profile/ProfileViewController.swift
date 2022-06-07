@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfileViewController1: UIViewController {
+class ProfileViewController: UIViewController {
     
     let profileHeaderView: ProfileHeaderView = {
         let profileHeaderView = ProfileHeaderView()
@@ -33,13 +33,7 @@ class ProfileViewController1: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .lightGray
-        view.addSubview(label)
-        view.addSubview(profileHeaderView)
-        view.addSubview(setButton)
+    private func profileViewControllerConstraint() {
         NSLayoutConstraint.activate([
             profileHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             profileHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -49,6 +43,14 @@ class ProfileViewController1: UIViewController {
             setButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             setButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .lightGray
+        view.addSubview(label)
+        view.addSubview(profileHeaderView)
+        view.addSubview(setButton)
+        profileViewControllerConstraint()
         tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person.fill"), tag: 1)
     }
     

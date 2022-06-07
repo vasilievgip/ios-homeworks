@@ -57,7 +57,7 @@ class ProfileHeaderView: UIView {
         field.backgroundColor = .white
         field.placeholder = "something..."
         field.textColor = .black
-        field.font = UIFont.systemFont(ofSize: 16)
+        field.font = UIFont.systemFont(ofSize: 15)
         field.layer.cornerRadius = 12
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.black.cgColor
@@ -66,17 +66,8 @@ class ProfileHeaderView: UIView {
         return field
         
     }()
-    private var statusText: String?
-    
-    override init(frame: CGRect) {
+    private func profileHeaderViewConstraint() {
         
-        super.init(frame: frame)
-        addSubview(avatarImageView)
-        addSubview(fullNameLabel)
-        addSubview(statusLabel)
-        addSubview(setStatusButton)
-        setStatusButton.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
-        addSubview(statusTextField)
         NSLayoutConstraint.activate([
             avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
@@ -91,11 +82,27 @@ class ProfileHeaderView: UIView {
             statusTextField.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
             statusTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             statusTextField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 5),
+            statusTextField.heightAnchor.constraint(equalToConstant: 40),
             setStatusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             setStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             setStatusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: 16),
             setStatusButton.heightAnchor.constraint(equalToConstant: 50)
         ])
+        
+    }
+    
+    private var statusText: String?
+    
+    override init(frame: CGRect) {
+        
+        super.init(frame: frame)
+        addSubview(avatarImageView)
+        addSubview(fullNameLabel)
+        addSubview(statusLabel)
+        addSubview(setStatusButton)
+        setStatusButton.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
+        addSubview(statusTextField)
+        profileHeaderViewConstraint()
         
     }
     

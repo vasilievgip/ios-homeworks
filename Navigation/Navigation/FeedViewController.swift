@@ -35,19 +35,20 @@ class FeedViewController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-    
+    private func stackViewLayout() {
+        [button1, button2].forEach{ stackView.addArrangedSubview($0)}
+        NSLayoutConstraint.activate([
+            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+        ])
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemBackground
         self.label.text = "Лента"
         self.view.addSubview(label)
         self.view.addSubview(stackView)
-        self.stackView.addArrangedSubview(button1)
-        self.stackView.addArrangedSubview(button2)
-        NSLayoutConstraint.activate([
-            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-        ])
+        stackViewLayout()
         self.button1.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
         self.button2.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
     }
