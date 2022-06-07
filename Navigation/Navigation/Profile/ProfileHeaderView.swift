@@ -10,7 +10,7 @@ import UIKit
 
 
 class ProfileHeaderView: UIView {
-    let avatarView: UIImageView = {
+    let avatarImageView: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(named: "avatar")
         view.layer.masksToBounds = true
@@ -20,16 +20,16 @@ class ProfileHeaderView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    let nameLabel: UILabel = {
+    let fullNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Андрей Васильев"
+        label.text = "Андрей Александрович Васильев"
         label.textColor = .black
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    let waitingLabel: UILabel = {
+    let statusLabel: UILabel = {
         let label = UILabel()
         label.text = "Waiting for something..."
         label.textColor = .gray
@@ -38,7 +38,7 @@ class ProfileHeaderView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    let postButton: UIButton = {
+    let setStatusButton: UIButton = {
         let button = UIButton()
         button.setTitle("Show status", for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -51,13 +51,13 @@ class ProfileHeaderView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    let textField: UITextField = {
+    let statusTextField: UITextField = {
         
         let field = UITextField()
         field.backgroundColor = .white
         field.placeholder = "something..."
         field.textColor = .black
-        field.font = UIFont.systemFont(ofSize: 16)
+        field.font = UIFont.systemFont(ofSize: 15)
         field.layer.cornerRadius = 12
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.black.cgColor
@@ -66,17 +66,43 @@ class ProfileHeaderView: UIView {
         return field
         
     }()
+    private func profileHeaderViewConstraint() {
+        
+        NSLayoutConstraint.activate([
+            avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            avatarImageView.widthAnchor.constraint(equalToConstant: 100),
+            avatarImageView.heightAnchor.constraint(equalToConstant: 100),
+            fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
+            fullNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            fullNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 27),
+            statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
+            statusLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            statusLabel.topAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: 5),
+            statusTextField.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
+            statusTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            statusTextField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 5),
+            statusTextField.heightAnchor.constraint(equalToConstant: 40),
+            setStatusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            setStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            setStatusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: 16),
+            setStatusButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
+        
+    }
+    
     private var statusText: String?
     
     override init(frame: CGRect) {
         
         super.init(frame: frame)
-        addSubview(avatarView)
-        addSubview(nameLabel)
-        addSubview(waitingLabel)
-        addSubview(postButton)
-        postButton.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
-        addSubview(textField)
+        addSubview(avatarImageView)
+        addSubview(fullNameLabel)
+        addSubview(statusLabel)
+        addSubview(setStatusButton)
+        setStatusButton.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
+        addSubview(statusTextField)
+        profileHeaderViewConstraint()
         
     }
     
@@ -84,22 +110,11 @@ class ProfileHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSubviews() {
-        
-        super.layoutSubviews()
-        avatarView.frame = CGRect(x: 16, y: 16, width: 100, height: 100)
-        nameLabel.frame = CGRect(x: avatarView.frame.maxX + 16, y: 27, width: self.bounds.width - (avatarView.frame.maxX + 16) - 16, height: 36)
-        waitingLabel.frame = CGRect(x: avatarView.frame.maxX + 16, y: nameLabel.frame.maxY, width: self.bounds.width - (avatarView.frame.maxX + 16) - 16, height: 35)
-        textField.frame = CGRect(x: avatarView.frame.maxX + 16, y: waitingLabel.frame.maxY, width: self.bounds.width - (avatarView.frame.maxX + 16) - 16, height: 40)
-        postButton.frame = CGRect(x: 16, y: textField.frame.maxY + 16, width: self.bounds.width - 32, height: 50)
-        
-    }
-    
     @objc
     func handleButtonTap() {
         
-        statusTextChanged(textField)
-        waitingLabel.text = statusText
+        statusTextChanged(statusTextField)
+        statusLabel.text = statusText
         print("Show status")
         
     }
