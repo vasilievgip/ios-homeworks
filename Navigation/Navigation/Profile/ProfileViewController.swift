@@ -9,18 +9,12 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
-    let profileHeaderView: ProfileHeaderView = {
+    private let profileHeaderView: ProfileHeaderView = {
         let profileHeaderView = ProfileHeaderView()
         profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
         return profileHeaderView
     }()
-    let label: UILabel = {
-        let label = UILabel()
-        label.text = "Профиль"
-        label.frame = CGRect(x: 160, y: 0, width: 200, height: 100)
-        return label
-    }()
-    let setButton: UIButton = {
+    private let setButton: UIButton = {
         let button = UIButton()
         button.setTitle("Button", for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -33,7 +27,9 @@ class ProfileViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    private func profileViewControllerConstraint() {
+    private func layout() {
+        view.addSubview(profileHeaderView)
+        view.addSubview(setButton)
         NSLayoutConstraint.activate([
             profileHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             profileHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -47,11 +43,8 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .lightGray
-        view.addSubview(label)
-        view.addSubview(profileHeaderView)
-        view.addSubview(setButton)
-        profileViewControllerConstraint()
-        tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person.fill"), tag: 1)
+        layout()
+        self.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 1)
     }
     
 }

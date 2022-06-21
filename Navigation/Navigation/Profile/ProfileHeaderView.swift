@@ -10,7 +10,7 @@ import UIKit
 
 
 class ProfileHeaderView: UIView {
-    let avatarImageView: UIImageView = {
+    private let avatarImageView: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(named: "avatar")
         view.layer.masksToBounds = true
@@ -20,7 +20,7 @@ class ProfileHeaderView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    let fullNameLabel: UILabel = {
+    private let fullNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Андрей Александрович Васильев"
         label.textColor = .black
@@ -29,7 +29,7 @@ class ProfileHeaderView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    let statusLabel: UILabel = {
+    private let statusLabel: UILabel = {
         let label = UILabel()
         label.text = "Waiting for something..."
         label.textColor = .gray
@@ -38,7 +38,7 @@ class ProfileHeaderView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    let setStatusButton: UIButton = {
+    private let setStatusButton: UIButton = {
         let button = UIButton()
         button.setTitle("Show status", for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -51,7 +51,7 @@ class ProfileHeaderView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    let statusTextField: UITextField = {
+    private let statusTextField: UITextField = {
         
         let field = UITextField()
         field.backgroundColor = .white
@@ -66,8 +66,12 @@ class ProfileHeaderView: UIView {
         return field
         
     }()
-    private func profileHeaderViewConstraint() {
-        
+    private func layout() {
+        addSubview(avatarImageView)
+        addSubview(fullNameLabel)
+        addSubview(statusLabel)
+        addSubview(setStatusButton)
+        addSubview(statusTextField)
         NSLayoutConstraint.activate([
             avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
@@ -96,13 +100,8 @@ class ProfileHeaderView: UIView {
     override init(frame: CGRect) {
         
         super.init(frame: frame)
-        addSubview(avatarImageView)
-        addSubview(fullNameLabel)
-        addSubview(statusLabel)
-        addSubview(setStatusButton)
-        setStatusButton.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
-        addSubview(statusTextField)
-        profileHeaderViewConstraint()
+        self.setStatusButton.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
+        layout()
         
     }
     
