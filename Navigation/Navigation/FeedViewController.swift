@@ -15,7 +15,7 @@ class FeedViewController: UIViewController {
         label.frame = CGRect(x: 170, y: 50, width: 100, height: 100)
         return label
     }()
-    var post = Post(title: "Мой пост")
+    var posti = Posti(title: "Мой пост")
     private let button1: UIButton = {
         let button = UIButton()
         button.setTitle("Перейти на пост", for: .normal)
@@ -57,7 +57,7 @@ class FeedViewController: UIViewController {
     func handleButtonTap() {
         let postViewController = PostViewController()
         self.navigationController?.pushViewController(postViewController, animated: true)
-        postViewController.titlePost = post.title
+        postViewController.titlePost = posti.title
     }
     
 }

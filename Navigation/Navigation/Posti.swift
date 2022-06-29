@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct Post {
+struct Posti {
     var title: String
 }
