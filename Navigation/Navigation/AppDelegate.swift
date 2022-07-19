@@ -15,20 +15,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        
         let feedViewController = FeedViewController()
-        let profileViewController = ProfileViewController()
-        let navigationVC = UINavigationController(rootViewController: feedViewController)
+        let loginViewController = LogInViewController()
+        let navigationFeedViewController = UINavigationController(rootViewController: feedViewController)
+        let navigationLoginViewController = UINavigationController(rootViewController: loginViewController)
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [
-            navigationVC,
-            profileViewController
+            navigationFeedViewController,
+            navigationLoginViewController
         ]
-        navigationVC.tabBarItem = UITabBarItem(title: "Лента", image: UIImage(systemName: "ellipsis.bubble"), tag: 0)
-        
+        navigationFeedViewController.navigationBar.isHidden = true
+        navigationLoginViewController.navigationBar.isHidden = true
         self.window?.rootViewController = tabBarController
         self.window?.makeKeyAndVisible()
         return true
+        
     }
     
 }
