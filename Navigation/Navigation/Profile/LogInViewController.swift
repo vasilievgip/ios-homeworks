@@ -12,19 +12,19 @@ class LogInViewController: UIViewController {
     private let nc = NotificationCenter.default
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.toAutoLayout()
         return scrollView
     }()
     private let contentView: UIView = {
         let contentView = UIView()
         contentView.backgroundColor = .white
-        contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.toAutoLayout()
         return contentView
     }()
     private let logoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "logo")
-        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.toAutoLayout()
         return imageView
     }()
     private lazy var mailTextField: UITextField = {
@@ -40,7 +40,7 @@ class LogInViewController: UIViewController {
         field.layer.borderWidth = 0.5
         field.layer.borderColor = UIColor.lightGray.cgColor
         field.indent(size: 10)
-        field.translatesAutoresizingMaskIntoConstraints = false
+        field.toAutoLayout()
         field.delegate = self
         return field
     }()
@@ -58,7 +58,7 @@ class LogInViewController: UIViewController {
         field.layer.borderColor = UIColor.lightGray.cgColor
         field.isSecureTextEntry = true
         field.indent(size: 10)
-        field.translatesAutoresizingMaskIntoConstraints = false
+        field.toAutoLayout()
         field.delegate = self
         return field
     }()
@@ -68,14 +68,13 @@ class LogInViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 10
         button.backgroundColor = UIColor(named: "Color_IOS20")
-        button.translatesAutoresizingMaskIntoConstraints = false
-
+        button.toAutoLayout()
         return button
     }()
     private func layout() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
-        [logoImageView, mailTextField, passwordTextField, loginButton].forEach { contentView.addSubview($0) }
+        contentView.addSubviews(logoImageView, mailTextField, passwordTextField, loginButton)
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),

@@ -24,6 +24,10 @@ extension ProfileViewController: UITableViewDataSource {
         return cell
     }
 
+    //    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    //        return UITableView.automaticDimension
+    //    }
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         ProfileHeaderView()
     }
@@ -32,5 +36,17 @@ extension ProfileViewController: UITableViewDataSource {
     }
 }
 extension ProfileViewController: UITableViewDelegate {
+    
+}
+
+public extension UIView {
+
+    func toAutoLayout() {
+        translatesAutoresizingMaskIntoConstraints = false
+    }
+
+    func addSubviews(_ subviews: UIView...) {
+        subviews.forEach { addSubview($0) }
+    }
 
 }

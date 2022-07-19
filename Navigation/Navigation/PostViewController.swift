@@ -9,7 +9,7 @@ import UIKit
 
 class PostViewController: UIViewController {
     
-   private let label = UILabel()
+    private let label = UILabel()
     var titlePost: String = "Что-то"
 
     override func viewDidLoad() {
