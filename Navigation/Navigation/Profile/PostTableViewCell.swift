@@ -12,21 +12,21 @@ class PostTableViewCell: UITableViewCell {
     private let contentWhiteView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
-        view.translatesAutoresizingMaskIntoConstraints = false
+        view.toAutoLayout()
         return view
     }()
     private let authorLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 20)
         label.numberOfLines = 2
-        label.translatesAutoresizingMaskIntoConstraints = false
+        label.toAutoLayout()
         return label
     }()
     private let postImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
         image.backgroundColor = .black
-        image.translatesAutoresizingMaskIntoConstraints = false
+        image.toAutoLayout()
         return image
     }()
     private let descriptionLabel: UILabel = {
@@ -34,32 +34,32 @@ class PostTableViewCell: UITableViewCell {
         label.font = .systemFont(ofSize: 14)
         label.textColor = .systemGray
         label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
+        label.toAutoLayout()
         return label
     }()
     private let likesLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16)
-        label.translatesAutoresizingMaskIntoConstraints = false
+        label.toAutoLayout()
         return label
     }()
     private let viewsLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16)
         label.textAlignment = .right
-        label.translatesAutoresizingMaskIntoConstraints = false
+        label.toAutoLayout()
         return label
     }()
     private func layout() {
         contentView.addSubview(contentWhiteView)
         contentView.backgroundColor = .gray
-        [authorLabel, postImage, descriptionLabel, likesLabel, viewsLabel].forEach { contentWhiteView.addSubview($0) }
+        contentWhiteView.addSubviews(authorLabel, postImage, descriptionLabel, likesLabel, viewsLabel)
         NSLayoutConstraint.activate([
             contentWhiteView.topAnchor.constraint(equalTo: contentView.topAnchor),
             contentWhiteView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             contentWhiteView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             contentWhiteView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            contentWhiteView.heightAnchor.constraint(equalToConstant: 1100),
+            contentWhiteView.heightAnchor.constraint(equalToConstant: 710),
             authorLabel.topAnchor.constraint(equalTo: contentWhiteView.topAnchor, constant: 16),
             authorLabel.leadingAnchor.constraint(equalTo: contentWhiteView.leadingAnchor, constant: 16),
             authorLabel.trailingAnchor.constraint(equalTo: contentWhiteView.trailingAnchor, constant: -16),

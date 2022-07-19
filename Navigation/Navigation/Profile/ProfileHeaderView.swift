@@ -17,7 +17,7 @@ class ProfileHeaderView: UIView {
         view.layer.cornerRadius = 50
         view.layer.borderWidth = 3
         view.layer.borderColor = UIColor.white.cgColor
-        view.translatesAutoresizingMaskIntoConstraints = false
+        view.toAutoLayout()
         return view
     }()
     private let fullNameLabel: UILabel = {
@@ -26,7 +26,7 @@ class ProfileHeaderView: UIView {
         label.textColor = .black
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
+        label.toAutoLayout()
         return label
     }()
     private let statusLabel: UILabel = {
@@ -35,7 +35,7 @@ class ProfileHeaderView: UIView {
         label.textColor = .gray
         label.font = UIFont.systemFont(ofSize: 14)
         label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
+        label.toAutoLayout()
         return label
     }()
     private let setStatusButton: UIButton = {
@@ -48,7 +48,7 @@ class ProfileHeaderView: UIView {
         button.layer.shadowRadius = 4
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOpacity = 0.7
-        button.translatesAutoresizingMaskIntoConstraints = false
+        button.toAutoLayout()
         return button
     }()
     private let statusTextField: UITextField = {
@@ -62,16 +62,12 @@ class ProfileHeaderView: UIView {
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.black.cgColor
         field.indent(size: 10)
-        field.translatesAutoresizingMaskIntoConstraints = false
+        field.toAutoLayout()
         return field
         
     }()
     private func layout() {
-        addSubview(avatarImageView)
-        addSubview(fullNameLabel)
-        addSubview(statusLabel)
-        addSubview(setStatusButton)
-        addSubview(statusTextField)
+        addSubviews(avatarImageView, fullNameLabel, statusLabel, setStatusButton, statusTextField)
         NSLayoutConstraint.activate([
             avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
