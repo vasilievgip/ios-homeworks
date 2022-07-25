@@ -59,7 +59,6 @@ class PostTableViewCell: UITableViewCell {
             contentWhiteView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             contentWhiteView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             contentWhiteView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            contentWhiteView.heightAnchor.constraint(equalToConstant: 710),
             authorLabel.topAnchor.constraint(equalTo: contentWhiteView.topAnchor, constant: 16),
             authorLabel.leadingAnchor.constraint(equalTo: contentWhiteView.leadingAnchor, constant: 16),
             authorLabel.trailingAnchor.constraint(equalTo: contentWhiteView.trailingAnchor, constant: -16),
@@ -72,9 +71,11 @@ class PostTableViewCell: UITableViewCell {
             likesLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16),
             likesLabel.leadingAnchor.constraint(equalTo: contentWhiteView.leadingAnchor, constant: 16),
             likesLabel.trailingAnchor.constraint(equalTo: contentWhiteView.centerXAnchor),
+            likesLabel.bottomAnchor.constraint(equalTo: contentWhiteView.bottomAnchor),
             viewsLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16),
             viewsLabel.leadingAnchor.constraint(equalTo: contentWhiteView.centerXAnchor),
-            viewsLabel.trailingAnchor.constraint(equalTo: contentWhiteView.trailingAnchor, constant: -16)
+            viewsLabel.trailingAnchor.constraint(equalTo: contentWhiteView.trailingAnchor, constant: -16),
+            viewsLabel.bottomAnchor.constraint(equalTo: contentWhiteView.bottomAnchor)
         ])
     }
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

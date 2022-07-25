@@ -11,7 +11,7 @@ class ProfileViewController: UIViewController {
     
     let posts = Post.makeMockModel()
     private lazy var tableView: UITableView = {
-        let tableView = UITableView()
+        let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.toAutoLayout()
         tableView.dataSource = self
         tableView.delegate = self
@@ -32,4 +32,23 @@ class ProfileViewController: UIViewController {
         view.backgroundColor = .lightGray
         layout()
     }
+}
+
+extension ProfileViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        posts.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PostTableViewCell.self), for: indexPath) as! PostTableViewCell
+        cell.setupCell(model: posts[indexPath.row])
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        ProfileHeaderView()
+    }
+}
+extension ProfileViewController: UITableViewDelegate {
+
 }
