@@ -8,16 +8,11 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-
+    
     let posts = Post.makeMockModel()
-//    private let profileHeaderView: ProfileHeaderView = {
-//        let profileHeaderView = ProfileHeaderView()
-//        profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
-//        return profileHeaderView
-//    }()
     private lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.toAutoLayout()
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: String(describing: PostTableViewCell.self))
@@ -30,10 +25,6 @@ class ProfileViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-//            profileHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            profileHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//            profileHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-//            profileHeaderView.heightAnchor.constraint(equalToConstant: 220)
         ])
     }
     override func viewDidLoad() {
@@ -41,4 +32,23 @@ class ProfileViewController: UIViewController {
         view.backgroundColor = .lightGray
         layout()
     }
+}
+
+extension ProfileViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        posts.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PostTableViewCell.self), for: indexPath) as! PostTableViewCell
+        cell.setupCell(model: posts[indexPath.row])
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        ProfileHeaderView()
+    }
+}
+extension ProfileViewController: UITableViewDelegate {
+
 }
