@@ -15,7 +15,8 @@ class ProfileViewController: UIViewController {
         tableView.toAutoLayout()
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: String(describing: PostTableViewCell.self))
+        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifier)
+        tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: PhotosTableViewCell.identifier)
         return tableView
     }()
     private func layout() {
@@ -29,26 +30,48 @@ class ProfileViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .systemGray6
         layout()
     }
 }
 
 extension ProfileViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        2
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        posts.count
+        if section == 1 {
+            return posts.count
+        } else {
+            return 1
+        }
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PostTableViewCell.self), for: indexPath) as! PostTableViewCell
-        cell.setupCell(model: posts[indexPath.row])
-        return cell
+        if indexPath.section == 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PostTableViewCell.self), for: indexPath) as! PostTableViewCell
+            cell.setupCell(model: posts[indexPath.row])
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PhotosTableViewCell.self), for: indexPath) as! PhotosTableViewCell
+            return cell
+        }
     }
-
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        ProfileHeaderView()
+        if section == 0 {
+            return ProfileHeaderView()
+        }
+        return nil
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            let photosViewController = PhotosViewController()
+            self.navigationController?.pushViewController(photosViewController, animated: true)
+        }
     }
 }
 extension ProfileViewController: UITableViewDelegate {
-
+    
 }

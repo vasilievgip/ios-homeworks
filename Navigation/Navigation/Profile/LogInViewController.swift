@@ -8,7 +8,7 @@
 import UIKit
 
 class LogInViewController: UIViewController {
-
+    
     private let nc = NotificationCenter.default
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -120,7 +120,7 @@ class LogInViewController: UIViewController {
         super.viewDidDisappear(animated)
         nc.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         nc.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-
+        
     }
     @objc
     func kddShow(nofitication: Notification){

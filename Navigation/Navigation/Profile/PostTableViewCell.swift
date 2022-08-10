@@ -61,7 +61,6 @@ class PostTableViewCell: UITableViewCell {
             contentWhiteView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             authorLabel.topAnchor.constraint(equalTo: contentWhiteView.topAnchor, constant: 16),
             authorLabel.leadingAnchor.constraint(equalTo: contentWhiteView.leadingAnchor, constant: 16),
-            authorLabel.trailingAnchor.constraint(equalTo: contentWhiteView.trailingAnchor, constant: -16),
             postImage.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 16),
             postImage.leadingAnchor.constraint(equalTo: contentWhiteView.leadingAnchor),
             postImage.trailingAnchor.constraint(equalTo: contentWhiteView.trailingAnchor),
