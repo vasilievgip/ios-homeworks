@@ -32,6 +32,7 @@ class PhotosTableViewCell: UITableViewCell {
     private let photoImage1: UIImageView = {
         let image = UIImageView(image: UIImage(named: "photo1"))
         image.layer.cornerRadius = 6
+        image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
         image.toAutoLayout()
         return image
@@ -39,6 +40,7 @@ class PhotosTableViewCell: UITableViewCell {
     private let photoImage2: UIImageView = {
         let image = UIImageView(image: UIImage(named: "photo2"))
         image.layer.cornerRadius = 6
+        image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
         image.toAutoLayout()
         return image
@@ -46,6 +48,7 @@ class PhotosTableViewCell: UITableViewCell {
     private let photoImage3: UIImageView = {
         let image = UIImageView(image: UIImage(named: "photo3"))
         image.layer.cornerRadius = 6
+        image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
         image.toAutoLayout()
         return image
@@ -53,6 +56,7 @@ class PhotosTableViewCell: UITableViewCell {
     private let photoImage4: UIImageView = {
         let image = UIImageView(image: UIImage(named: "photo4"))
         image.layer.cornerRadius = 6
+        image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
         image.toAutoLayout()
         return image
