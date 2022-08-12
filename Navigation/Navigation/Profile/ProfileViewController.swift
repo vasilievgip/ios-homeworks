@@ -54,7 +54,8 @@ extension ProfileViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PostTableViewCell.self), for: indexPath) as! PostTableViewCell
             cell.setupCell(model: posts[indexPath.row])
             return cell
-        } else {
+        }
+        else {
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PhotosTableViewCell.self), for: indexPath) as! PhotosTableViewCell
             return cell
         }
@@ -73,5 +74,14 @@ extension ProfileViewController: UITableViewDataSource {
     }
 }
 extension ProfileViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return UITableView.automaticDimension
+        } else {
+            return CGFloat.leastNonzeroMagnitude
+        }
+    }
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        CGFloat.leastNonzeroMagnitude
+    }
 }
