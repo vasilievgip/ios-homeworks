@@ -89,7 +89,6 @@ class ProfileHeaderView: UIView {
             setStatusButton.heightAnchor.constraint(equalToConstant: 50),
             setStatusButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16)
         ])
-        
     }
     
     private var statusText: String?

@@ -36,6 +36,7 @@ class PhotosViewController: UIViewController {
         view.backgroundColor = .systemGray6
         layout()
         navigationController?.navigationBar.isHidden = false
+        navigationItem.title = "Photo Gallery"
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
