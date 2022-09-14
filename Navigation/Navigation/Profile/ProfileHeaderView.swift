@@ -91,9 +91,6 @@ class ProfileHeaderView: UIView {
     private var heightAvatarView = NSLayoutConstraint()
 
     func setupGesture() {
-        //        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction))
-        //        swipeGesture.direction = .right
-        //        avatarView.addGestureRecognizer(swipeGesture)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapAction))
         avatarView.addGestureRecognizer(tapGesture)
         let tapGetureAvatarButton = UITapGestureRecognizer(target: self, action: #selector(tapActionAvatarButton))
@@ -179,6 +176,8 @@ class ProfileHeaderView: UIView {
                        delay: 0,
                        options: .curveEaseInOut,
                        animations: {
+            self.avatarView.center.y = UIScreen.main.bounds.height / 2
+            self.avatarView.center.x = UIScreen.main.bounds.width / 2
             self.leadingAvatarView.constant = 0
             self.topAvatarView.constant = 0
             self.heightAvatarView.constant = UIScreen.main.bounds.height
@@ -216,6 +215,8 @@ class ProfileHeaderView: UIView {
                            animations: {
                 self.leadingAvatarView.constant = 16
                 self.topAvatarView.constant = 16
+                self.avatarView.center.x = 56
+                self.avatarView.center.y = 56
                 self.heightAvatarView.constant = 100
                 self.widthAvatarView.constant = 100
                 self.avatarImageView.layer.cornerRadius = 50
