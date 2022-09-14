@@ -10,6 +10,24 @@ import UIKit
 
 
 class ProfileHeaderView: UIView {
+    private let avatarView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.systemGray6.withAlphaComponent(0.5)
+        view.toAutoLayout()
+        return view
+    }()
+    private let avatarButton: UIButton = {
+        let button = UIButton()
+        button.setBackgroundImage(UIImage(systemName: "clear.fill"), for: .normal)
+        button.alpha = 0
+        button.toAutoLayout()
+        return button
+    }()
+    private let avatarEmptyView: UIView = {
+        let view = UIView()
+        view.toAutoLayout()
+        return view
+    }()
     private let avatarImageView: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(named: "avatar")
@@ -66,20 +84,50 @@ class ProfileHeaderView: UIView {
         return field
         
     }()
+
+    private var leadingAvatarView = NSLayoutConstraint()
+    private var topAvatarView = NSLayoutConstraint()
+    private var widthAvatarView = NSLayoutConstraint()
+    private var heightAvatarView = NSLayoutConstraint()
+
+    func setupGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapAction))
+        avatarView.addGestureRecognizer(tapGesture)
+        let tapGetureAvatarButton = UITapGestureRecognizer(target: self, action: #selector(tapActionAvatarButton))
+        avatarButton.addGestureRecognizer(tapGetureAvatarButton)
+    }
+
     private func layout() {
-        addSubviews(avatarImageView, fullNameLabel, statusLabel, setStatusButton, statusTextField)
+        addSubviews(avatarEmptyView, fullNameLabel, statusLabel, setStatusButton, statusTextField, avatarView)
+        avatarView.addSubviews(avatarImageView, avatarButton)
+        leadingAvatarView = avatarView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16)
+        topAvatarView = avatarView.topAnchor.constraint(equalTo: topAnchor, constant: 16)
+        widthAvatarView = avatarView.widthAnchor.constraint(equalToConstant: 100)
+        heightAvatarView = avatarView.heightAnchor.constraint(equalToConstant: 100)
         NSLayoutConstraint.activate([
-            avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            avatarImageView.widthAnchor.constraint(equalToConstant: 100),
-            avatarImageView.heightAnchor.constraint(equalToConstant: 100),
-            fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
+            avatarEmptyView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            avatarEmptyView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            avatarEmptyView.widthAnchor.constraint(equalToConstant: 100),
+            avatarEmptyView.heightAnchor.constraint(equalToConstant: 100),
+            leadingAvatarView,
+            topAvatarView,
+            widthAvatarView,
+            heightAvatarView,
+            avatarImageView.centerXAnchor.constraint(equalTo: avatarView.centerXAnchor),
+            avatarImageView.centerYAnchor.constraint(equalTo: avatarView.centerYAnchor),
+            avatarImageView.widthAnchor.constraint(equalTo: avatarView.widthAnchor),
+            avatarImageView.heightAnchor.constraint(equalTo: avatarImageView.widthAnchor),
+            avatarButton.topAnchor.constraint(equalTo: avatarView.topAnchor),
+            avatarButton.trailingAnchor.constraint(equalTo: avatarView.trailingAnchor),
+            avatarButton.heightAnchor.constraint(equalToConstant: 30),
+            avatarButton.widthAnchor.constraint(equalToConstant: 30),
+            fullNameLabel.leadingAnchor.constraint(equalTo: avatarEmptyView.trailingAnchor, constant: 16),
             fullNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             fullNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 27),
-            statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
+            statusLabel.leadingAnchor.constraint(equalTo: avatarEmptyView.trailingAnchor, constant: 16),
             statusLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             statusLabel.topAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: 5),
-            statusTextField.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
+            statusTextField.leadingAnchor.constraint(equalTo: avatarEmptyView.trailingAnchor, constant: 16),
             statusTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             statusTextField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 5),
             statusTextField.heightAnchor.constraint(equalToConstant: 40),
@@ -98,6 +146,7 @@ class ProfileHeaderView: UIView {
         super.init(frame: frame)
         self.setStatusButton.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
         layout()
+        setupGesture()
         
     }
     
@@ -119,5 +168,63 @@ class ProfileHeaderView: UIView {
         
         statusText = textField.text
         
+    }
+
+    @objc
+    private func tapAction() {
+        UIView.animate(withDuration: 0.5,
+                       delay: 0,
+                       options: .curveEaseInOut,
+                       animations: {
+            self.avatarView.center.y = UIScreen.main.bounds.height / 2
+            self.avatarView.center.x = UIScreen.main.bounds.width / 2
+            self.leadingAvatarView.constant = 0
+            self.topAvatarView.constant = 0
+            self.heightAvatarView.constant = UIScreen.main.bounds.height
+            self.widthAvatarView.constant = UIScreen.main.bounds.width
+            self.avatarImageView.layer.cornerRadius = 0
+            self.avatarView.layoutIfNeeded()
+        },
+                       completion: {_ in
+            UIView.animate(withDuration: 0.3,
+                           delay: 0,
+                           options: .curveEaseInOut,
+                           animations: {
+                self.avatarButton.alpha = 1
+                self.avatarButton.layoutIfNeeded()
+            },
+                           completion: {_ in
+
+            })
+        })
+    }
+
+    @objc
+    private func tapActionAvatarButton() {
+        UIView.animate(withDuration: 0.3,
+                       delay: 0,
+                       options: .curveEaseInOut,
+                       animations: {
+            self.avatarButton.alpha = 0
+            self.avatarView.layoutIfNeeded()
+        },
+                       completion: {_ in
+            UIView.animate(withDuration: 0.5,
+                           delay: 0,
+                           options: .curveEaseInOut,
+                           animations: {
+                self.leadingAvatarView.constant = 16
+                self.topAvatarView.constant = 16
+                self.avatarView.center.x = 56
+                self.avatarView.center.y = 56
+                self.heightAvatarView.constant = 100
+                self.widthAvatarView.constant = 100
+                self.avatarImageView.layer.cornerRadius = 50
+                self.avatarView.layoutIfNeeded()
+            },
+                           completion: {_ in
+
+            })
+        })
     }
 }
