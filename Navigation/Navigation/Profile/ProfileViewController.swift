@@ -31,7 +31,11 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        #if DEBUG
         view.backgroundColor = .systemGray6
+        #else
+        view.backgroundColor = .systemRed
+        #endif
         layout()
     }
 }
