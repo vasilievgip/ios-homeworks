@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import StorageService
 
 class ProfileViewController: UIViewController {
-
+    
     let posts = Post.makeMockModel()
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -31,11 +32,11 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        #if DEBUG
+#if DEBUG
         view.backgroundColor = .systemGray6
-        #else
+#else
         view.backgroundColor = .systemRed
-        #endif
+#endif
         layout()
     }
 }
