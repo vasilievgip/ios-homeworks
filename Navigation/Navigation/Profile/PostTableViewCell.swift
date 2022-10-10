@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import StorageService
 
 class PostTableViewCell: UITableViewCell {
 
@@ -15,21 +16,21 @@ class PostTableViewCell: UITableViewCell {
         view.toAutoLayout()
         return view
     }()
-    private let authorLabel: UILabel = {
+    let authorLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 20)
         label.numberOfLines = 2
         label.toAutoLayout()
         return label
     }()
-    private let postImage: UIImageView = {
+    let postImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
         image.backgroundColor = .black
         image.toAutoLayout()
         return image
     }()
-    private let descriptionLabel: UILabel = {
+    let descriptionLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14)
         label.textColor = .systemGray
@@ -37,13 +38,13 @@ class PostTableViewCell: UITableViewCell {
         label.toAutoLayout()
         return label
     }()
-    private let likesLabel: UILabel = {
+    let likesLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16)
         label.toAutoLayout()
         return label
     }()
-    private let viewsLabel: UILabel = {
+    let viewsLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16)
         label.textAlignment = .right
