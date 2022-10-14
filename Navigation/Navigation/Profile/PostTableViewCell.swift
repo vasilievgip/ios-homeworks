@@ -99,6 +99,6 @@ class PostTableViewCell: UITableViewCell {
             postImage.image = outputImage
         }
         let imageProcessor = ImageProcessor()
-        imageProcessor.processImage(sourceImage: postImage.image!, filter: ColorFilter.colorInvert, completion: completion(outputImage:))
+        imageProcessor.processImage(sourceImage: postImage.image!, filter: ColorFilter.posterize, completion: completion(outputImage:))
     }
 }
