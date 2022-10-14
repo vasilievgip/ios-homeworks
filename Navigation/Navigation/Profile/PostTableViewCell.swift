@@ -7,6 +7,8 @@
 
 import UIKit
 import StorageService
+import iOSIntPackage
+
 
 class PostTableViewCell: UITableViewCell {
 
@@ -93,5 +95,10 @@ class PostTableViewCell: UITableViewCell {
         descriptionLabel.text = model.description
         likesLabel.text = "Likes: \(model.likes)"
         viewsLabel.text = "Views: \(model.views)"
+        func completion (outputImage: UIImage?) {
+            postImage.image = outputImage
+        }
+        let imageProcessor = ImageProcessor()
+        imageProcessor.processImage(sourceImage: postImage.image!, filter: ColorFilter.colorInvert, completion: completion(outputImage:))
     }
 }
