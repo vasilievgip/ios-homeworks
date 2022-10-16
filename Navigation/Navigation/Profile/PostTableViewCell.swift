@@ -95,9 +95,6 @@ class PostTableViewCell: UITableViewCell {
         descriptionLabel.text = model.description
         likesLabel.text = "Likes: \(model.likes)"
         viewsLabel.text = "Views: \(model.views)"
-        func completion (outputImage: UIImage?) {
-            postImage.image = outputImage
-        }
         ImageProcessor().processImage(sourceImage: postImage.image!, filter: .posterize) {
             postImage.image = $0
         }
