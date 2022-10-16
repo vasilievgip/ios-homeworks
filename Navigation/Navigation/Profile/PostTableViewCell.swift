@@ -98,7 +98,8 @@ class PostTableViewCell: UITableViewCell {
         func completion (outputImage: UIImage?) {
             postImage.image = outputImage
         }
-        let imageProcessor = ImageProcessor()
-        imageProcessor.processImage(sourceImage: postImage.image!, filter: ColorFilter.posterize, completion: completion(outputImage:))
+        ImageProcessor().processImage(sourceImage: postImage.image!, filter: .posterize) {
+            postImage.image = $0
+        }
     }
 }
