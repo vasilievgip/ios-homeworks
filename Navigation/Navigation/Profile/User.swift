@@ -21,11 +21,24 @@ class User {
     }
 }
 let user = User(login: "vasilievgip@yandex.ru", fullName: "Андрей Александрович Васильев", avatar: UIImage(named: "avatar") ?? UIImage(named: "nophoto")!, status: "Waiting for something...")
+let testUser = User(login: "test@yandex.ru", fullName: "Test Test Test", avatar: UIImage(systemName: "eyes") ?? UIImage(named: "nophoto")!, status: "Waiting for Test...")
 protocol UserService {
     func userService(login: String) -> User?
 }
-
 class CurrentUserService: UserService {
+    let user: User
+    init(user: User){
+        self.user = user
+    }
+    func userService(login: String) -> User? {
+        if login == user.login {
+            return user
+        } else {
+            return nil
+        }
+    }
+}
+class TestUserService: UserService {
     let user: User
     init(user: User){
         self.user = user

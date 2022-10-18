@@ -28,10 +28,13 @@ class ProfileHeaderView: UIView {
         view.toAutoLayout()
         return view
     }()
-//    let user = User(login: "vasilievgip@yandex.ru", fullName: "Андрей Александрович Васильев", avatar: UIImage(named: "avatar") ?? UIImage(named: "nophoto")!, status: "Waiting for something...")
     private let avatarImageView: UIImageView = {
         let view = UIImageView()
+#if DEBUG
+        view.image = testUser.avatar
+#else
         view.image = user.avatar
+#endif
         view.layer.masksToBounds = true
         view.layer.cornerRadius = 50
         view.layer.borderWidth = 3
@@ -41,7 +44,11 @@ class ProfileHeaderView: UIView {
     }()
     private let fullNameLabel: UILabel = {
         let label = UILabel()
+#if DEBUG
+        label.text = testUser.fullName
+#else
         label.text = user.fullName
+#endif
         label.textColor = .black
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.numberOfLines = 0
@@ -50,7 +57,11 @@ class ProfileHeaderView: UIView {
     }()
     private let statusLabel: UILabel = {
         let label = UILabel()
+#if DEBUG
+        label.text = testUser.status
+#else
         label.text = user.status
+#endif
         label.textColor = .gray
         label.font = UIFont.systemFont(ofSize: 14)
         label.numberOfLines = 0
@@ -85,19 +96,19 @@ class ProfileHeaderView: UIView {
         return field
         
     }()
-
+    
     private var leadingAvatarView = NSLayoutConstraint()
     private var topAvatarView = NSLayoutConstraint()
     private var widthAvatarView = NSLayoutConstraint()
     private var heightAvatarView = NSLayoutConstraint()
-
+    
     func setupGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapAction))
         avatarView.addGestureRecognizer(tapGesture)
         let tapGetureAvatarButton = UITapGestureRecognizer(target: self, action: #selector(tapActionAvatarButton))
         avatarButton.addGestureRecognizer(tapGetureAvatarButton)
     }
-
+    
     private func layout() {
         addSubviews(avatarEmptyView, fullNameLabel, statusLabel, setStatusButton, statusTextField, avatarView)
         avatarView.addSubviews(avatarImageView, avatarButton)
@@ -170,7 +181,7 @@ class ProfileHeaderView: UIView {
         statusText = textField.text
         
     }
-
+    
     @objc
     private func tapAction() {
         UIView.animate(withDuration: 0.5,
@@ -195,11 +206,11 @@ class ProfileHeaderView: UIView {
                 self.avatarButton.layoutIfNeeded()
             },
                            completion: {_ in
-
+                
             })
         })
     }
-
+    
     @objc
     private func tapActionAvatarButton() {
         UIView.animate(withDuration: 0.3,
@@ -224,7 +235,7 @@ class ProfileHeaderView: UIView {
                 self.avatarView.layoutIfNeeded()
             },
                            completion: {_ in
-
+                
             })
         })
     }
