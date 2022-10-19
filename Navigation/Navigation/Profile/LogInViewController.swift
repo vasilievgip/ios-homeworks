@@ -138,18 +138,11 @@ class LogInViewController: UIViewController {
     func handleButtonTap() {
         let profileViewController = ProfileViewController()
 #if DEBUG
-        let testUserService = TestUserService(user: testUser)
-        if (testUserService.userService(login: mailTextField.text!) != nil) {
-            self.navigationController?.pushViewController(profileViewController, animated: true)
-        } else {
-            let alert = UIAlertController(title: "Неверный логин!", message: "Введите корректный логин", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "ДА", style: .default, handler: { action in print("ввести корректный логин") }))
-            self.present(alert, animated: true)
-            print("логин неверный")
-        }
+        let service = TestUserService(user: testUser)
 #else
-        let currentUserService = CurrentUserService(user: user)
-        if (currentUserService.userService(login: mailTextField.text!) != nil) {
+        let service = CurrentUserService(user: user)
+#endif
+        if (service.userService(login: mailTextField.text!) != nil) {
             self.navigationController?.pushViewController(profileViewController, animated: true)
         } else {
             let alert = UIAlertController(title: "Неверный логин!", message: "Введите корректный логин", preferredStyle: .alert)
@@ -157,7 +150,6 @@ class LogInViewController: UIViewController {
             self.present(alert, animated: true)
             print("логин неверный")
         }
-#endif
     }
 }
 extension LogInViewController: UITextFieldDelegate {
