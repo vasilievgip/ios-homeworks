@@ -137,13 +137,13 @@ class LogInViewController: UIViewController {
     @objc
     func handleButtonTap() {
         let profileViewController = ProfileViewController()
-//#if DEBUG
-//        let service = TestUserService(user: testUser)
-//#else
-//        let service = CurrentUserService(user: user)
-//#endif
+        //#if DEBUG
+        //        let service = TestUserService(user: testUser)
+        //#else
+        //        let service = CurrentUserService(user: user)
+        //#endif
         if (loginDelegate?.check(login: mailTextField.text!, password: passwordTextField.text!) == true) {
-//        if (service.userService(login: mailTextField.text!) != nil) {
+            //        if (service.userService(login: mailTextField.text!) != nil) {
             self.navigationController?.pushViewController(profileViewController, animated: true)
         } else {
             let alert = UIAlertController(title: "Неверный логин или пароль!", message: "Введите корректный логин или пароль", preferredStyle: .alert)
