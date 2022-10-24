@@ -8,7 +8,7 @@
 import UIKit
 
 class LogInViewController: UIViewController {
-    
+    var loginDelegate: LoginViewControllerDelegate?
     private let nc = NotificationCenter.default
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -137,18 +137,19 @@ class LogInViewController: UIViewController {
     @objc
     func handleButtonTap() {
         let profileViewController = ProfileViewController()
-#if DEBUG
-        let service = TestUserService(user: testUser)
-#else
-        let service = CurrentUserService(user: user)
-#endif
-        if (service.userService(login: mailTextField.text!) != nil) {
+//#if DEBUG
+//        let service = TestUserService(user: testUser)
+//#else
+//        let service = CurrentUserService(user: user)
+//#endif
+        if (loginDelegate?.check(login: mailTextField.text!, password: passwordTextField.text!) == true) {
+//        if (service.userService(login: mailTextField.text!) != nil) {
             self.navigationController?.pushViewController(profileViewController, animated: true)
         } else {
-            let alert = UIAlertController(title: "Неверный логин!", message: "Введите корректный логин", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "ДА", style: .default, handler: { action in print("ввести корректный логин") }))
+            let alert = UIAlertController(title: "Неверный логин или пароль!", message: "Введите корректный логин или пароль", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "ДА", style: .default, handler: { action in print("ввести корректный логин или пароль") }))
             self.present(alert, animated: true)
-            print("логин неверный")
+            print("неверный логин или пароль")
         }
     }
 }

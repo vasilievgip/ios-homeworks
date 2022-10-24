@@ -40,10 +40,33 @@ class TestUserService: UserService {
         self.user = user
     }
     func userService(login: String) -> User? {
-        if login == user.login {
-            return user
+        return login == user.login ? user : nil
+    }
+}
+class Checker {
+    static let shared = Checker()
+    private let login: String
+    private let password: String
+    private init() {
+        login = "vasilievgip@yandex.ru"
+        password = "12345"
+    }
+    func check(login: String, password: String) -> Bool {
+        let enterLogin = login
+        let enterPassword = password
+        if enterLogin == Checker.shared.login,
+           enterPassword == Checker.shared.password {
+            return true
         } else {
-            return nil
+            return false
         }
+    }
+}
+protocol LoginViewControllerDelegate {
+    func check(login: String, password: String) -> Bool
+}
+struct LoginInspector: LoginViewControllerDelegate {
+    func check(login: String, password: String) -> Bool {
+        Checker.shared.check(login: login, password: password)
     }
 }
