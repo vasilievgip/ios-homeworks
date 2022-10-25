@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PhotosViewController: UIViewController {
+class PhotosViewController: UIViewController, ImageLibrarySubscriber {
 
     let photos = PhotosArray.makeMockPhotosModel()
 
