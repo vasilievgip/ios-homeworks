@@ -38,6 +38,7 @@ class PhotosViewController: UIViewController {
         navigationController?.navigationBar.isHidden = false
         navigationItem.title = "Photo Gallery"
     }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         navigationController?.navigationBar.isHidden = true

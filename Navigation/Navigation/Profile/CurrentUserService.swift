@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class CurrentUserService: UserService {
     let user: User

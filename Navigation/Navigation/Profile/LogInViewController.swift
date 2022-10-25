@@ -8,25 +8,31 @@
 import UIKit
 
 class LogInViewController: UIViewController {
+
     var loginDelegate: LoginViewControllerDelegate?
+
     private let nc = NotificationCenter.default
+
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.toAutoLayout()
         return scrollView
     }()
+
     private let contentView: UIView = {
         let contentView = UIView()
         contentView.backgroundColor = .white
         contentView.toAutoLayout()
         return contentView
     }()
+
     private let logoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "logo")
         imageView.toAutoLayout()
         return imageView
     }()
+
     private lazy var mailTextField: UITextField = {
         let field = UITextField()
         field.backgroundColor = .systemGray6
@@ -44,6 +50,7 @@ class LogInViewController: UIViewController {
         field.delegate = self
         return field
     }()
+
     private lazy var passwordTextField: UITextField = {
         let field = UITextField()
         field.backgroundColor = .systemGray6
@@ -62,6 +69,7 @@ class LogInViewController: UIViewController {
         field.delegate = self
         return field
     }()
+
     private let loginButton: UIButton = {
         let button = UIButton()
         button.setTitle("Log In", for: .normal)
@@ -71,6 +79,7 @@ class LogInViewController: UIViewController {
         button.toAutoLayout()
         return button
     }()
+
     private func layout() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
@@ -104,6 +113,7 @@ class LogInViewController: UIViewController {
             loginButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -111,17 +121,20 @@ class LogInViewController: UIViewController {
         self.loginButton.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
         self.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 1)
     }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         nc.addObserver(self, selector: #selector(kddShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         nc.addObserver(self, selector: #selector(kddHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
+
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         nc.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         nc.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
         
     }
+
     @objc
     func kddShow(nofitication: Notification){
         if let kddSize = (nofitication.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
@@ -129,21 +142,17 @@ class LogInViewController: UIViewController {
             scrollView.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: kddSize.height, right: 0)
         }
     }
+
     @objc
     func kddHide(){
         scrollView.contentInset = .zero
         scrollView.verticalScrollIndicatorInsets = .zero
     }
+
     @objc
     func handleButtonTap() {
         let profileViewController = ProfileViewController()
-        //#if DEBUG
-        //        let service = TestUserService(user: testUser)
-        //#else
-        //        let service = CurrentUserService(user: user)
-        //#endif
         if (loginDelegate?.check(login: mailTextField.text!, password: passwordTextField.text!) == true) {
-            //        if (service.userService(login: mailTextField.text!) != nil) {
             self.navigationController?.pushViewController(profileViewController, animated: true)
         } else {
             let alert = UIAlertController(title: "Неверный логин или пароль!", message: "Введите корректный логин или пароль", preferredStyle: .alert)
@@ -153,6 +162,7 @@ class LogInViewController: UIViewController {
         }
     }
 }
+
 extension LogInViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
