@@ -6,10 +6,14 @@
 //
 
 import UIKit
+import iOSIntPackage
 
-class PhotosViewController: UIViewController, ImageLibrarySubscriber {
+class PhotosViewController: UIViewController {
 
-    let photos = PhotosArray.makeMockPhotosModel()
+//    var photos = PhotosArray.makeMockPhotosModel()
+    var photos = [PhotosArray]()
+
+    let imagePublisherFacade = ImagePublisherFacade()
 
     private lazy var photosCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -37,6 +41,8 @@ class PhotosViewController: UIViewController, ImageLibrarySubscriber {
         layout()
         navigationController?.navigationBar.isHidden = false
         navigationItem.title = "Photo Gallery"
+        imagePublisherFacade.addImagesWithTimer(time: 0.5, repeat: 10)
+        imagePublisherFacade.subscribe(PhotosViewController())
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -46,24 +52,30 @@ class PhotosViewController: UIViewController, ImageLibrarySubscriber {
 }
 
 extension PhotosViewController: UICollectionViewDelegateFlowLayout {
+
     private var sideInset: CGFloat {return 8}
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (collectionView.bounds.width - sideInset * 4) / 3
         let height = width
         return CGSize(width: width, height: height)
     }
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         sideInset
     }
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         sideInset
     }
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         UIEdgeInsets(top: sideInset, left: sideInset, bottom: sideInset, right: sideInset)
     }
 }
 
 extension PhotosViewController: UICollectionViewDataSource {
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         photos.count
     }
@@ -72,5 +84,16 @@ extension PhotosViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.identifier, for: indexPath) as! PhotosCollectionViewCell
         cell.setupPhotosCell(model: photos[indexPath.row])
         return cell
+    }
+}
+
+extension PhotosViewController: ImageLibrarySubscriber {
+    func receive(images: [UIImage]) {
+        for image in images {
+            let receiveImage = PhotosArray(image: image)
+            photos.append(receiveImage)
+            photosCollectionView.reloadData()
+            print(photos)
+        }
     }
 }
