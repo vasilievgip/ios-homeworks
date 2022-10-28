@@ -41,13 +41,14 @@ class PhotosViewController: UIViewController {
         layout()
         navigationController?.navigationBar.isHidden = false
         navigationItem.title = "Photo Gallery"
-        imagePublisherFacade.addImagesWithTimer(time: 0.5, repeat: 10)
-        imagePublisherFacade.subscribe(PhotosViewController())
+        imagePublisherFacade.addImagesWithTimer(time: 1, repeat: 10)
+        imagePublisherFacade.subscribe(self)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         navigationController?.navigationBar.isHidden = true
+        imagePublisherFacade.removeSubscription(for: self)
     }
 }
 
@@ -93,7 +94,6 @@ extension PhotosViewController: ImageLibrarySubscriber {
             let receiveImage = PhotosArray(image: image)
             photos.append(receiveImage)
             photosCollectionView.reloadData()
-            print(photos)
         }
     }
 }
