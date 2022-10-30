@@ -93,7 +93,6 @@ extension PhotosViewController: ImageLibrarySubscriber {
             let receiveImage = PhotosArray(image: image)
             photos.append(receiveImage)
             photosCollectionView.reloadData()
-            print(photos)
         }
     }
 }
