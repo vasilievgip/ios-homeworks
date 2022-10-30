@@ -41,8 +41,8 @@ class PhotosViewController: UIViewController {
         layout()
         navigationController?.navigationBar.isHidden = false
         navigationItem.title = "Photo Gallery"
+        imagePublisherFacade.subscribe(self)
         imagePublisherFacade.addImagesWithTimer(time: 0.5, repeat: 10)
-        imagePublisherFacade.subscribe(PhotosViewController())
     }
 
     override func viewWillDisappear(_ animated: Bool) {
