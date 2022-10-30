@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let feedViewController = FeedViewController()
         let loginViewController = LogInViewController()
+        loginViewController.loginDelegate = MyLoginFactory().makeLoginInspector()
         let navigationFeedViewController = UINavigationController(rootViewController: feedViewController)
         let navigationLoginViewController = UINavigationController(rootViewController: loginViewController)
         let tabBarController = UITabBarController()

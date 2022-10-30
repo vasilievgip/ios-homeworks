@@ -14,8 +14,10 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
         image.toAutoLayout()
+        image.backgroundColor = .black
         return image
     }()
+
     private func layout() {
         contentView.addSubviews(photosImage)
         NSLayoutConstraint.activate([
@@ -25,13 +27,16 @@ class PhotosCollectionViewCell: UICollectionViewCell {
             photosImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
     }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         layout()
     }
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     func setupPhotosCell(model: PhotosArray) {
         photosImage.image = model.image
     }

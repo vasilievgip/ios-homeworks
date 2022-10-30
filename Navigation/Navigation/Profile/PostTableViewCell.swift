@@ -18,6 +18,7 @@ class PostTableViewCell: UITableViewCell {
         view.toAutoLayout()
         return view
     }()
+
     let authorLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 20)
@@ -25,6 +26,7 @@ class PostTableViewCell: UITableViewCell {
         label.toAutoLayout()
         return label
     }()
+
     let postImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
@@ -32,6 +34,7 @@ class PostTableViewCell: UITableViewCell {
         image.toAutoLayout()
         return image
     }()
+
     let descriptionLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14)
@@ -40,12 +43,14 @@ class PostTableViewCell: UITableViewCell {
         label.toAutoLayout()
         return label
     }()
+
     let likesLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16)
         label.toAutoLayout()
         return label
     }()
+
     let viewsLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16)
@@ -53,6 +58,7 @@ class PostTableViewCell: UITableViewCell {
         label.toAutoLayout()
         return label
     }()
+
     private func layout() {
         contentView.addSubview(contentWhiteView)
         contentView.backgroundColor = .gray
@@ -81,6 +87,7 @@ class PostTableViewCell: UITableViewCell {
             viewsLabel.bottomAnchor.constraint(equalTo: contentWhiteView.bottomAnchor)
         ])
     }
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         layout()
@@ -89,6 +96,7 @@ class PostTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     func setupCell(model: Post) {
         authorLabel.text = model.author
         postImage.image = model.image
