@@ -11,13 +11,6 @@ import StorageService
 class ProfileViewController: UIViewController {
     
     let posts = Post.makeMockModel()
-
-#if DEBUG
-    let user = User(login: "test@yandex.ru", fullName: "Test Test Test", avatar: UIImage(systemName: "eyes") ?? UIImage(named: "nophoto")!, status: "Waiting for Test...")
-#else
-    let user = User(login: "vasilievgip@yandex.ru", fullName: "Андрей Александрович Васильев", avatar: UIImage(named: "avatar") ?? UIImage(named: "nophoto")!, status: "Waiting for something...")
-#endif
-    
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.toAutoLayout()
@@ -27,7 +20,6 @@ class ProfileViewController: UIViewController {
         tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: PhotosTableViewCell.identifier)
         return tableView
     }()
-
     private func layout() {
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
@@ -50,11 +42,11 @@ class ProfileViewController: UIViewController {
 }
 
 extension ProfileViewController: UITableViewDataSource {
-
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         2
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 1 {
             return posts.count
@@ -62,7 +54,7 @@ extension ProfileViewController: UITableViewDataSource {
             return 1
         }
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PostTableViewCell.self), for: indexPath) as! PostTableViewCell
@@ -73,14 +65,12 @@ extension ProfileViewController: UITableViewDataSource {
             return cell
         }
     }
-
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             return ProfileHeaderView()
         }
         return nil
     }
-
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             let photosViewController = PhotosViewController()
@@ -88,9 +78,7 @@ extension ProfileViewController: UITableViewDataSource {
         }
     }
 }
-
 extension ProfileViewController: UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return UITableView.automaticDimension
@@ -98,7 +86,6 @@ extension ProfileViewController: UITableViewDelegate {
             return CGFloat.leastNonzeroMagnitude
         }
     }
-
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         CGFloat.leastNonzeroMagnitude
     }

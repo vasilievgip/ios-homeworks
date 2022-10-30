@@ -15,7 +15,6 @@ class PhotosTableViewCell: UITableViewCell {
         view.toAutoLayout()
         return view
     }()
-
     private let photosLabel: UILabel = {
         let label = UILabel()
         label.text = "Photos"
@@ -24,14 +23,12 @@ class PhotosTableViewCell: UITableViewCell {
         label.toAutoLayout()
         return label
     }()
-
     private let photosButton: UIButton = {
         let button = UIButton()
         button.setBackgroundImage(UIImage(systemName: "arrow.right.square"), for: .normal)
         button.toAutoLayout()
         return button
     }()
-
     private let photoImage1: UIImageView = {
         let image = UIImageView(image: UIImage(named: "photo1"))
         image.layer.cornerRadius = 6
@@ -40,7 +37,6 @@ class PhotosTableViewCell: UITableViewCell {
         image.toAutoLayout()
         return image
     }()
-
     private let photoImage2: UIImageView = {
         let image = UIImageView(image: UIImage(named: "photo2"))
         image.layer.cornerRadius = 6
@@ -49,7 +45,6 @@ class PhotosTableViewCell: UITableViewCell {
         image.toAutoLayout()
         return image
     }()
-
     private let photoImage3: UIImageView = {
         let image = UIImageView(image: UIImage(named: "photo3"))
         image.layer.cornerRadius = 6
@@ -58,7 +53,6 @@ class PhotosTableViewCell: UITableViewCell {
         image.toAutoLayout()
         return image
     }()
-
     private let photoImage4: UIImageView = {
         let image = UIImageView(image: UIImage(named: "photo4"))
         image.layer.cornerRadius = 6
@@ -99,12 +93,10 @@ class PhotosTableViewCell: UITableViewCell {
             photoImage4.trailingAnchor.constraint(equalTo: contentPhotosView.trailingAnchor, constant: -12)
         ])
     }
-
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         layout()
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
