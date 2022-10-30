@@ -6,14 +6,10 @@
 //
 
 import UIKit
-import iOSIntPackage
 
 class PhotosViewController: UIViewController {
 
-//    var photos = PhotosArray.makeMockPhotosModel()
-    var photos = [PhotosArray]()
-
-    let imagePublisherFacade = ImagePublisherFacade()
+    let photos = PhotosArray.makeMockPhotosModel()
 
     private lazy var photosCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -41,42 +37,32 @@ class PhotosViewController: UIViewController {
         layout()
         navigationController?.navigationBar.isHidden = false
         navigationItem.title = "Photo Gallery"
-        imagePublisherFacade.addImagesWithTimer(time: 1, repeat: 10)
-        imagePublisherFacade.subscribe(self)
     }
-
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         navigationController?.navigationBar.isHidden = true
-        imagePublisherFacade.removeSubscription(for: self)
     }
 }
 
 extension PhotosViewController: UICollectionViewDelegateFlowLayout {
-
     private var sideInset: CGFloat {return 8}
-
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (collectionView.bounds.width - sideInset * 4) / 3
         let height = width
         return CGSize(width: width, height: height)
     }
-
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         sideInset
     }
-
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         sideInset
     }
-
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         UIEdgeInsets(top: sideInset, left: sideInset, bottom: sideInset, right: sideInset)
     }
 }
 
 extension PhotosViewController: UICollectionViewDataSource {
-
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         photos.count
     }
@@ -85,15 +71,5 @@ extension PhotosViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.identifier, for: indexPath) as! PhotosCollectionViewCell
         cell.setupPhotosCell(model: photos[indexPath.row])
         return cell
-    }
-}
-
-extension PhotosViewController: ImageLibrarySubscriber {
-    func receive(images: [UIImage]) {
-        for image in images {
-            let receiveImage = PhotosArray(image: image)
-            photos.append(receiveImage)
-            photosCollectionView.reloadData()
-        }
     }
 }

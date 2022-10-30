@@ -10,14 +10,12 @@ import SnapKit
 
 
 class ProfileHeaderView: UIView {
-    
     private let avatarView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.systemGray6.withAlphaComponent(0.5)
         view.toAutoLayout()
         return view
     }()
-    
     private let avatarButton: UIButton = {
         let button = UIButton()
         button.setBackgroundImage(UIImage(systemName: "clear.fill"), for: .normal)
@@ -25,16 +23,14 @@ class ProfileHeaderView: UIView {
         button.toAutoLayout()
         return button
     }()
-    
     private let avatarEmptyView: UIView = {
         let view = UIView()
         view.toAutoLayout()
         return view
     }()
-    
     private let avatarImageView: UIImageView = {
         let view = UIImageView()
-        view.image = ProfileViewController().user.avatar
+        view.image = UIImage(named: "avatar")
         view.layer.masksToBounds = true
         view.layer.cornerRadius = 50
         view.layer.borderWidth = 3
@@ -42,27 +38,24 @@ class ProfileHeaderView: UIView {
         view.toAutoLayout()
         return view
     }()
-    
     private let fullNameLabel: UILabel = {
         let label = UILabel()
-        label.text = ProfileViewController().user.fullName
+        label.text = "Андрей Александрович Васильев"
         label.textColor = .black
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.numberOfLines = 0
         label.toAutoLayout()
         return label
     }()
-    
     private let statusLabel: UILabel = {
         let label = UILabel()
-        label.text = ProfileViewController().user.status
+        label.text = "Waiting for something..."
         label.textColor = .gray
         label.font = UIFont.systemFont(ofSize: 14)
         label.numberOfLines = 0
         label.toAutoLayout()
         return label
     }()
-    
     private let setStatusButton: UIButton = {
         let button = UIButton()
         button.setTitle("Show status", for: .normal)
@@ -76,8 +69,8 @@ class ProfileHeaderView: UIView {
         button.toAutoLayout()
         return button
     }()
-    
     private let statusTextField: UITextField = {
+        
         let field = UITextField()
         field.backgroundColor = .white
         field.placeholder = "something..."
@@ -89,20 +82,21 @@ class ProfileHeaderView: UIView {
         field.indent(size: 10)
         field.toAutoLayout()
         return field
+        
     }()
-    
+
     private var leadingAvatarView = NSLayoutConstraint()
     private var topAvatarView = NSLayoutConstraint()
     private var widthAvatarView = NSLayoutConstraint()
     private var heightAvatarView = NSLayoutConstraint()
-    
+
     func setupGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapAction))
         avatarView.addGestureRecognizer(tapGesture)
         let tapGetureAvatarButton = UITapGestureRecognizer(target: self, action: #selector(tapActionAvatarButton))
         avatarButton.addGestureRecognizer(tapGetureAvatarButton)
     }
-    
+
     private func layout() {
         self.addSubviews(avatarEmptyView, fullNameLabel, statusLabel, setStatusButton, statusTextField, avatarView)
         avatarView.addSubviews(avatarImageView, avatarButton)
@@ -191,10 +185,12 @@ class ProfileHeaderView: UIView {
     private var statusText: String?
     
     override init(frame: CGRect) {
+        
         super.init(frame: frame)
         self.setStatusButton.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
         layout()
         setupGesture()
+        
     }
     
     required init?(coder: NSCoder) {
@@ -203,16 +199,20 @@ class ProfileHeaderView: UIView {
     
     @objc
     func handleButtonTap() {
+        
         statusTextChanged(statusTextField)
         statusLabel.text = statusText
         print("Show status")
+        
     }
     
     @objc
     func statusTextChanged(_ textField: UITextField) {
+        
         statusText = textField.text
+        
     }
-    
+
     @objc
     private func tapAction() {
         UIView.animate(withDuration: 0.5,
@@ -237,10 +237,11 @@ class ProfileHeaderView: UIView {
                 self.avatarButton.layoutIfNeeded()
             },
                            completion: {_ in
+
             })
         })
     }
-    
+
     @objc
     private func tapActionAvatarButton() {
         UIView.animate(withDuration: 0.3,
@@ -265,6 +266,7 @@ class ProfileHeaderView: UIView {
                 self.avatarView.layoutIfNeeded()
             },
                            completion: {_ in
+
             })
         })
     }

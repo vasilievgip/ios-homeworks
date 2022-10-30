@@ -11,6 +11,7 @@ import UIKit
 
 struct PhotosArray {
     var image: UIImage
+
     static func makeMockPhotosModel() -> [PhotosArray] {
         var model = [PhotosArray]()
         model.append(PhotosArray(image: UIImage(named: "photo1") ?? UIImage(named: "nophoto")!))
