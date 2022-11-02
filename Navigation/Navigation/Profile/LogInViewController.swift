@@ -70,15 +70,21 @@ class LogInViewController: UIViewController {
         return field
     }()
 
-    private let loginButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Log In", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 10
-        button.backgroundColor = UIColor(named: "Color_IOS20")
-        button.toAutoLayout()
-        return button
-    }()
+//    private let loginButton: UIButton = {
+//        let button = UIButton()
+//        button.setTitle("Log In", for: .normal)
+//        button.setTitleColor(.white, for: .normal)
+//        button.layer.cornerRadius = 10
+//        button.backgroundColor = UIColor(named: "Color_IOS20")
+//        button.toAutoLayout()
+//        return button
+//    }()
+
+    private let loginButton = CustomButton(title: "Log In",
+                                           titleColor: .white,
+                                           backgroundColor: UIColor(named: "Color_IOS20"),
+                                           cornerRadius: 10)
+  
 
     private func layout() {
         view.addSubview(scrollView)
@@ -118,7 +124,6 @@ class LogInViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         layout()
-        self.loginButton.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
         self.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 1)
     }
 
@@ -161,6 +166,7 @@ class LogInViewController: UIViewController {
             print("неверный логин или пароль")
         }
     }
+    
 }
 
 extension LogInViewController: UITextFieldDelegate {
