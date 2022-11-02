@@ -11,10 +11,11 @@ import UIKit
 
 class CustomButton: UIButton {
 
+    var target = {}
+
     @objc
     func handleButtonTap() {
-        
-        print("Привет")
+        target()
     }
 
     convenience init(title:String?, titleColor: UIColor?, backgroundColor: UIColor?, cornerRadius: CGFloat) {

@@ -62,21 +62,12 @@ class ProfileHeaderView: UIView {
         label.toAutoLayout()
         return label
     }()
-    
-    private let setStatusButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Show status", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemBlue
-        button.layer.cornerRadius = 12
-        button.layer.shadowOffset = CGSize(width: 4, height: 4)
-        button.layer.shadowRadius = 4
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.7
-        button.toAutoLayout()
-        return button
-    }()
-    
+
+    private let setStatusButton = CustomButton(title: "Show status",
+                                               titleColor: .white,
+                                               backgroundColor: .systemBlue,
+                                               cornerRadius: 12)
+
     private let statusTextField: UITextField = {
         let field = UITextField()
         field.backgroundColor = .white
@@ -104,6 +95,15 @@ class ProfileHeaderView: UIView {
     }
     
     private func layout() {
+
+        setStatusButton.layer.shadowOffset = CGSize(width: 4, height: 4)
+        setStatusButton.layer.shadowRadius = 4
+        setStatusButton.layer.shadowColor = UIColor.black.cgColor
+        setStatusButton.layer.shadowOpacity = 0.7
+        setStatusButton.target = {
+            self.handleButtonTap()
+        }
+
         addSubviews(avatarEmptyView, fullNameLabel, statusLabel, setStatusButton, statusTextField, avatarView)
         avatarView.addSubviews(avatarImageView, avatarButton)
         leadingAvatarView = avatarView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16)
@@ -149,7 +149,6 @@ class ProfileHeaderView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.setStatusButton.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
         layout()
         setupGesture()
     }
