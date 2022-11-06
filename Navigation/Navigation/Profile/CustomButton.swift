@@ -14,7 +14,7 @@ class CustomButton: UIButton {
     var target = {}
 
     @objc
-    func handleButtonTap() {
+    private func handleButtonTap() {
         target()
     }
 

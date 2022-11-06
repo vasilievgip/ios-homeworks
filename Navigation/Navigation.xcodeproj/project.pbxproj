@@ -39,6 +39,7 @@
 		5EC1FFCD281FE55000BFBB79 /* Posti.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC1FFCC281FE55000BFBB79 /* Posti.swift */; };
 		5EC1FFCF281FFD2500BFBB79 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC1FFCE281FFD2500BFBB79 /* InfoViewController.swift */; };
 		5EE2203B290ED1C0000C7DE2 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE2203A290ED1C0000C7DE2 /* CustomButton.swift */; };
+		5EE2203D291422FE000C7DE2 /* FeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE2203C291422FE000C7DE2 /* FeedModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,7 @@
 		5EC1FFCC281FE55000BFBB79 /* Posti.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Posti.swift; sourceTree = "<group>"; };
 		5EC1FFCE281FFD2500BFBB79 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		5EE2203A290ED1C0000C7DE2 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		5EE2203C291422FE000C7DE2 /* FeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 				5EA096322907C0DF000A8034 /* LoginFactory.swift */,
 				5EA096342907C118000A8034 /* MyLoginFactory.swift */,
 				5EE2203A290ED1C0000C7DE2 /* CustomButton.swift */,
+				5EE2203C291422FE000C7DE2 /* FeedModel.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 				5EA096272907BDBB000A8034 /* UserService.swift in Sources */,
 				5EE2203B290ED1C0000C7DE2 /* CustomButton.swift in Sources */,
 				5EC1FFCF281FFD2500BFBB79 /* InfoViewController.swift in Sources */,
+				5EE2203D291422FE000C7DE2 /* FeedModel.swift in Sources */,
 				5E890616282FEBB20066A557 /* ProfileViewController.swift in Sources */,
 				5EC1FFCD281FE55000BFBB79 /* Posti.swift in Sources */,
 			);

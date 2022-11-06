@@ -129,7 +129,6 @@ class LogInViewController: UIViewController {
         super.viewDidDisappear(animated)
         nc.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         nc.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-        
     }
 
     @objc
