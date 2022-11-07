@@ -8,7 +8,7 @@
 import Foundation
 
 class FeedModel {
-    static let shared = FeedModel()
+
     let secretWord: String
     init() {
         secretWord = "Привет"
@@ -16,4 +16,5 @@ class FeedModel {
     func check(word: String) -> Bool {
         self.secretWord == word
     }
+
 }

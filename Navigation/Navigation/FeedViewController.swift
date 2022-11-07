@@ -8,6 +8,8 @@
 import UIKit
 
 class FeedViewController: UIViewController {
+
+    let feedModel = FeedModel()
     
     private let label: UILabel = {
         let label = UILabel()
@@ -110,7 +112,7 @@ class FeedViewController: UIViewController {
 
     @objc
     func checkGuessButtonTap() {
-        if (FeedModel.shared.check(word: secretWordtextField.text!) == true) {
+        if (feedModel.check(word: secretWordtextField.text!) == true) {
             secretWordLabel.backgroundColor = .systemGreen
         } else {
             secretWordLabel.backgroundColor = .systemRed
