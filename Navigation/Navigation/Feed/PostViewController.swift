@@ -8,6 +8,8 @@
 import UIKit
 
 class PostViewController: UIViewController {
+
+    weak var coordinator: PostCoordinator?
     
     private let label = UILabel()
     var titlePost: String = "Что-то"
@@ -20,6 +22,11 @@ class PostViewController: UIViewController {
         self.view.backgroundColor = .systemCyan
         let barButtonItem = UIBarButtonItem(title: "Информация", style: .plain, target: self, action: #selector(handleButtonTap))
         self.navigationItem.rightBarButtonItem = barButtonItem
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        coordinator?.didshowPost()
     }
     
     @objc

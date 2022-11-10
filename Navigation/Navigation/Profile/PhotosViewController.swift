@@ -10,8 +10,10 @@ import iOSIntPackage
 
 class PhotosViewController: UIViewController {
 
-//    var photos = PhotosArray.makeMockPhotosModel()
+    //    var photos = PhotosArray.makeMockPhotosModel()
     var photos = [PhotosArray]()
+
+    weak var coordinator: LoginCoordinator?
 
     let imagePublisherFacade = ImagePublisherFacade()
 

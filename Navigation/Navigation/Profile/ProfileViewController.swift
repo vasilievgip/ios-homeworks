@@ -9,6 +9,8 @@ import UIKit
 import StorageService
 
 class ProfileViewController: UIViewController {
+
+    weak var coordinator: LoginCoordinator?
     
     let posts = Post.makeMockModel()
 
@@ -47,6 +49,12 @@ class ProfileViewController: UIViewController {
 #endif
         layout()
     }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        coordinator?.didLogin()
+    }
+
 }
 
 extension ProfileViewController: UITableViewDataSource {
@@ -83,8 +91,7 @@ extension ProfileViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-            let photosViewController = PhotosViewController()
-            self.navigationController?.pushViewController(photosViewController, animated: true)
+            coordinator?.viewPhotos()
         }
     }
 }

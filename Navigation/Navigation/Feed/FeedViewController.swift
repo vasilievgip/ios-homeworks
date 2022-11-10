@@ -9,6 +9,8 @@ import UIKit
 
 class FeedViewController: UIViewController {
 
+    weak var coordinator: MainFeedCoordinator?
+
     let feedModel = FeedModel()
     
     private let label: UILabel = {
@@ -46,7 +48,7 @@ class FeedViewController: UIViewController {
         return label
     }()
 
-    var posti = Posti(title: "Мой пост")
+//    var posti = Posti(title: "Мой пост")
 
     private let button1: UIButton = {
         let button = UIButton()
@@ -105,9 +107,7 @@ class FeedViewController: UIViewController {
     
     @objc
     func handleButtonTap() {
-        let postViewController = PostViewController()
-        self.navigationController?.pushViewController(postViewController, animated: true)
-        postViewController.titlePost = posti.title
+        coordinator?.showPost()
     }
 
     @objc

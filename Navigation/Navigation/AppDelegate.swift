@@ -15,19 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        let feedViewController = FeedViewController()
-        let loginViewController = LogInViewController()
-        loginViewController.loginDelegate = MyLoginFactory().makeLoginInspector()
-        let navigationFeedViewController = UINavigationController(rootViewController: feedViewController)
-        let navigationLoginViewController = UINavigationController(rootViewController: loginViewController)
-        let tabBarController = UITabBarController()
-        tabBarController.viewControllers = [
-            navigationFeedViewController,
-            navigationLoginViewController
-        ]
-        navigationFeedViewController.navigationBar.isHidden = true
-        navigationLoginViewController.navigationBar.isHidden = true
-        self.window?.rootViewController = tabBarController
+        self.window?.rootViewController = MainTabBarController()
         self.window?.makeKeyAndVisible()
         return true
         

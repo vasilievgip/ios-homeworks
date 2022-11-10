@@ -9,6 +9,8 @@ import UIKit
 
 class LogInViewController: UIViewController {
 
+    weak var coordinator: MainProfileCoordinator?
+
     var loginDelegate: LoginViewControllerDelegate?
 
     private let nc = NotificationCenter.default
@@ -147,9 +149,8 @@ class LogInViewController: UIViewController {
 
     @objc
     func handleButtonTap() {
-        let profileViewController = ProfileViewController()
         if (loginDelegate?.check(login: mailTextField.text!, password: passwordTextField.text!) == true) {
-            self.navigationController?.pushViewController(profileViewController, animated: true)
+            coordinator?.login()
         } else {
             let alert = UIAlertController(title: "Неверный логин или пароль!", message: "Введите корректный логин или пароль", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "ДА", style: .default, handler: { action in print("ввести корректный логин или пароль") }))
