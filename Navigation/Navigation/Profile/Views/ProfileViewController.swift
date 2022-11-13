@@ -6,20 +6,11 @@
 //
 
 import UIKit
-import StorageService
 
 class ProfileViewController: UIViewController {
 
-    weak var coordinator: LoginCoordinator?
-    
-    let posts = Post.makeMockModel()
+    weak var coordinator: ProfileViewModel?
 
-#if DEBUG
-    let user = User(login: "test@yandex.ru", fullName: "Test Test Test", avatar: UIImage(systemName: "eyes") ?? UIImage(named: "nophoto")!, status: "Waiting for Test...")
-#else
-    let user = User(login: "vasilievgip@yandex.ru", fullName: "Андрей Александрович Васильев", avatar: UIImage(named: "avatar") ?? UIImage(named: "nophoto")!, status: "Waiting for something...")
-#endif
-    
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.toAutoLayout()

@@ -26,7 +26,7 @@ final class MainProfileCoordinator: AppCoordinator {
     }
 
     func login() {
-        let child = LoginCoordinator(navigationController: navigationController)
+        let child = ProfileViewModel(navigationController: navigationController, user: user)
         childs.append(child)
         child.parentCoordinator = self
         child.start()

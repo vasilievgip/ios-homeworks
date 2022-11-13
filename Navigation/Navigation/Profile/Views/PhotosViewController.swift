@@ -13,7 +13,7 @@ class PhotosViewController: UIViewController {
     //    var photos = PhotosArray.makeMockPhotosModel()
     var photos = [PhotosArray]()
 
-    weak var coordinator: LoginCoordinator?
+    weak var coordinator: ProfileViewModel?
 
     let imagePublisherFacade = ImagePublisherFacade()
 
