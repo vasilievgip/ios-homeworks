@@ -10,10 +10,7 @@ import iOSIntPackage
 
 class PhotosViewController: UIViewController {
 
-    //    var photos = PhotosArray.makeMockPhotosModel()
-    var photos = [PhotosArray]()
-
-    weak var coordinator: ProfileViewModel?
+    weak var coordinator: LoginCoordinator?
 
     let imagePublisherFacade = ImagePublisherFacade()
 
@@ -80,12 +77,12 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
 extension PhotosViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        photos.count
+        ProfileViewModel(user: user).photos.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.identifier, for: indexPath) as! PhotosCollectionViewCell
-        cell.setupPhotosCell(model: photos[indexPath.row])
+        cell.setupPhotosCell(model: ProfileViewModel(user: user).photos[indexPath.row])
         return cell
     }
 }
@@ -93,8 +90,8 @@ extension PhotosViewController: UICollectionViewDataSource {
 extension PhotosViewController: ImageLibrarySubscriber {
     func receive(images: [UIImage]) {
         for image in images {
-            let receiveImage = PhotosArray(image: image)
-            photos.append(receiveImage)
+            let receiveImage = User.PhotosArray(image: image)
+            photosArray.append(receiveImage)
             photosCollectionView.reloadData()
         }
     }

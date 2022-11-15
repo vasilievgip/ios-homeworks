@@ -9,14 +9,29 @@ import Foundation
 import UIKit
 
 class User {
+
+    struct Post {
+        public var author: String
+        public var description: String
+        public var image: UIImage
+        public var likes: Int
+        public var views: Int
+    }
+
+    struct PhotosArray {
+        var image: UIImage
+    }
+
     var login: String
     var fullName: String
     var avatar: UIImage
     var status: String
+
     init(login: String, fullName: String, avatar: UIImage, status: String) {
         self.login = login
         self.fullName = fullName
         self.avatar = avatar
         self.status = status
     }
+    
 }

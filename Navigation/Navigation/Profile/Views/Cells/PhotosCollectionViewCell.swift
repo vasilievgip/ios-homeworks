@@ -37,7 +37,7 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupPhotosCell(model: PhotosArray) {
+    func setupPhotosCell(model: User.PhotosArray) {
         photosImage.image = model.image
     }
 }

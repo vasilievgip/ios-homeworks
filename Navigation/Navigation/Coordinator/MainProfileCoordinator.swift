@@ -26,18 +26,16 @@ final class MainProfileCoordinator: AppCoordinator {
     }
 
     func login() {
-        let child = ProfileViewModel(navigationController: navigationController, user: user)
+        let child = LoginCoordinator(navigationController: navigationController)
         childs.append(child)
         child.parentCoordinator = self
         child.start()
-        print(childs)
     }
 
     func childDidFinish(_ child: AppCoordinator?) {
         for (index, appcoordinator) in childs.enumerated() {
             if appcoordinator === child {
                 childs.remove(at: index)
-                print(childs)
                 break
             }
         }

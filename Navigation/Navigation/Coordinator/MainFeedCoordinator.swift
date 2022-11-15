@@ -29,14 +29,12 @@ final class MainFeedCoordinator: AppCoordinator {
         childs.append(child)
         child.parentCoordinator = self
         child.start()
-        print(childs)
     }
 
     func childDidFinish(_ child: AppCoordinator?) {
         for (index, appcoordinator) in childs.enumerated() {
             if appcoordinator === child {
                 childs.remove(at: index)
-                print(childs)
                 break
             }
         }

@@ -9,7 +9,7 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
-    weak var coordinator: ProfileViewModel?
+    weak var coordinator: LoginCoordinator?
 
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -56,7 +56,7 @@ extension ProfileViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 1 {
-            return posts.count
+            return ProfileViewModel(user: user).posts.count
         } else {
             return 1
         }
@@ -65,7 +65,7 @@ extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PostTableViewCell.self), for: indexPath) as! PostTableViewCell
-            cell.setupCell(model: posts[indexPath.row])
+            cell.setupCell(model: ProfileViewModel(user: user).posts[indexPath.row])
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PhotosTableViewCell.self), for: indexPath) as! PhotosTableViewCell

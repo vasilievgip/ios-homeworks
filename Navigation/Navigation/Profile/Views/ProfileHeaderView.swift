@@ -34,7 +34,7 @@ class ProfileHeaderView: UIView {
     
     private let avatarImageView: UIImageView = {
         let view = UIImageView()
-        view.image = user.avatar
+        view.image = ProfileViewModel(user: user).avatar
         view.layer.masksToBounds = true
         view.layer.cornerRadius = 50
         view.layer.borderWidth = 3
@@ -45,7 +45,7 @@ class ProfileHeaderView: UIView {
     
     private let fullNameLabel: UILabel = {
         let label = UILabel()
-        label.text = user.fullName
+        label.text = ProfileViewModel(user: user).fullName
         label.textColor = .black
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.numberOfLines = 0
@@ -55,7 +55,7 @@ class ProfileHeaderView: UIView {
     
     private let statusLabel: UILabel = {
         let label = UILabel()
-        label.text = user.status
+        label.text = ProfileViewModel(user: user).status
         label.textColor = .gray
         label.font = UIFont.systemFont(ofSize: 14)
         label.numberOfLines = 0
