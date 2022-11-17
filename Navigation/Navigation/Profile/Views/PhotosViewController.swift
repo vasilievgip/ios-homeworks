@@ -12,7 +12,7 @@ class PhotosViewController: UIViewController {
 
     weak var coordinator: LoginCoordinator?
 
-    let imagePublisherFacade = ImagePublisherFacade()
+//    let imagePublisherFacade = ImagePublisherFacade()
 
     private lazy var photosCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -34,20 +34,49 @@ class PhotosViewController: UIViewController {
         ])
     }
 
+    private func processImagesOnThread() {
+        var photosUIImageArray = [UIImage]()
+        var photosCGImageArray = [CGImage]()
+        for image in photosArray {
+            photosUIImageArray.append(image.image)
+        }
+        let startTime = DispatchTime.now()
+        ImageProcessor().processImagesOnThread(sourceImages: photosUIImageArray,
+                                               filter: .tonal,
+                                               qos: .userInteractive) {
+        photosCGImageArray = $0 as! [CGImage]
+        photosUIImageArray.removeAll()
+        for imageCGImage in photosCGImageArray {
+            photosUIImageArray.append(UIImage(cgImage: imageCGImage))
+        }
+        photosArray.removeAll()
+        for imageUIImage in photosUIImageArray {
+            photosArray.append(User.PhotosArray(image: imageUIImage))
+        }
+    }
+        let endTime = DispatchTime.now()
+        let nanoTime = endTime.rawValue - startTime.rawValue
+        let timeInterval = Double(nanoTime) / 1_000_000_000
+        print("\(timeInterval) секунд")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+
         view.backgroundColor = .systemGray6
+        processImagesOnThread()
         layout()
         navigationController?.navigationBar.isHidden = false
         navigationItem.title = "Photo Gallery"
-        imagePublisherFacade.subscribe(self)
-        imagePublisherFacade.addImagesWithTimer(time: 0.5, repeat: 10)
+//        imagePublisherFacade.subscribe(self)
+//        imagePublisherFacade.addImagesWithTimer(time: 0.5, repeat: 10)
+
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         navigationController?.navigationBar.isHidden = true
-        imagePublisherFacade.removeSubscription(for: self)
+//        imagePublisherFacade.removeSubscription(for: self)
     }
 }
 
@@ -87,12 +116,12 @@ extension PhotosViewController: UICollectionViewDataSource {
     }
 }
 
-extension PhotosViewController: ImageLibrarySubscriber {
-    func receive(images: [UIImage]) {
-        for image in images {
-            let receiveImage = User.PhotosArray(image: image)
-            photosArray.append(receiveImage)
-            photosCollectionView.reloadData()
-        }
-    }
-}
+//extension PhotosViewController: ImageLibrarySubscriber {
+//    func receive(images: [UIImage]) {
+//        for image in images {
+//            let receiveImage = User.PhotosArray(image: image)
+//            photosArray.append(receiveImage)
+//            photosCollectionView.reloadData()
+//        }
+//    }
+//}
