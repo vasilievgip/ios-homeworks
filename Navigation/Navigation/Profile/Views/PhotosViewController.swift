@@ -35,31 +35,41 @@ class PhotosViewController: UIViewController {
     }
 
     private func processImagesOnThread() {
+
+        let startTime = DispatchTime.now()
+
         var photosUIImageArray = [UIImage]()
-        var photosCGImageArray = [CGImage]()
         for image in photosArray {
             photosUIImageArray.append(image.image)
         }
-        let startTime = DispatchTime.now()
+
+        func transformation(cgImageArray: [CGImage]) -> [User.PhotosArray] {
+            let images = cgImageArray.map {
+                (cgImage) -> User.PhotosArray in
+                User.PhotosArray(image: UIImage(cgImage: cgImage))
+            }
+            return images
+        }
+
         ImageProcessor().processImagesOnThread(sourceImages: photosUIImageArray,
-                                               filter: .tonal,
-                                               qos: .userInteractive) {
-        photosCGImageArray = $0 as! [CGImage]
-        photosUIImageArray.removeAll()
-        for imageCGImage in photosCGImageArray {
-            photosUIImageArray.append(UIImage(cgImage: imageCGImage))
-        }
-        photosArray.removeAll()
-        for imageUIImage in photosUIImageArray {
-            photosArray.append(User.PhotosArray(image: imageUIImage))
+                                               filter: .colorInvert,
+                                               qos: .utility) {
+
+            let photosCGImageArray = $0 as! [CGImage]
+            filterPhotosArray = transformation(cgImageArray: photosCGImageArray)
+
+            DispatchQueue.main.async {
+                self.photosCollectionView.reloadData()
+            }
+
+            let endTime = DispatchTime.now()
+            let nanoTime = endTime.uptimeNanoseconds - startTime.uptimeNanoseconds
+            let timeInterval = Double(nanoTime) / 1_000_000_000
+            print("\(timeInterval) секунд")
+
         }
     }
-        let endTime = DispatchTime.now()
-        let nanoTime = endTime.rawValue - startTime.rawValue
-        let timeInterval = Double(nanoTime) / 1_000_000_000
-        print("\(timeInterval) секунд")
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -76,6 +86,7 @@ class PhotosViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         navigationController?.navigationBar.isHidden = true
+        filterPhotosArray.removeAll()
 //        imagePublisherFacade.removeSubscription(for: self)
     }
 }

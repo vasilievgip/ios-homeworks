@@ -45,3 +45,5 @@ let user = User(login: "test@yandex.ru", fullName: "Test Test Test", avatar: UII
 #else
 let user = User(login: "vasilievgip@yandex.ru", fullName: "Андрей Александрович Васильев", avatar: UIImage(named: "avatar") ?? UIImage(named: "nophoto")!, status: "Waiting for something...")
 #endif
+
+var filterPhotosArray = [User.PhotosArray]()

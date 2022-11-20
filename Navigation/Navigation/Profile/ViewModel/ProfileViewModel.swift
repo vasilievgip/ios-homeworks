@@ -11,7 +11,7 @@ import UIKit
 
 class ProfileViewModel {
 
-    var photos: [User.PhotosArray] = photosArray
+    var photos: [User.PhotosArray] = filterPhotosArray
 
     var posts: [User.Post] = postArray
 
