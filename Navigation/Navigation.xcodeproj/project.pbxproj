@@ -37,6 +37,7 @@
 		5EC1FFCD281FE55000BFBB79 /* Posti.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC1FFCC281FE55000BFBB79 /* Posti.swift */; };
 		5EC1FFCF281FFD2500BFBB79 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC1FFCE281FFD2500BFBB79 /* InfoViewController.swift */; };
 		5EC2E79F29229BDB003E7295 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC2E79E29229BDB003E7295 /* LoginCoordinator.swift */; };
+		5EC2E7A2292BECC7003E7295 /* BruteForce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC2E7A1292BECC7003E7295 /* BruteForce.swift */; };
 		5ED936DC291BA262005C815B /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED936DB291BA262005C815B /* AppCoordinator.swift */; };
 		5ED936DE291BA319005C815B /* MainFeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED936DD291BA319005C815B /* MainFeedCoordinator.swift */; };
 		5ED936E2291C1762005C815B /* MainProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED936E1291C1762005C815B /* MainProfileCoordinator.swift */; };
@@ -103,6 +104,7 @@
 		5EC1FFCC281FE55000BFBB79 /* Posti.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Posti.swift; sourceTree = "<group>"; };
 		5EC1FFCE281FFD2500BFBB79 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		5EC2E79E29229BDB003E7295 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
+		5EC2E7A1292BECC7003E7295 /* BruteForce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BruteForce.swift; sourceTree = "<group>"; };
 		5ED936DB291BA262005C815B /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		5ED936DD291BA319005C815B /* MainFeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeedCoordinator.swift; sourceTree = "<group>"; };
 		5ED936E1291C1762005C815B /* MainProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainProfileCoordinator.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				5EA096322907C0DF000A8034 /* LoginFactory.swift */,
 				5EA096342907C118000A8034 /* MyLoginFactory.swift */,
 				5EE2203A290ED1C0000C7DE2 /* CustomButton.swift */,
+				5EC2E7A1292BECC7003E7295 /* BruteForce.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 				5E39A02A289AE06100F296C7 /* PhotosViewController.swift in Sources */,
 				5ED936E2291C1762005C815B /* MainProfileCoordinator.swift in Sources */,
 				5E39A026286A15FB00F296C7 /* PostTableViewCell.swift in Sources */,
+				5EC2E7A2292BECC7003E7295 /* BruteForce.swift in Sources */,
 				5E89061828453DBF0066A557 /* Extension.swift in Sources */,
 				5EA096332907C0DF000A8034 /* LoginFactory.swift in Sources */,
 				5ED936EA29212468005C815B /* ProfileViewModel.swift in Sources */,

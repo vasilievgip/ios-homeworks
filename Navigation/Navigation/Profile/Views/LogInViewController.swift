@@ -9,6 +9,7 @@ import UIKit
 
 class LogInViewController: UIViewController {
 
+
     weak var coordinator: MainProfileCoordinator?
 
     var loginDelegate: LoginViewControllerDelegate?
@@ -72,7 +73,20 @@ class LogInViewController: UIViewController {
         return field
     }()
 
+    private let activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.style = .large
+        activityIndicator.color = UIColor(named: "Color_IOS20")
+        activityIndicator.toAutoLayout()
+        return activityIndicator
+    }()
+
     private let loginButton = CustomButton(title: "Log In",
+                                           titleColor: .white,
+                                           backgroundColor: UIColor(named: "Color_IOS20"),
+                                           cornerRadius: 10)
+
+    private let chooseApassword = CustomButton(title: "Подобрать пароль",
                                            titleColor: .white,
                                            backgroundColor: UIColor(named: "Color_IOS20"),
                                            cornerRadius: 10)
@@ -80,7 +94,7 @@ class LogInViewController: UIViewController {
     private func layout() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
-        contentView.addSubviews(logoImageView, mailTextField, passwordTextField, loginButton)
+        contentView.addSubviews(logoImageView, mailTextField, passwordTextField, activityIndicator, loginButton, chooseApassword)
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
@@ -103,11 +117,19 @@ class LogInViewController: UIViewController {
             passwordTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             passwordTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             passwordTextField.heightAnchor.constraint(equalToConstant: 50),
+            activityIndicator.centerYAnchor.constraint(equalTo: passwordTextField.centerYAnchor),
+            activityIndicator.centerXAnchor.constraint(equalTo: passwordTextField.centerXAnchor),
+            activityIndicator.heightAnchor.constraint(equalToConstant: 50),
+            activityIndicator.widthAnchor.constraint(equalToConstant: 50),
             loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 16),
             loginButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             loginButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             loginButton.heightAnchor.constraint(equalToConstant: 50),
-            loginButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            chooseApassword.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 16),
+            chooseApassword.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            chooseApassword.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            chooseApassword.heightAnchor.constraint(equalToConstant: 50),
+            chooseApassword.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
 
@@ -117,6 +139,9 @@ class LogInViewController: UIViewController {
         layout()
         loginButton.target = {
             self.handleButtonTap()
+        }
+        chooseApassword.target = {
+            self.tap()
         }
         self.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 1)
     }
@@ -156,6 +181,20 @@ class LogInViewController: UIViewController {
             alert.addAction(UIAlertAction(title: "ДА", style: .default, handler: { action in print("ввести корректный логин или пароль") }))
             self.present(alert, animated: true)
             print("неверный логин или пароль")
+        }
+    }
+
+    @objc
+    func tap() {
+        let queue = DispatchQueue.global(qos: .default)
+        activityIndicator.startAnimating()
+        queue.async {
+            let bruteForce = BruteForce().bruteForce(passwordToUnlock: "Bai9")
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+                self.passwordTextField.isSecureTextEntry = false
+                self.passwordTextField.text = bruteForce
+            }
         }
     }
     
