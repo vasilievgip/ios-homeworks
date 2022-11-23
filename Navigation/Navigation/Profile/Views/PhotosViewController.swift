@@ -24,14 +24,45 @@ class PhotosViewController: UIViewController {
         return collectionView
     }()
 
+    private let timerLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.font = UIFont.boldSystemFont(ofSize: 18)
+//        label.text = "Время наложения фильтра:"
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.toAutoLayout()
+        return label
+    }()
+
     private func layout() {
-        view.addSubviews(photosCollectionView)
+        view.addSubviews(photosCollectionView, timerLabel)
         NSLayoutConstraint.activate([
             photosCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             photosCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             photosCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            photosCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            photosCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            timerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            timerLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            timerLabel.heightAnchor.constraint(equalToConstant: 50),
+            timerLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            timerLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
         ])
+    }
+
+    private func filterTimer() {
+
+        var seconds = 0.0
+
+        let timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
+            seconds += 0.1
+            let number = NSString(format: "%.1f", seconds)
+            self.timerLabel.text = "Время наложения фильтра составляет: \(number) сек."
+            if filterPhotosArray.count != 0 {
+                timer.invalidate()
+                self.timerLabel.text = ""
+            }
+        }
     }
 
     private func processImagesOnThread() {
@@ -52,8 +83,8 @@ class PhotosViewController: UIViewController {
         }
 
         ImageProcessor().processImagesOnThread(sourceImages: photosUIImageArray,
-                                               filter: .colorInvert,
-                                               qos: .utility) {
+                                               filter: .bloom(intensity: 10),
+                                               qos: .background) {
 
             let photosCGImageArray = $0 as! [CGImage]
             filterPhotosArray = transformation(cgImageArray: photosCGImageArray)
@@ -76,6 +107,7 @@ class PhotosViewController: UIViewController {
         view.backgroundColor = .systemGray6
         processImagesOnThread()
         layout()
+        filterTimer()
         navigationController?.navigationBar.isHidden = false
         navigationItem.title = "Photo Gallery"
 //        imagePublisherFacade.subscribe(self)
