@@ -43,7 +43,7 @@ class ProfileViewController: UIViewController {
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        coordinator?.didLogin()
+//        coordinator?.didLogin()
     }
 
 }

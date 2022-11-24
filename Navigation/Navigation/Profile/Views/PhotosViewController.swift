@@ -28,7 +28,6 @@ class PhotosViewController: UIViewController {
         let label = UILabel()
         label.textColor = .black
         label.font = UIFont.boldSystemFont(ofSize: 18)
-//        label.text = "Время наложения фильтра:"
         label.textAlignment = .center
         label.numberOfLines = 0
         label.toAutoLayout()
@@ -54,7 +53,7 @@ class PhotosViewController: UIViewController {
 
         var seconds = 0.0
 
-        let timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
+        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
             seconds += 0.1
             let number = NSString(format: "%.1f", seconds)
             self.timerLabel.text = "Время наложения фильтра составляет: \(number) сек."
@@ -84,7 +83,7 @@ class PhotosViewController: UIViewController {
 
         ImageProcessor().processImagesOnThread(sourceImages: photosUIImageArray,
                                                filter: .bloom(intensity: 10),
-                                               qos: .background) {
+                                               qos: .default) {
 
             let photosCGImageArray = $0 as! [CGImage]
             filterPhotosArray = transformation(cgImageArray: photosCGImageArray)
@@ -118,6 +117,7 @@ class PhotosViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         navigationController?.navigationBar.isHidden = true
+//        coordinator?.didLogin()
         filterPhotosArray.removeAll()
 //        imagePublisherFacade.removeSubscription(for: self)
     }

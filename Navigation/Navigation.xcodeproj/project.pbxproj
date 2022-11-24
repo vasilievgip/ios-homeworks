@@ -214,8 +214,8 @@
 				5ED936DB291BA262005C815B /* AppCoordinator.swift */,
 				5ED936E3291D29B9005C815B /* MainTabBarController.swift */,
 				5ED936DD291BA319005C815B /* MainFeedCoordinator.swift */,
-				5ED936E7291D6AB0005C815B /* PostCoordinator.swift */,
 				5ED936E1291C1762005C815B /* MainProfileCoordinator.swift */,
+				5ED936E7291D6AB0005C815B /* PostCoordinator.swift */,
 				5EC2E79E29229BDB003E7295 /* LoginCoordinator.swift */,
 			);
 			path = Coordinator;
