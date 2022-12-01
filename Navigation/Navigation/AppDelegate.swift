@@ -17,6 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.rootViewController = MainTabBarController()
         self.window?.makeKeyAndVisible()
+        let appConfiguration = AppConfiguration.allCases.randomElement()
+        let _: () = NetworkService.request(for: appConfiguration!)
+        
         return true
         
     }
