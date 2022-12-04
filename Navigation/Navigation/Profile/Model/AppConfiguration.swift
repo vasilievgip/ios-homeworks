@@ -8,9 +8,9 @@
 import Foundation
 
 enum AppConfiguration: String, CaseIterable {
-
-    case url_1
-    case url_2
-    case url_3
     
+    case people = "https://swapi.dev/api/people"
+    case starships = "https://swapi.dev/api/starships"
+    case planets = "https://swapi.dev/api/planets"
+
 }
