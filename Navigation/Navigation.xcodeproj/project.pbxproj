@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5E10C67D28FC040200832F24 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E10C67C28FC040200832F24 /* User.swift */; };
+		5E17FA4F293689F90059774E /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E17FA4E293689F90059774E /* NetworkService.swift */; };
+		5E17FA5129368BC90059774E /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E17FA5029368BC90059774E /* AppConfiguration.swift */; };
 		5E39A026286A15FB00F296C7 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E39A025286A15FB00F296C7 /* PostTableViewCell.swift */; };
 		5E39A02828919A3E00F296C7 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E39A02728919A3E00F296C7 /* PhotosTableViewCell.swift */; };
 		5E39A02A289AE06100F296C7 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E39A029289AE06100F296C7 /* PhotosViewController.swift */; };
@@ -74,6 +76,8 @@
 
 /* Begin PBXFileReference section */
 		5E10C67C28FC040200832F24 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		5E17FA4E293689F90059774E /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		5E17FA5029368BC90059774E /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		5E39A025286A15FB00F296C7 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		5E39A02728919A3E00F296C7 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		5E39A029289AE06100F296C7 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
@@ -225,6 +229,8 @@
 			isa = PBXGroup;
 			children = (
 				5E10C67C28FC040200832F24 /* User.swift */,
+				5E17FA4E293689F90059774E /* NetworkService.swift */,
+				5E17FA5029368BC90059774E /* AppConfiguration.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -405,8 +411,10 @@
 				5EA0962B2907BEB5000A8034 /* TestUserService.swift in Sources */,
 				5EAD6D7C2802C53D00091514 /* FeedViewController.swift in Sources */,
 				5E10C67D28FC040200832F24 /* User.swift in Sources */,
+				5E17FA5129368BC90059774E /* AppConfiguration.swift in Sources */,
 				5ED936EF29214740005C815B /* ProfileAssembly.swift in Sources */,
 				5ED936DE291BA319005C815B /* MainFeedCoordinator.swift in Sources */,
+				5E17FA4F293689F90059774E /* NetworkService.swift in Sources */,
 				5EAD6D782802C53D00091514 /* AppDelegate.swift in Sources */,
 				5EA096352907C118000A8034 /* MyLoginFactory.swift in Sources */,
 				5E890614282FEB690066A557 /* ProfileHeaderView.swift in Sources */,
