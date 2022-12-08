@@ -17,9 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.rootViewController = MainTabBarController()
         self.window?.makeKeyAndVisible()
-        if let appConfiguration = AppConfiguration.allCases.randomElement() {
-            let _: () = NetworkService.request(for: appConfiguration)
-        }
+        //        if let appConfiguration = AppConfiguration.allCases.randomElement() {
+        //            NetworkService.request(for: appConfiguration)
+        //        }
+        jsonRequest()
+        planetRequest()
         return true
 
     }
