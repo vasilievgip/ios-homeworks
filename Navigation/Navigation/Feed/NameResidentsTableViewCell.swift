@@ -12,7 +12,6 @@ class NameResidentsTableViewCell: UITableViewCell {
     let nameResidentLabel: UILabel = {
         let label = UILabel()
         label.toAutoLayout()
-        label.text = "Привет"
         label.numberOfLines = 0
         return label
     }()

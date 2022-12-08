@@ -43,16 +43,13 @@ struct Planet: Codable {
     
 }
 
-var planet = Planet()
-
-func planetRequest() {
+func planetRequest(completion: ((_ planet: Planet?) -> Void)?) {
     if let url = URL(string: "https://swapi.dev/api/planets/1") {
         let task = URLSession.shared.dataTask(with: url, completionHandler: {data, response, error in
             if let unwrappedData = data {
                 do {
                     let serializedData = try JSONDecoder().decode(Planet.self, from: unwrappedData)
-                    planet.orbitalPeriod = serializedData.orbitalPeriod
-                    planet.residents = serializedData.residents
+                    completion?(serializedData)
                 } catch let error {
                     print(error)
                 }

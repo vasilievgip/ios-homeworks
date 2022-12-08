@@ -46,5 +46,25 @@ struct Resident: Codable {
     }
 
 }
-var resident = Resident()
+
 var arrayNameResident = [Resident]()
+
+func residentsRequest(_ planet: Planet, comletion: ((_ arrayNameResident: [Resident]?) -> Void)?) {
+    
+    for items in planet.residents {
+        if let url = URL(string: items) {
+            let task = URLSession.shared.dataTask(with: url, completionHandler: {data, response, error in
+                if let unwrappedData = data {
+                    do {
+                        let serializedData = try JSONDecoder().decode(Resident.self, from: unwrappedData)
+                        arrayNameResident.append(serializedData)
+                        comletion?(arrayNameResident)
+                    } catch let error {
+                        print(error)
+                    }
+                }
+            })
+            task.resume()
+        }
+    }
+}

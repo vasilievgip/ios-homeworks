@@ -20,8 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //        if let appConfiguration = AppConfiguration.allCases.randomElement() {
         //            NetworkService.request(for: appConfiguration)
         //        }
-        jsonRequest()
-        planetRequest()
         return true
 
     }

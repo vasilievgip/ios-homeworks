@@ -31,7 +31,6 @@ class InfoViewController: UIViewController, UITableViewDelegate {
     let jsonLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.text = json.title
         label.toAutoLayout()
         return label
     }()
@@ -39,7 +38,6 @@ class InfoViewController: UIViewController, UITableViewDelegate {
     let planetLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.text = planet.orbitalPeriod
         label.toAutoLayout()
         return label
     }()
@@ -63,33 +61,28 @@ class InfoViewController: UIViewController, UITableViewDelegate {
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
-
-    func residentsRequest() {
-        for items in planet.residents {
-            if let url = URL(string: items) {
-                let task = URLSession.shared.dataTask(with: url, completionHandler: {data, response, error in
-                    if let unwrappedData = data {
-                        do {
-                            let serializedData = try JSONDecoder().decode(Resident.self, from: unwrappedData)
-                            resident.name = serializedData.name
-                            arrayNameResident.append(resident)
-                            DispatchQueue.main.async {
-                                self.tableView.reloadData()
-                            }
-                        } catch let error {
-                            print(error)
-                        }
-                    }
-                })
-                task.resume()
-            }
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemBackground
-        residentsRequest()
+        jsonRequest(comletion: { title in
+            DispatchQueue.main.async {
+                self.jsonLabel.text = title
+            }
+        })
+        planetRequest(completion: { planet in
+            DispatchQueue.main.async {
+                self.planetLabel.text = planet?.orbitalPeriod
+                residentsRequest(planet!, comletion: { resident in
+                    DispatchQueue.main.async {
+                        arrayNameResident = resident!
+                        self.tableView.reloadData()
+                    }
+                })
+                
+            }
+        })
+
         layout()
         self.deleteButton.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
     }
@@ -111,9 +104,9 @@ extension InfoViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: NameResidentsTableViewCell.self), for: indexPath) as! NameResidentsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: NameResidentsTableViewCell.self), for: indexPath) as! NameResidentsTableViewCell
         cell.setupCell(model: arrayNameResident[indexPath.row])
-            return cell
+        return cell
     }
 
 }
