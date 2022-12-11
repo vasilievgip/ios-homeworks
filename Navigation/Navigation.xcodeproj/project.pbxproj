@@ -10,10 +10,14 @@
 		5E10C67D28FC040200832F24 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E10C67C28FC040200832F24 /* User.swift */; };
 		5E17FA4F293689F90059774E /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E17FA4E293689F90059774E /* NetworkService.swift */; };
 		5E17FA5129368BC90059774E /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E17FA5029368BC90059774E /* AppConfiguration.swift */; };
+		5E17FA55293F47AE0059774E /* Planet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E17FA54293F47AE0059774E /* Planet.swift */; };
+		5E17FA57293F4CD10059774E /* Json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E17FA56293F4CD10059774E /* Json.swift */; };
 		5E39A026286A15FB00F296C7 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E39A025286A15FB00F296C7 /* PostTableViewCell.swift */; };
 		5E39A02828919A3E00F296C7 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E39A02728919A3E00F296C7 /* PhotosTableViewCell.swift */; };
 		5E39A02A289AE06100F296C7 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E39A029289AE06100F296C7 /* PhotosViewController.swift */; };
 		5E39A02C289AE4A500F296C7 /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E39A02B289AE4A500F296C7 /* PhotosCollectionViewCell.swift */; };
+		5E5387772940DA2000B1DAED /* Resident.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5387762940DA2000B1DAED /* Resident.swift */; };
+		5E53877929410F9D00B1DAED /* NameResidentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E53877829410F9D00B1DAED /* NameResidentsTableViewCell.swift */; };
 		5E890614282FEB690066A557 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E890613282FEB690066A557 /* ProfileHeaderView.swift */; };
 		5E890616282FEBB20066A557 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E890615282FEBB20066A557 /* ProfileViewController.swift */; };
 		5E89061828453DBF0066A557 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E89061728453DBF0066A557 /* Extension.swift */; };
@@ -78,10 +82,14 @@
 		5E10C67C28FC040200832F24 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5E17FA4E293689F90059774E /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		5E17FA5029368BC90059774E /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
+		5E17FA54293F47AE0059774E /* Planet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planet.swift; sourceTree = "<group>"; };
+		5E17FA56293F4CD10059774E /* Json.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Json.swift; sourceTree = "<group>"; };
 		5E39A025286A15FB00F296C7 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		5E39A02728919A3E00F296C7 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		5E39A029289AE06100F296C7 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		5E39A02B289AE4A500F296C7 /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
+		5E5387762940DA2000B1DAED /* Resident.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resident.swift; sourceTree = "<group>"; };
+		5E53877829410F9D00B1DAED /* NameResidentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameResidentsTableViewCell.swift; sourceTree = "<group>"; };
 		5E890613282FEB690066A557 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		5E890615282FEBB20066A557 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		5E89061728453DBF0066A557 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
@@ -138,6 +146,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5E538775293F9B8F00B1DAED /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5E17FA56293F4CD10059774E /* Json.swift */,
+				5E17FA54293F47AE0059774E /* Planet.swift */,
+				5E5387762940DA2000B1DAED /* Resident.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		5E89060E282FE9870066A557 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -193,7 +211,6 @@
 				5E89060E282FE9870066A557 /* Profile */,
 				5EAD6D772802C53D00091514 /* AppDelegate.swift */,
 				5E89061728453DBF0066A557 /* Extension.swift */,
-				5EC1FFCE281FFD2500BFBB79 /* InfoViewController.swift */,
 				5EAD6D802802C53F00091514 /* Assets.xcassets */,
 				5EAD6D822802C53F00091514 /* LaunchScreen.storyboard */,
 				5EAD6D852802C53F00091514 /* Info.plist */,
@@ -204,9 +221,12 @@
 		5ED936D9291ABA65005C815B /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				5E538775293F9B8F00B1DAED /* Model */,
 				5EE2203C291422FE000C7DE2 /* FeedModel.swift */,
 				5EAD6D7B2802C53D00091514 /* FeedViewController.swift */,
 				5EAD6D8D281E988700091514 /* PostViewController.swift */,
+				5EC1FFCE281FFD2500BFBB79 /* InfoViewController.swift */,
+				5E53877829410F9D00B1DAED /* NameResidentsTableViewCell.swift */,
 				5EC1FFCC281FE55000BFBB79 /* Posti.swift */,
 			);
 			path = Feed;
@@ -395,6 +415,8 @@
 				5EA096292907BE56000A8034 /* CurrentUserService.swift in Sources */,
 				5ED936DC291BA262005C815B /* AppCoordinator.swift in Sources */,
 				5EA0962F2907C05F000A8034 /* LoginViewControllerDelegate.swift in Sources */,
+				5E53877929410F9D00B1DAED /* NameResidentsTableViewCell.swift in Sources */,
+				5E17FA55293F47AE0059774E /* Planet.swift in Sources */,
 				5EA0962D2907BEF0000A8034 /* Checker.swift in Sources */,
 				5ED936E8291D6AB0005C815B /* PostCoordinator.swift in Sources */,
 				5E39A02828919A3E00F296C7 /* PhotosTableViewCell.swift in Sources */,
@@ -414,9 +436,11 @@
 				5E17FA5129368BC90059774E /* AppConfiguration.swift in Sources */,
 				5ED936EF29214740005C815B /* ProfileAssembly.swift in Sources */,
 				5ED936DE291BA319005C815B /* MainFeedCoordinator.swift in Sources */,
+				5E5387772940DA2000B1DAED /* Resident.swift in Sources */,
 				5E17FA4F293689F90059774E /* NetworkService.swift in Sources */,
 				5EAD6D782802C53D00091514 /* AppDelegate.swift in Sources */,
 				5EA096352907C118000A8034 /* MyLoginFactory.swift in Sources */,
+				5E17FA57293F4CD10059774E /* Json.swift in Sources */,
 				5E890614282FEB690066A557 /* ProfileHeaderView.swift in Sources */,
 				5EA096272907BDBB000A8034 /* UserService.swift in Sources */,
 				5ED936E4291D29B9005C815B /* MainTabBarController.swift in Sources */,

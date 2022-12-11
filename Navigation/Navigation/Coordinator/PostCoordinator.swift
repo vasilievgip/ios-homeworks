@@ -20,10 +20,11 @@ final class PostCoordinator: AppCoordinator {
     }
 
     func start() {
-        let vc = PostViewController()
-        let posti = Posti(title: "Мой пост")
+//        let vc = PostViewController()
+        let vc = InfoViewController()
+//        let posti = Posti(title: "Мой пост")
         vc.coordinator = self
-        vc.titlePost = posti.title
+//        vc.titlePost = posti.title
         navigationController.pushViewController(vc, animated: true)
     }
 
