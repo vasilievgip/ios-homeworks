@@ -7,6 +7,8 @@
 
 import Foundation
 
-protocol LoginViewControllerDelegate {
+protocol LoginViewControllerDelegate: CheckerServiceProtocol {
+
     func check(login: String, password: String) -> Bool
+    
 }
