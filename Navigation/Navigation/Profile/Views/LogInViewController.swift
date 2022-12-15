@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class LogInViewController: UIViewController {
 
     weak var coordinator: MainProfileCoordinator?
@@ -38,7 +39,7 @@ class LogInViewController: UIViewController {
     private lazy var mailTextField: UITextField = {
         let field = UITextField()
         field.backgroundColor = .systemGray6
-        field.placeholder = "Email or phone"
+        field.placeholder = "Email"
         field.textColor = .black
         field.font = . systemFont(ofSize: 16)
         field.tintColor = UIColor(named: "Color_IOS20")
@@ -72,7 +73,7 @@ class LogInViewController: UIViewController {
         return field
     }()
 
-    private let loginButton = CustomButton(title: "Log In",
+    private var loginButton = CustomButton(title: "Log In",
                                            titleColor: .white,
                                            backgroundColor: UIColor(named: "Color_IOS20"),
                                            cornerRadius: 10)
@@ -149,14 +150,30 @@ class LogInViewController: UIViewController {
 
     @objc
     func handleButtonTap() {
-        if (loginDelegate?.check(login: mailTextField.text!, password: passwordTextField.text!) == true) {
-            coordinator?.login()
-        } else {
-            let alert = UIAlertController(title: "Неверный логин или пароль!", message: "Введите корректный логин или пароль", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "ДА", style: .default, handler: { action in print("ввести корректный логин или пароль") }))
-            self.present(alert, animated: true)
-            print("неверный логин или пароль")
+
+        if mailTextField.text == "" || passwordTextField.text == "" {
+            let alertNil = UIAlertController(title: "Пустые поля", message: "Введите корректный логин или пароль", preferredStyle: .alert)
+            alertNil.addAction(UIAlertAction(title: "ДА", style: .default, handler: { action in
+                print("ввести корректный логин или пароль") }))
+            self.present(alertNil, animated: true)
         }
+        
+        loginDelegate?.checkCredentials(email: mailTextField.text!, password: passwordTextField.text!, completion: { alert, authResult  in
+            if authResult == true {
+                self.coordinator?.login()
+            } else {
+                self.present(alert, animated: true)
+            }
+        })
+
+        //        if (loginDelegate?.check(login: mailTextField.text!, password: passwordTextField.text!) == true) {
+        //            coordinator?.login()
+        //        } else {
+        //            let alert = UIAlertController(title: "Неверный логин или пароль!", message: "Введите корректный логин или пароль", preferredStyle: .alert)
+        //            alert.addAction(UIAlertAction(title: "ДА", style: .default, handler: { action in print("ввести корректный логин или пароль") }))
+        //            self.present(alert, animated: true)
+        //            print("неверный логин или пароль")
+        //        }
     }
     
 }
