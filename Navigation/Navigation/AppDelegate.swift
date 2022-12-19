@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = MainTabBarController()
         self.window?.makeKeyAndVisible()
         FirebaseApp.configure()
+        print(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true))
         //        if let appConfiguration = AppConfiguration.allCases.randomElement() {
         //            NetworkService.request(for: appConfiguration)
         //        }

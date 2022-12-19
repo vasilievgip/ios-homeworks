@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FeedViewController: UIViewController {
+class FeedViewController: UIViewController, UITableViewDelegate {
 
     weak var coordinator: MainFeedCoordinator?
 
@@ -16,7 +16,8 @@ class FeedViewController: UIViewController {
     private let label: UILabel = {
         let label = UILabel()
         label.text = "Лента"
-        label.frame = CGRect(x: 170, y: 50, width: 100, height: 100)
+        label.toAutoLayout()
+//        label.frame = CGRect(x: 170, y: 50, width: 100, height: 100)
         return label
     }()
 
@@ -72,12 +73,63 @@ class FeedViewController: UIViewController {
         return stackView
     }()
 
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.toAutoLayout()
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(FeedViewCell.self, forCellReuseIdentifier: FeedViewCell.identifier)
+        return tableView
+    }()
+
+    private let navigationBar: UINavigationBar = {
+        let bar = UINavigationBar()
+        bar.toAutoLayout()
+        return bar
+    }()
+
+    private let navigationBarButton_1: UIButton = {
+        let button = UIButton()
+        button.setTitle("Создать папку", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.numberOfLines = 0
+        button.toAutoLayout()
+        return button
+    }()
+
+    private let navigationBarButton_2: UIButton = {
+        let button = UIButton()
+        button.setTitle("Добавить фотографию", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.numberOfLines = 0
+        button.titleLabel?.textAlignment = .center
+        button.toAutoLayout()
+        return button
+    }()
+
     private func layout() {
         [button1, button2].forEach{ stackView.addArrangedSubview($0)}
-        view.addSubviews(label, stackView, secretWordtextField, checkGuessButton, secretWordLabel)
+        navigationBar.addSubviews(navigationBarButton_1, navigationBarButton_2)
+        view.addSubviews(label, navigationBar, stackView, secretWordtextField, checkGuessButton, secretWordLabel, tableView)
         NSLayoutConstraint.activate([
+            navigationBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            navigationBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            navigationBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            navigationBarButton_1.leadingAnchor.constraint(equalTo: navigationBar.leadingAnchor, constant: 16),
+            navigationBarButton_1.trailingAnchor.constraint(equalTo: navigationBar.centerXAnchor, constant: -16),
+            navigationBarButton_1.centerYAnchor.constraint(equalTo: navigationBar.centerYAnchor),
+            navigationBarButton_2.leadingAnchor.constraint(equalTo: navigationBar.centerXAnchor, constant: 16),
+            navigationBarButton_2.trailingAnchor.constraint(equalTo: navigationBar.trailingAnchor, constant: -16),
+            navigationBarButton_2.centerYAnchor.constraint(equalTo: navigationBar.centerYAnchor),
+            label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            label.topAnchor.constraint(equalTo: navigationBar.bottomAnchor, constant: -20),
+            label.heightAnchor.constraint(equalToConstant: 100),
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: stackView.bottomAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             secretWordtextField.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 50),
             secretWordtextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             secretWordtextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
@@ -102,7 +154,10 @@ class FeedViewController: UIViewController {
         layout()
         self.button1.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
         self.button2.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
+        self.navigationBarButton_1.addTarget(self, action: #selector(createAfolder), for: .touchUpInside)
+        self.navigationBarButton_2.addTarget(self, action: #selector(addAphoto), for: .touchUpInside)
         self.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "house.fill"), tag: 0)
+
     }
     
     @objc
@@ -119,6 +174,68 @@ class FeedViewController: UIViewController {
             let alert = UIAlertController(title: "Неверное слово!", message: "Введите верное слово", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Так точно", style: .default, handler: { action in print("ввести корректное слово") }))
             self.present(alert, animated: true)
+        }
+    }
+
+    @objc
+    func createAfolder() {
+
+        let alert = UIAlertController(title: "Создать папку", message: "Введите название папки", preferredStyle: .alert)
+        alert.addTextField { textField in
+            textField.placeholder = "Enter text"
+        }
+        alert.addAction(UIAlertAction(title: "Создать", style: .default, handler: { action in
+            let newDirectoryPath = FileFolder.fileFolder.path + "/" + (alert.textFields?[0].text)!.uppercased()
+            try? FileManager.default.createDirectory(atPath: newDirectoryPath, withIntermediateDirectories: false)
+            self.tableView.reloadData()
+            print("создать папку")
+        }))
+        alert.addAction(UIAlertAction(title: "Отмена", style: .default, handler: { action in
+            print("отмена")
+        }))
+        self.present(alert, animated: true)
+
+    }
+
+    @objc
+    func addAphoto() {
+
+        ImagePicker.defaultPicker.showPicker(in: self) { text in
+            let urlImage = Bundle.main.url(forResource: text, withExtension: "jpg")
+            if #available(iOS 16.0, *) {
+                let  urlDestination = URL(filePath: FileFolder.fileFolder.path + "/" + text + ".jpg")
+                try? FileManager.default.copyItem(at: urlImage!, to: urlDestination)
+                self.tableView.reloadData()
+            } else {
+                print("Fallback on earlier versions")
+            }
+        }
+
+    }
+
+}
+
+extension FeedViewController: UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+        FileFolder().files.count
+
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: FeedViewCell.self), for: indexPath) as! FeedViewCell
+        cell.setupCell(model: FileFolder.fileFolder.files[indexPath.row])
+        return cell
+
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let fullPath = FileFolder.fileFolder.path + "/" + FileFolder.fileFolder.files[indexPath.row]
+            try? FileManager.default.removeItem(atPath: fullPath)
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
 
