@@ -42,8 +42,8 @@
 		5EA2B5032859DFCE0078CCE1 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA2B5022859DFCE0078CCE1 /* LogInViewController.swift */; };
 		5EA7A15828EC944300DC50E7 /* StorageService.docc in Sources */ = {isa = PBXBuildFile; fileRef = 5EA7A15728EC944300DC50E7 /* StorageService.docc */; };
 		5EA7A16628EC944300DC50E7 /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EA7A15628EC944300DC50E7 /* StorageService.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5EA7A16928EC944300DC50E7 /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EA7A15428EC944300DC50E7 /* StorageService.framework */; };
-		5EA7A16A28EC944300DC50E7 /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5EA7A15428EC944300DC50E7 /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5EA7A16928EC944300DC50E7 /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EA7A15428EC944300DC50E7 /* StorageService.framework */; platformFilter = ios; };
+		5EA7A16A28EC944300DC50E7 /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5EA7A15428EC944300DC50E7 /* StorageService.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5EAD6D782802C53D00091514 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAD6D772802C53D00091514 /* AppDelegate.swift */; };
 		5EAD6D7C2802C53D00091514 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAD6D7B2802C53D00091514 /* FeedViewController.swift */; };
 		5EAD6D812802C53F00091514 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EAD6D802802C53F00091514 /* Assets.xcassets */; };
@@ -490,6 +490,7 @@
 /* Begin PBXTargetDependency section */
 		5EA7A16828EC944300DC50E7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 5EA7A15328EC944300DC50E7 /* StorageService */;
 			targetProxy = 5EA7A16728EC944300DC50E7 /* PBXContainerItemProxy */;
 		};
@@ -704,6 +705,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = IOS20.Navigation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -731,6 +735,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = IOS20.Navigation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
