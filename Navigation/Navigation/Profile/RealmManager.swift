@@ -20,7 +20,12 @@ class RealmManager {
 
         let config = Realm.Configuration(schemaVersion: 1)
         Realm.Configuration.defaultConfiguration = config
-        realm = try! Realm()
+        do {
+            try realm = Realm()
+        } catch {
+            print(error)
+        }
+        
         reloadData()
     }
 
@@ -29,16 +34,24 @@ class RealmManager {
     }
 
     func signUp(email: String, password: String) {
-        try! realm.write {
-            let authentication = Authentication(email: email, password: password)
-            realm.add(authentication)
+        do {
+            try realm.write {
+                let authentication = Authentication(email: email, password: password)
+                realm.add(authentication)
+            }
+        } catch {
+            print(error)
         }
         reloadData()
     }
 
     func exit(authentication: Authentication) {
-        try! realm.write {
-            realm.delete(authentication)
+        do {
+            try realm.write {
+                realm.delete(authentication)
+            }
+        } catch {
+            print(error)
         }
         reloadData()
     }
