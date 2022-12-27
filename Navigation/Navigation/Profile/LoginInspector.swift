@@ -14,9 +14,9 @@ struct LoginInspector: LoginViewControllerDelegate {
         CheckerService().checkCredentials(email: email, password: password, completion: completion)
     }
 
-    func signUp(email: String, password: String) {
-        CheckerService().signUp(email: email, password: password)
-    }
+//    func signUp(email: String, password: String) {
+//        CheckerService().signUp(email: email, password: password)
+//    }
 
     func check(login: String, password: String) -> Bool {
         Checker.shared.check(login: login, password: password)

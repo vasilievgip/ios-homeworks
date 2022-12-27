@@ -112,18 +112,31 @@ class LogInViewController: UIViewController {
         ])
     }
 
+    func automaticAuthentication() {
+
+        let authentications = RealmManager().authentications
+
+        if authentications.count != 0 {
+            self.coordinator?.login()
+        }
+
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         layout()
+        automaticAuthentication()
         loginButton.target = {
             self.handleButtonTap()
         }
+
         self.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 1)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         nc.addObserver(self, selector: #selector(kddShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         nc.addObserver(self, selector: #selector(kddHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }

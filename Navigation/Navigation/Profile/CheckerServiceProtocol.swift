@@ -12,6 +12,6 @@ protocol CheckerServiceProtocol {
 
     func checkCredentials(email: String, password: String, completion: ((_ alert: UIAlertController, _ authResult: Bool) -> Void)?)
 
-    func signUp(email: String, password: String)
+//    func signUp(email: String, password: String)
     
 }

@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //        if let appConfiguration = AppConfiguration.allCases.randomElement() {
         //            NetworkService.request(for: appConfiguration)
         //        }
+        print(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true))
         return true
 
     }
