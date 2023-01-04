@@ -10,6 +10,7 @@ import UIKit
 class MainTabBarController: UITabBarController {
 
     let mainFeedCoordinator = MainFeedCoordinator(navigationController: UINavigationController())
+    let mainPostCoordinator = MainPostCoordinator(navigationController: UINavigationController())
     let mainProfileCoordinator = MainProfileCoordinator(navigationController: UINavigationController())
 
     override func viewDidLoad() {
@@ -18,11 +19,15 @@ class MainTabBarController: UITabBarController {
         self.mainFeedCoordinator.start()
         self.mainFeedCoordinator.navigationController.navigationBar.isHidden = true
 
+        self.mainPostCoordinator.start()
+        self.mainProfileCoordinator.navigationController.navigationBar.isHidden = true
+
         self.mainProfileCoordinator.start()
         self.mainProfileCoordinator.navigationController.navigationBar.isHidden = true
         
         self.viewControllers = [
             self.mainFeedCoordinator.navigationController,
+            self.mainPostCoordinator.navigationController,
             self.mainProfileCoordinator.navigationController
         ]
     }

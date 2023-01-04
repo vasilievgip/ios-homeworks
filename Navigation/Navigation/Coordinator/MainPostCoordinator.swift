@@ -1,0 +1,44 @@
+//
+//  MainPostCoordinator.swift
+//  Navigation
+//
+//  Created by Андрей Васильев on 28.12.2022.
+//
+
+import Foundation
+import UIKit
+
+
+final class MainPostCoordinator: AppCoordinator {
+
+    var childs =  [AppCoordinator]()
+    var navigationController: UINavigationController
+
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
+    }
+
+    func start() {
+        let vc = PostViewController()
+        vc.coordinator = self
+        navigationController.pushViewController(vc, animated: true)
+    }
+
+//    func login() {
+//        let child = LoginCoordinator(navigationController: navigationController)
+//        childs.append(child)
+//        child.parentCoordinator = self
+//        child.start()
+//        print(childs)
+//    }
+
+    func childDidFinish(_ child: AppCoordinator?) {
+        for (index, appcoordinator) in childs.enumerated() {
+            if appcoordinator === child {
+                childs.remove(at: index)
+                break
+            }
+        }
+    }
+
+}

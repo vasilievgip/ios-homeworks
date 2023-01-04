@@ -7,32 +7,63 @@
 
 import UIKit
 
-class PostViewController: UIViewController {
+class PostViewController: UIViewController, UITableViewDelegate {
 
-    weak var coordinator: PostCoordinator?
-    
-    private let label = UILabel()
-    var titlePost: String = "Что-то"
+    weak var coordinator: MainPostCoordinator?
+
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.toAutoLayout()
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifier)
+        return tableView
+    }()
+
+    private func layout() {
+        view.addSubview(tableView)
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.label.text = titlePost
-        self.view.addSubview(label)
-        self.label.frame = CGRect(x: 160, y: 100, width: 200, height: 100)
-        self.view.backgroundColor = .systemCyan
-        let barButtonItem = UIBarButtonItem(title: "Информация", style: .plain, target: self, action: #selector(handleButtonTap))
-        self.navigationItem.rightBarButtonItem = barButtonItem
+        self.view.backgroundColor = .systemBackground
+        self.tabBarItem = UITabBarItem(title: "Избранное", image: UIImage(systemName: "star.circle"), tag: 1)
+        layout()
     }
 
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        coordinator?.didshowPost()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
     }
-    
-    @objc
-    func handleButtonTap() {
-        let infoViewController = InfoViewController()
-        self.present(infoViewController, animated: true)
-    }
-    
+
 }
+
+extension PostViewController: UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        CoreDataManager.defaultManager.posts.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PostTableViewCell.self), for: indexPath) as! PostTableViewCell
+        cell.setupInfoCell(model: CoreDataManager.defaultManager.posts[indexPath.row])
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let post = CoreDataManager.defaultManager.posts[indexPath.row]
+            CoreDataManager.defaultManager.deletePost(post: post)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.reloadData()
+        }
+    }
+
+}
+

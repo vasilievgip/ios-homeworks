@@ -48,6 +48,8 @@ class ProfileViewController: UIViewController {
 
 }
 
+var currentPost = User.Post(author: String(), description: String(), image: UIImage(), likes: Int64(), views: Int64())
+
 extension ProfileViewController: UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -83,8 +85,27 @@ extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             coordinator?.viewPhotos()
+        } else {
+            let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
+            tap.numberOfTapsRequired = 2
+            view.addGestureRecognizer(tap)
+            currentPost.author = ProfileViewModel(user: user).posts[indexPath.row].author
+            currentPost.description = ProfileViewModel(user: user).posts[indexPath.row].description
+            currentPost.image = ProfileViewModel(user: user).posts[indexPath.row].image
+            currentPost.likes = ProfileViewModel(user: user).posts[indexPath.row].likes
+            currentPost.views = ProfileViewModel(user: user).posts[indexPath.row].views
         }
     }
+
+    @objc
+    func doubleTapped() {
+        CoreDataManager.defaultManager.addPost(author: currentPost.author, description: currentPost.description, image: currentPost.image.pngData()!, likes: currentPost.likes, views: currentPost.views)
+        let alert = UIAlertController(title: "Добавлено в избранное", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Хорошо", style: .default, handler: { action in
+        }))
+        self.present(alert, animated: true)
+    }
+
 }
 
 extension ProfileViewController: UITableViewDelegate {
