@@ -119,7 +119,7 @@ class LogInViewController: UIViewController {
         loginButton.target = {
             self.handleButtonTap()
         }
-        self.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 1)
+        self.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 2)
     }
 
     override func viewWillAppear(_ animated: Bool) {

@@ -102,4 +102,13 @@ class PostTableViewCell: UITableViewCell {
         likesLabel.text = "Likes: \(model.likes)"
         viewsLabel.text = "Views: \(model.views)"
     }
+
+    func setupInfoCell(model: Post) {
+        authorLabel.text = model.author
+        postImage.image = UIImage(data: model.image!)
+        descriptionLabel.text = model.descr
+        likesLabel.text = "Likes: \(model.likes)"
+        viewsLabel.text = "Views: \(model.views)"
+    }
+
 }

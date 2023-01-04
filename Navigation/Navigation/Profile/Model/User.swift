@@ -14,8 +14,8 @@ class User {
         public var author: String
         public var description: String
         public var image: UIImage
-        public var likes: Int
-        public var views: Int
+        public var likes: Int64
+        public var views: Int64
     }
 
     struct PhotosArray {
