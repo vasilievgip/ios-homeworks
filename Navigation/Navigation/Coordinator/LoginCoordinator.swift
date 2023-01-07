@@ -19,7 +19,7 @@ class LoginCoordinator: AppCoordinator {
     }
 
     func start() {
-        let vc = ProfileViewController()
+        let vc = ProfileViewController.defaultViewController
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: true)
     }

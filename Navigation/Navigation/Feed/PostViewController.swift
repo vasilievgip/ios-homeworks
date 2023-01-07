@@ -33,13 +33,47 @@ class PostViewController: UIViewController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemBackground
+
         self.tabBarItem = UITabBarItem(title: "Избранное", image: UIImage(systemName: "star.circle"), tag: 1)
+
+        let filterBarButtonItem: UIBarButtonItem = {
+            let barButtonItem = UIBarButtonItem(title: "Фильтр", style: .plain, target: self, action: #selector(filter))
+            return barButtonItem
+        }()
+        let noFilterBarButtonItem: UIBarButtonItem = {
+            let barButtonItem = UIBarButtonItem(title: "Отмена", style: .plain, target: self, action: #selector(noFilter))
+            return barButtonItem
+        }()
+        self.navigationItem.rightBarButtonItems = [noFilterBarButtonItem, filterBarButtonItem]
+
         layout()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
+    }
+
+    @objc
+    func filter() {
+        let alert = UIAlertController(title: "Фильтр по автору", message: "", preferredStyle: .alert)
+        alert.addTextField { textField in
+            textField.placeholder = "Enter text" }
+        alert.addAction(UIAlertAction(title: "Применить", style: .default, handler: { action in
+            if alert.textFields?[0].text != nil {
+                CoreDataManager.defaultManager.filterPostAuthor(byAuthor: alert.textFields![0].text!)
+                self.tableView.reloadData()
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Отменить", style: .default, handler: { action in
+        }))
+        self.present(alert, animated: true)
+    }
+
+    @objc
+    func noFilter() {
+        CoreDataManager.defaultManager.reloadPosts()
+        self.tableView.reloadData()
     }
 
 }
