@@ -6,11 +6,14 @@
 //
 
 import CoreData
+import UIKit
 
 
 class CoreDataManager {
 
     static let defaultManager = CoreDataManager()
+
+    private init() { reloadPosts() }
 
     lazy var persistentContainer: NSPersistentContainer = {
 
@@ -26,36 +29,63 @@ class CoreDataManager {
 
     lazy var managedContext: NSManagedObjectContext = self.persistentContainer.viewContext
 
-    func saveContext () {
-        if managedContext.hasChanges {
-            do {
-                try managedContext.save()
-            } catch {
+    lazy var backgroundContext: NSManagedObjectContext = {
+        var context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        context.persistentStoreCoordinator = persistentContainer.persistentStoreCoordinator
+        return context
+    }()
 
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+    func addPost(author: String, description: String, image: Data, likes: Int64, views: Int64) {
+        backgroundContext.perform {
+            if self.getPost(byDescription: description) == nil {
+                let newPost = Post(context: self.backgroundContext)
+                newPost.author = author
+                newPost.descr = description
+                newPost.image = image
+                newPost.likes = likes
+                newPost.views = views
+                try? self.backgroundContext.save()
+                self.reloadPosts()
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "Добавлено в избранное", message: "", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Хорошо", style: .default, handler: { action in
+                    }))
+                    ProfileViewController.defaultViewController.present(alert, animated: true)
+                }
+            } else {
+                print("Уже есть в избранном")
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "Уже в избранном", message: "", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Хорошо", style: .default, handler: { action in
+                    }))
+                    ProfileViewController.defaultViewController.present(alert, animated: true)
+                }
             }
         }
     }
 
-    func addPost(author: String, description: String, image: Data, likes: Int64, views: Int64) {
-        let newPost = Post(context: persistentContainer.viewContext)
-        newPost.author = author
-        newPost.descr = description
-        newPost.image = image
-        newPost.likes = likes
-        newPost.views = views
-        try? managedContext.save()
-        reloadPosts()
+    func getPost(byDescription description: String?) -> Post? {
+        guard let description else {return nil}
+        let fetchRequest = Post.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "descr == %@", description)
+        return (try? backgroundContext.fetch(fetchRequest))?.first
+    }
+
+    func filterPostAuthor(byAuthor author: String) {
+        let fetchRequest = Post.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "author == %@", author)
+        do {
+            let postsRequest = try persistentContainer.viewContext.fetch(fetchRequest)
+            posts = postsRequest
+        } catch {
+            print(error.localizedDescription)
+            posts = []
+        }
     }
 
     func deletePost(post: Post) {
         self.managedContext.delete(post)
         try? managedContext.save()
-        reloadPosts()
-    }
-
-    init() {
         reloadPosts()
     }
 

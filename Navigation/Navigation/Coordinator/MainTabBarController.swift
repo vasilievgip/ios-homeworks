@@ -20,7 +20,7 @@ class MainTabBarController: UITabBarController {
         self.mainFeedCoordinator.navigationController.navigationBar.isHidden = true
 
         self.mainPostCoordinator.start()
-        self.mainProfileCoordinator.navigationController.navigationBar.isHidden = true
+        self.mainPostCoordinator.navigationController.navigationBar.isHidden = false
 
         self.mainProfileCoordinator.start()
         self.mainProfileCoordinator.navigationController.navigationBar.isHidden = true

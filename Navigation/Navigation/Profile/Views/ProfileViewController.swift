@@ -11,6 +11,8 @@ class ProfileViewController: UIViewController {
 
     weak var coordinator: LoginCoordinator?
 
+    static let defaultViewController = ProfileViewController()
+
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.toAutoLayout()
@@ -100,10 +102,6 @@ extension ProfileViewController: UITableViewDataSource {
     @objc
     func doubleTapped() {
         CoreDataManager.defaultManager.addPost(author: currentPost.author, description: currentPost.description, image: currentPost.image.pngData()!, likes: currentPost.likes, views: currentPost.views)
-        let alert = UIAlertController(title: "Добавлено в избранное", message: "", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Хорошо", style: .default, handler: { action in
-        }))
-        self.present(alert, animated: true)
     }
 
 }
