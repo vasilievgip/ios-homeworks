@@ -13,7 +13,7 @@ class CoreDataManager {
 
     static let defaultManager = CoreDataManager()
 
-    private init() { reloadPosts() }
+    private init() { }
 
     lazy var persistentContainer: NSPersistentContainer = {
 
@@ -24,10 +24,9 @@ class CoreDataManager {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
+        container.viewContext.automaticallyMergesChangesFromParent = true
         return container
     }()
-
-    lazy var managedContext: NSManagedObjectContext = self.persistentContainer.viewContext
 
     lazy var backgroundContext: NSManagedObjectContext = {
         var context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
@@ -35,17 +34,16 @@ class CoreDataManager {
         return context
     }()
 
-    func addPost(author: String, description: String, image: Data, likes: Int64, views: Int64) {
+    func addPost(post: User.CurrentPost) {
         backgroundContext.perform {
-            if self.getPost(byDescription: description) == nil {
+            if self.getPost(byDescription: post.descr) == nil {
                 let newPost = Post(context: self.backgroundContext)
-                newPost.author = author
-                newPost.descr = description
-                newPost.image = image
-                newPost.likes = likes
-                newPost.views = views
+                newPost.author = post.author
+                newPost.descr = post.descr
+                newPost.image = post.image
+                newPost.likes = post.likes
+                newPost.views = post.views
                 try? self.backgroundContext.save()
-                self.reloadPosts()
                 DispatchQueue.main.async {
                     let alert = UIAlertController(title: "Добавлено в избранное", message: "", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "Хорошо", style: .default, handler: { action in
@@ -71,24 +69,59 @@ class CoreDataManager {
         return (try? backgroundContext.fetch(fetchRequest))?.first
     }
 
-    func filterPostAuthor(byAuthor author: String) {
+    func getOldPost(byDescription description: String?) -> Post? {
+        guard let description else {return nil}
         let fetchRequest = Post.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "author == %@", author)
+        fetchRequest.predicate = NSPredicate(format: "descr == %@", description)
+        return (try? persistentContainer.viewContext.fetch(fetchRequest))?.first
+    }
+
+    func filterPostAuthor(byAuthor author: String) {
+        reloadPosts()
+        let fetchRequest = Post.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "author CONTAINS[c] %@", author)
         do {
             let postsRequest = try persistentContainer.viewContext.fetch(fetchRequest)
-            posts = postsRequest
+            deleteAllPosts()
+            for post in postsRequest {
+                resumePost(post: post)
+            }
         } catch {
             print(error.localizedDescription)
-            posts = []
         }
     }
 
-    func deletePost(post: Post) {
-        self.managedContext.delete(post)
-        try? managedContext.save()
-        reloadPosts()
+    func noFilterPostAuthor() {
+        for post in posts {
+            resumePost(post: post)
+        }
+        try? persistentContainer.viewContext.save()
     }
 
+    func resumePost(post: Post) {
+        if self.getOldPost(byDescription: post.descr) == nil {
+            let oldPost = Post(context: persistentContainer.viewContext)
+            oldPost.author = post.author
+            oldPost.descr = post.descr
+            oldPost.image = post.image
+            oldPost.likes = post.likes
+            oldPost.views = post.views
+        }
+    }
+
+    func deleteAllPosts() {
+        let fetchRequest = Post.fetchRequest()
+        for post in (try? persistentContainer.viewContext.fetch(fetchRequest)) ?? [] {
+            persistentContainer.viewContext.delete(post)
+        }
+
+    }
+
+    func deletePost(post: Post) {
+        persistentContainer.viewContext.delete(post)
+        try? persistentContainer.viewContext.save()
+    }
+    
     var posts: [Post] = []
 
     func reloadPosts() {

@@ -6,10 +6,18 @@
 //
 
 import UIKit
+import CoreData
 
-class PostViewController: UIViewController, UITableViewDelegate {
+class PostViewController: UIViewController, UITableViewDelegate, NSFetchedResultsControllerDelegate {
 
     weak var coordinator: MainPostCoordinator?
+
+    let fetchResultController: NSFetchedResultsController = {
+        let fetchRequest = Post.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "likes", ascending: false)]
+        let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataManager.defaultManager.persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+        return frc
+    }()
 
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -47,11 +55,10 @@ class PostViewController: UIViewController, UITableViewDelegate {
         self.navigationItem.rightBarButtonItems = [noFilterBarButtonItem, filterBarButtonItem]
 
         layout()
-    }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        tableView.reloadData()
+        fetchResultController.delegate = self
+        try? fetchResultController.performFetch()
+
     }
 
     @objc
@@ -62,7 +69,7 @@ class PostViewController: UIViewController, UITableViewDelegate {
         alert.addAction(UIAlertAction(title: "Применить", style: .default, handler: { action in
             if alert.textFields?[0].text != nil {
                 CoreDataManager.defaultManager.filterPostAuthor(byAuthor: alert.textFields![0].text!)
-                self.tableView.reloadData()
+                //                self.tableView.reloadData()
             }
         }))
         alert.addAction(UIAlertAction(title: "Отменить", style: .default, handler: { action in
@@ -72,8 +79,7 @@ class PostViewController: UIViewController, UITableViewDelegate {
 
     @objc
     func noFilter() {
-        CoreDataManager.defaultManager.reloadPosts()
-        self.tableView.reloadData()
+        CoreDataManager.defaultManager.noFilterPostAuthor()
     }
 
 }
@@ -81,22 +87,24 @@ class PostViewController: UIViewController, UITableViewDelegate {
 extension PostViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        CoreDataManager.defaultManager.posts.count
+        fetchResultController.sections?[section].numberOfObjects ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PostTableViewCell.self), for: indexPath) as! PostTableViewCell
-        cell.setupInfoCell(model: CoreDataManager.defaultManager.posts[indexPath.row])
+        cell.setupInfoCell(model: fetchResultController.object(at: indexPath))
         return cell
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let post = CoreDataManager.defaultManager.posts[indexPath.row]
+            let post = fetchResultController.object(at: indexPath)
             CoreDataManager.defaultManager.deletePost(post: post)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            tableView.reloadData()
         }
+    }
+
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        tableView.reloadData()
     }
 
 }
