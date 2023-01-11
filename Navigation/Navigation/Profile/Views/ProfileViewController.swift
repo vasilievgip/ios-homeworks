@@ -45,12 +45,12 @@ class ProfileViewController: UIViewController {
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-//        coordinator?.didLogin()
+        //        coordinator?.didLogin()
     }
 
 }
 
-var currentPost = User.Post(author: String(), description: String(), image: UIImage(), likes: Int64(), views: Int64())
+var currentPost = User.CurrentPost(author: String(), descr: String(), image: Data(), likes: Int64(), views: Int64())
 
 extension ProfileViewController: UITableViewDataSource {
 
@@ -92,8 +92,8 @@ extension ProfileViewController: UITableViewDataSource {
             tap.numberOfTapsRequired = 2
             view.addGestureRecognizer(tap)
             currentPost.author = ProfileViewModel(user: user).posts[indexPath.row].author
-            currentPost.description = ProfileViewModel(user: user).posts[indexPath.row].description
-            currentPost.image = ProfileViewModel(user: user).posts[indexPath.row].image
+            currentPost.descr = ProfileViewModel(user: user).posts[indexPath.row].description
+            currentPost.image = ProfileViewModel(user: user).posts[indexPath.row].image.pngData()
             currentPost.likes = ProfileViewModel(user: user).posts[indexPath.row].likes
             currentPost.views = ProfileViewModel(user: user).posts[indexPath.row].views
         }
@@ -101,7 +101,7 @@ extension ProfileViewController: UITableViewDataSource {
 
     @objc
     func doubleTapped() {
-        CoreDataManager.defaultManager.addPost(author: currentPost.author, description: currentPost.description, image: currentPost.image.pngData()!, likes: currentPost.likes, views: currentPost.views)
+        CoreDataManager.defaultManager.addPost(post: currentPost)
     }
 
 }

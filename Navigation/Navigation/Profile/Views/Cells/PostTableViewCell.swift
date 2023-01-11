@@ -105,7 +105,7 @@ class PostTableViewCell: UITableViewCell {
 
     func setupInfoCell(model: Post) {
         authorLabel.text = model.author
-        postImage.image = UIImage(data: model.image!)
+        postImage.image = UIImage(data: (model.image ?? UIImage(named: "nophoto")?.pngData())!)
         descriptionLabel.text = model.descr
         likesLabel.text = "Likes: \(model.likes)"
         viewsLabel.text = "Views: \(model.views)"
