@@ -18,7 +18,12 @@ class RealmManager {
 
     init() {
 
-        let config = Realm.Configuration(schemaVersion: 1)
+        var key = Data(count: 64)
+        _ = key.withUnsafeMutableBytes { (pointer: UnsafeMutableRawBufferPointer) in
+            SecRandomCopyBytes(kSecRandomDefault, 64, pointer.baseAddress!)
+        }
+        var config = Realm.Configuration(encryptionKey: key)
+        config = Realm.Configuration(schemaVersion: 1)
         Realm.Configuration.defaultConfiguration = config
         do {
             try realm = Realm()
