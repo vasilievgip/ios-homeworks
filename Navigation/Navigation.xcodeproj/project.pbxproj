@@ -61,6 +61,10 @@
 		5ED936EF29214740005C815B /* ProfileAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED936EE29214740005C815B /* ProfileAssembly.swift */; };
 		5EE2203B290ED1C0000C7DE2 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE2203A290ED1C0000C7DE2 /* CustomButton.swift */; };
 		5EE2203D291422FE000C7DE2 /* FeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE2203C291422FE000C7DE2 /* FeedModel.swift */; };
+		5EED91F22976D110008304BD /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EED91F12976D110008304BD /* MapViewController.swift */; };
+		5EED91F42976D7A8008304BD /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EED91F32976D7A7008304BD /* CoreLocation.framework */; };
+		5EED91F62976D7C5008304BD /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EED91F52976D7C5008304BD /* MapKit.framework */; };
+		5EED91F82976D826008304BD /* CapitalAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EED91F72976D826008304BD /* CapitalAnnotation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,6 +144,10 @@
 		5ED936EE29214740005C815B /* ProfileAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAssembly.swift; sourceTree = "<group>"; };
 		5EE2203A290ED1C0000C7DE2 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		5EE2203C291422FE000C7DE2 /* FeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModel.swift; sourceTree = "<group>"; };
+		5EED91F12976D110008304BD /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		5EED91F32976D7A7008304BD /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		5EED91F52976D7C5008304BD /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		5EED91F72976D826008304BD /* CapitalAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapitalAnnotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,8 +163,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5EA7A16928EC944300DC50E7 /* StorageService.framework in Frameworks */,
+				5EED91F42976D7A8008304BD /* CoreLocation.framework in Frameworks */,
 				5E298AD8295B5CD800B53A94 /* CoreData.framework in Frameworks */,
 				5E53877F2945D2A000B1DAED /* FirebaseAuth in Frameworks */,
+				5EED91F62976D7C5008304BD /* MapKit.framework in Frameworks */,
 				5EA0963B290851A5000A8034 /* iOSIntPackage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -167,6 +177,8 @@
 		5E298AD5295B5C0900B53A94 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5EED91F52976D7C5008304BD /* MapKit.framework */,
+				5EED91F32976D7A7008304BD /* CoreLocation.framework */,
 				5E298AD6295B5C0A00B53A94 /* CoreData.framework */,
 			);
 			name = Frameworks;
@@ -256,6 +268,8 @@
 				5E538775293F9B8F00B1DAED /* Model */,
 				5EE2203C291422FE000C7DE2 /* FeedModel.swift */,
 				5EAD6D7B2802C53D00091514 /* FeedViewController.swift */,
+				5EED91F12976D110008304BD /* MapViewController.swift */,
+				5EED91F72976D826008304BD /* CapitalAnnotation.swift */,
 				5EAD6D8D281E988700091514 /* PostViewController.swift */,
 				5EC1FFCE281FFD2500BFBB79 /* InfoViewController.swift */,
 				5E53877829410F9D00B1DAED /* NameResidentsTableViewCell.swift */,
@@ -459,11 +473,13 @@
 				5E39A02828919A3E00F296C7 /* PhotosTableViewCell.swift in Sources */,
 				5E39A02C289AE4A500F296C7 /* PhotosCollectionViewCell.swift in Sources */,
 				5E39A02A289AE06100F296C7 /* PhotosViewController.swift in Sources */,
+				5EED91F22976D110008304BD /* MapViewController.swift in Sources */,
 				5ED936E2291C1762005C815B /* MainProfileCoordinator.swift in Sources */,
 				5E298B01295B5F1C00B53A94 /* CoreDataManager.swift in Sources */,
 				5E39A026286A15FB00F296C7 /* PostTableViewCell.swift in Sources */,
 				5E89061828453DBF0066A557 /* Extension.swift in Sources */,
 				5EA096332907C0DF000A8034 /* LoginFactory.swift in Sources */,
+				5EED91F82976D826008304BD /* CapitalAnnotation.swift in Sources */,
 				5ED936EA29212468005C815B /* ProfileViewModel.swift in Sources */,
 				5E5387812947969000B1DAED /* CheckerServiceProtocol.swift in Sources */,
 				5EAD6D8E281E988700091514 /* PostViewController.swift in Sources */,
@@ -702,6 +718,9 @@
 				DEVELOPMENT_TEAM = V2LRGYXQ73;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Используем геопозицию для точного отображения пользователя";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Используем геопозицию для точного отображения пользователя";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Используем геопозицию для точного отображения пользователя";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -729,6 +748,9 @@
 				DEVELOPMENT_TEAM = V2LRGYXQ73;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Используем геопозицию для точного отображения пользователя";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Используем геопозицию для точного отображения пользователя";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Используем геопозицию для точного отображения пользователя";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

@@ -48,7 +48,7 @@ class FeedViewController: UIViewController {
         return label
     }()
 
-//    var posti = Posti(title: "Мой пост")
+    //    var posti = Posti(title: "Мой пост")
 
     private let button1: UIButton = {
         let button = UIButton()
@@ -72,12 +72,21 @@ class FeedViewController: UIViewController {
         return stackView
     }()
 
+    private let mapButton = CustomButton(title: "Карта",
+                                         titleColor: .white,
+                                         backgroundColor: UIColor(named: "Color_IOS20"),
+                                         cornerRadius: 10)
+
     private func layout() {
         [button1, button2].forEach{ stackView.addArrangedSubview($0)}
-        view.addSubviews(label, stackView, secretWordtextField, checkGuessButton, secretWordLabel)
+        view.addSubviews(label, stackView, secretWordtextField, checkGuessButton, secretWordLabel, mapButton)
         NSLayoutConstraint.activate([
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            mapButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
+            mapButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
+            mapButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 16),
+            mapButton.heightAnchor.constraint(equalToConstant: 50),
             secretWordtextField.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 50),
             secretWordtextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             secretWordtextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
@@ -98,6 +107,9 @@ class FeedViewController: UIViewController {
         self.view.backgroundColor = .systemBackground
         checkGuessButton.target = {
             self.checkGuessButtonTap()
+        }
+        mapButton.target = {
+            self.mapTap()
         }
         layout()
         self.button1.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
@@ -122,4 +134,14 @@ class FeedViewController: UIViewController {
         }
     }
 
+    @objc
+    func mapTap() {
+        if #available(iOS 16.0, *) {
+            let vc = MapViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        } else {
+            // Fallback on earlier versions
+        }
+    }
+    
 }
