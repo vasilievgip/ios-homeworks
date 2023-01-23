@@ -39,7 +39,7 @@ class LogInViewController: UIViewController {
     private lazy var mailTextField: UITextField = {
         let field = UITextField()
         field.backgroundColor = .systemGray6
-        field.placeholder = "Email"
+        field.placeholder = NSLocalizedString("mailTextFieldLogInViewController", comment: "")
         field.textColor = .black
         field.font = . systemFont(ofSize: 16)
         field.tintColor = UIColor(named: "Color_IOS20")
@@ -57,7 +57,7 @@ class LogInViewController: UIViewController {
     private lazy var passwordTextField: UITextField = {
         let field = UITextField()
         field.backgroundColor = .systemGray6
-        field.placeholder = "Password"
+        field.placeholder = NSLocalizedString("passwordTextFieldLogInViewController", comment: "")
         field.textColor = .black
         field.font = .systemFont(ofSize: 16)
         field.tintColor = UIColor(named: "Color_IOS20")
@@ -73,7 +73,7 @@ class LogInViewController: UIViewController {
         return field
     }()
 
-    private var loginButton = CustomButton(title: "Log In",
+    private var loginButton = CustomButton(title: NSLocalizedString("loginButtonLogInViewController", comment: ""),
                                            titleColor: .white,
                                            backgroundColor: UIColor(named: "Color_IOS20"),
                                            cornerRadius: 10)
@@ -119,7 +119,7 @@ class LogInViewController: UIViewController {
         loginButton.target = {
             self.handleButtonTap()
         }
-        self.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 2)
+        self.tabBarItem = UITabBarItem(title: NSLocalizedString("tabBarLogInViewController", comment: ""), image: UIImage(systemName: "person.fill"), tag: 2)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -152,9 +152,8 @@ class LogInViewController: UIViewController {
     func handleButtonTap() {
 
         if mailTextField.text == "" || passwordTextField.text == "" {
-            let alertNil = UIAlertController(title: "Пустые поля", message: "Введите корректный логин или пароль", preferredStyle: .alert)
-            alertNil.addAction(UIAlertAction(title: "ДА", style: .default, handler: { action in
-                print("ввести корректный логин или пароль") }))
+            let alertNil = UIAlertController(title: NSLocalizedString("title1HandleButtonTapLogInViewController", comment: ""), message: NSLocalizedString("messageHandleButtonTapLogInViewController", comment: ""), preferredStyle: .alert)
+            alertNil.addAction(UIAlertAction(title: NSLocalizedString("title2HandleButtonTapLogInViewController", comment: ""), style: .default, handler: { action in }))
             self.present(alertNil, animated: true)
         }
         
@@ -166,14 +165,6 @@ class LogInViewController: UIViewController {
             }
         })
 
-        //        if (loginDelegate?.check(login: mailTextField.text!, password: passwordTextField.text!) == true) {
-        //            coordinator?.login()
-        //        } else {
-        //            let alert = UIAlertController(title: "Неверный логин или пароль!", message: "Введите корректный логин или пароль", preferredStyle: .alert)
-        //            alert.addAction(UIAlertAction(title: "ДА", style: .default, handler: { action in print("ввести корректный логин или пароль") }))
-        //            self.present(alert, animated: true)
-        //            print("неверный логин или пароль")
-        //        }
     }
     
 }

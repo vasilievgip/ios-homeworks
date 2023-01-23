@@ -15,7 +15,7 @@ class FeedViewController: UIViewController {
     
     private let label: UILabel = {
         let label = UILabel()
-        label.text = "Лента"
+        label.text = NSLocalizedString("labelFeedViewController", comment: "")
         label.frame = CGRect(x: 170, y: 50, width: 100, height: 100)
         return label
     }()
@@ -23,7 +23,7 @@ class FeedViewController: UIViewController {
     private let secretWordtextField: UITextField = {
         let field = UITextField()
         field.backgroundColor = .systemGray6
-        field.placeholder = "secret Word"
+        field.placeholder = NSLocalizedString("secretWordtextFieldViewController", comment: "")
         field.textColor = .black
         field.font = . systemFont(ofSize: 16)
         field.tintColor = UIColor(named: "Color_IOS20")
@@ -36,7 +36,7 @@ class FeedViewController: UIViewController {
         return field
     }()
 
-    private let checkGuessButton = CustomButton(title: "Проверить",
+    private let checkGuessButton = CustomButton(title: NSLocalizedString("checkGuessButtonFieldViewController", comment: ""),
                                                 titleColor: .white,
                                                 backgroundColor: UIColor(named: "Color_IOS20"),
                                                 cornerRadius: 10)
@@ -48,18 +48,16 @@ class FeedViewController: UIViewController {
         return label
     }()
 
-    //    var posti = Posti(title: "Мой пост")
-
     private let button1: UIButton = {
         let button = UIButton()
-        button.setTitle("Перейти на пост", for: .normal)
+        button.setTitle(NSLocalizedString("button1FieldViewController", comment: ""), for: .normal)
         button.setTitleColor(.black, for: .normal)
         return button
     }()
 
     private let button2: UIButton = {
         let button = UIButton()
-        button.setTitle("Перейти на пост", for: .normal)
+        button.setTitle(NSLocalizedString("button2FieldViewController", comment: ""), for: .normal)
         button.setTitleColor(.black, for: .normal)
         return button
     }()
@@ -72,7 +70,7 @@ class FeedViewController: UIViewController {
         return stackView
     }()
 
-    private let mapButton = CustomButton(title: "Карта",
+    private let mapButton = CustomButton(title: NSLocalizedString("mapButtonFieldViewController", comment: ""),
                                          titleColor: .white,
                                          backgroundColor: UIColor(named: "Color_IOS20"),
                                          cornerRadius: 10)
@@ -114,7 +112,7 @@ class FeedViewController: UIViewController {
         layout()
         self.button1.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
         self.button2.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
-        self.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "house.fill"), tag: 0)
+        self.tabBarItem = UITabBarItem(title: NSLocalizedString("tabBarFieldViewController", comment: ""), image: UIImage(systemName: "house.fill"), tag: 0)
     }
     
     @objc
@@ -128,8 +126,8 @@ class FeedViewController: UIViewController {
             secretWordLabel.backgroundColor = .systemGreen
         } else {
             secretWordLabel.backgroundColor = .systemRed
-            let alert = UIAlertController(title: "Неверное слово!", message: "Введите верное слово", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Так точно", style: .default, handler: { action in print("ввести корректное слово") }))
+            let alert = UIAlertController(title: NSLocalizedString("title1CheckGuessButtonTapFieldViewControlle", comment: ""), message: NSLocalizedString("messageCheckGuessButtonTapFieldViewControlle", comment: ""), preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("title2CheckGuessButtonTapFieldViewControlle", comment: ""), style: .default, handler: { action in }))
             self.present(alert, animated: true)
         }
     }

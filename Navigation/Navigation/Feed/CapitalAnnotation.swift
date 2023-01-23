@@ -35,68 +35,68 @@ extension CapitalAnnotation {
     static func make() -> [CapitalAnnotation] {
         return [
             .init(
-                title: "Лондон",
+                title: NSLocalizedString("title1CapitalAnnotation", comment: ""),
                 coordinate: CLLocationCoordinate2D(
                     latitude: 51.507222,
                     longitude: -0.1275
                 ),
-                info: "столица Великобритании"
+                info: NSLocalizedString("info1CapitalAnnotation", comment: "")
             ),
             .init(
-                title: "Москва",
+                title: NSLocalizedString("title2CapitalAnnotation", comment: ""),
                 coordinate: CLLocationCoordinate2D(
                     latitude: 55.75222,
                     longitude: 37.61556
                 ),
-                info: "столица России"
+                info: NSLocalizedString("info2CapitalAnnotation", comment: "")
             ),
             .init(
-                title: "Осло",
+                title: NSLocalizedString("title3CapitalAnnotation", comment: ""),
                 coordinate: CLLocationCoordinate2D(
                     latitude: 59.95,
                     longitude: 10.75
                 ),
-                info: "Самое популярное в Осло имя — Мухаммед"
+                info: NSLocalizedString("info3CapitalAnnotation", comment: "")
             ),
             .init(
-                title: "Париж",
+                title: NSLocalizedString("title4CapitalAnnotation", comment: ""),
                 coordinate: CLLocationCoordinate2D(
                     latitude: 48.8567,
                     longitude: 2.3508
                 ),
-                info: "В Париже расположено самое старое на планете кладбище домашних животных"
+                info: NSLocalizedString("info4CapitalAnnotation", comment: "")
             ),
             .init(
-                title: "Рим",
+                title: NSLocalizedString("title5CapitalAnnotation", comment: ""),
                 coordinate: CLLocationCoordinate2D(
                     latitude: 41.9,
                     longitude: 12.5
                 ),
-                info: "В Фонтан Треви туристы ежегодно бросают до 1,5 млн евро"
+                info: NSLocalizedString("info5CapitalAnnotation", comment: "")
             ),
             .init(
-                title: "Вашингтон",
+                title: NSLocalizedString("title6CapitalAnnotation", comment: ""),
                 coordinate: CLLocationCoordinate2D(
                     latitude: 38.895111,
                     longitude: -77.036667
                 ),
-                info: "В Вашингтоне запрещен выпуск конфет на палочке"
+                info: NSLocalizedString("info6CapitalAnnotation", comment: "")
             ),
             .init(
-                title: "Минск",
+                title: NSLocalizedString("title7CapitalAnnotation", comment: ""),
                 coordinate: CLLocationCoordinate2D(
                     latitude: 53.9,
                     longitude: 27.5667
                 ),
-                info: "У Минска есть собственное море – так часто называют Заславское водохранилище"
+                info: NSLocalizedString("info7CapitalAnnotation", comment: "")
             ),
             .init(
-                title: "Кишинев",
+                title: NSLocalizedString("title8CapitalAnnotation", comment: ""),
                 coordinate: CLLocationCoordinate2D(
                     latitude: 47.0056,
                     longitude: 28.8575
                 ),
-                info: "Кишинев расположен на семи холмах, формирующих круг."
+                info: NSLocalizedString("info8CapitalAnnotation", comment: "")
             ),
         ]
     }

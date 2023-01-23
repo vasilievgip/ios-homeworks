@@ -1,0 +1,84 @@
+/* 
+  Localizable.strings
+  Navigation
+
+  Created by Андрей Васильев on 22.01.2023.
+  
+*/
+
+"secretWordFeedModel" = "Привет";
+"labelFeedViewController" = "Лента";
+"secretWordtextFieldViewController" = "секретное слово";
+"checkGuessButtonFieldViewController" = "Проверить";
+"button1FieldViewController" = "Перейти на пост";
+"button2FieldViewController" = "Перейти на пост";
+"mapButtonFieldViewController" = "Карта";
+"tabBarFieldViewController" = "Лента";
+"title1CheckGuessButtonTapFieldViewControlle" = "Неверное слово!";
+"messageCheckGuessButtonTapFieldViewControlle" = "Введите верное слово";
+"title2CheckGuessButtonTapFieldViewControlle" = "Хорошо";
+"filterBarButtonItemMapViewController" = "Маршрут";
+"noFilterBarButtonItemMapViewController" = "Убрать точки";
+"title1DirectionsMapViewController" = "Неудалось проложить маршрут!";
+"title2DirectionsMapViewController" = "Хорошо";
+"case1LocationManagerDidChangeAuthorization" = "Определение локации не запрошено";
+"case2LocationManagerDidChangeAuthorization" = "Определение локации невозможно";
+"case3LocationManagerDidChangeAuthorization" = "Определение локации невозможно";
+"title1CapitalAnnotation" = "Лондон";
+"info1CapitalAnnotation" = "столица Великобритании";
+"title2CapitalAnnotation" = "Москва";
+"info2CapitalAnnotation" = "столица России";
+"title3CapitalAnnotation" = "Осло";
+"info3CapitalAnnotation" = "Самое популярное в Осло имя — Мухаммед";
+"title4CapitalAnnotation" = "Париж";
+"info4CapitalAnnotation" = "В Париже расположено самое старое на планете кладбище домашних животных";
+"title5CapitalAnnotation" = "Рим";
+"info5CapitalAnnotation" = "В Фонтан Треви туристы ежегодно бросают до 1,5 млн евро";
+"title6CapitalAnnotation" = "Вашингтон";
+"info6CapitalAnnotation" = "В Вашингтоне запрещен выпуск конфет на палочке";
+"title7CapitalAnnotation" = "Минск";
+"info7CapitalAnnotation" = "У Минска есть собственное море – так часто называют Заславское водохранилище";
+"title8CapitalAnnotation" = "Кишинев";
+"info8CapitalAnnotation" = "Кишинев расположен на семи холмах, формирующих круг.";
+"tabBarPostViewController" = "Избранное";
+"filterBarButtonItemPostViewController" = "Фильтр";
+"noFilterBarButtonItemPostViewController" = "Отмена";
+"title1FilterPostViewController" = "Фильтр по автору";
+"placeholderFilterPostViewController" = "Введите текст";
+"title2FilterPostViewController" = "Применить";
+"title3FilterPostViewController" = "Отменить";
+"deleteButtonInfoViewController" = "Удалить пост";
+"title1HandleButtonTapInfoViewController" = "Удалить пост?";
+"messageHandleButtonTapInfoViewController" = "Пост будет удален";
+"title2HandleButtonTapInfoViewController" = "ДА";
+"title3HandleButtonTapInfoViewController" = "НЕТ";
+"text2SetupCellPostTableViewCell" = "Просмотры: ";
+"photosLabelPhotosTableViewCell" = "Фотографии";
+"mailTextFieldLogInViewController" = "Электронная почта";
+"passwordTextFieldLogInViewController" = "Пароль";
+"loginButtonLogInViewController" = "Войдите в систему";
+"tabBarLogInViewController" = "Профиль";
+"title1HandleButtonTapLogInViewController" = "Пустые поля";
+"messageHandleButtonTapLogInViewController" = "Введите корректный логин или пароль";
+"title2HandleButtonTapLogInViewController" = "Хорошо";
+"setStatusButtonProfileHeaderView" = "Показать статус";
+"statusTextFieldProfileHeaderView" = "что-то...";
+"timerLabel1PhotosViewController" = "Время наложения фильтра составляет: ";
+"timerLabel2PhotosViewController" = " сек.";
+"titlePhotosViewController" = "Фотогалерея";
+"author1PostArrayProfileAssembly" = "Шурибан";
+"description1PostArrayProfileAssembly" = "Вчера вечером решил отметить профессиональный праздник небольшим скриптом. Всех коллег с праздником!";
+"author2PostArrayProfileAssembly" = "Рушка - 50 лучших постов ВКонтакте за сутки";
+"description2PostArrayProfileAssembly" = "Бездонное озеро в кратере потухшего вулкана. Этот кратер с одним из самых глубоких в мире озер - до 1500 метров в глубину находится в Уганде, на территории Национального парка королевы Елизаветы.";
+"description3PostArrayProfileAssembly" = "Французский канатоходец Филипп Пети совершает переход по канату между башнями Всемирного Торгового Центра. Нью-Йорк, 7 августа 1974 года";
+"description4PostArrayProfileAssembly" = "Слишком часто в наше время...";
+"description5PostArrayProfileAssembly" = "Невозможно «пить мало», «курить редко», «изменять жене в пределах разумного». Нет «золотой середины» при определении степени порочности.Нельзя деградировать в меру...(с)";
+"fullNameUserPostArrayProfileAssembly" = "Андрей Александрович Васильев";
+"statusNameUserPostArrayProfileAssembly" = "Жду чего-то...";
+"title1CheckCredentialsCheckerService" = "Неверный логин или пароль!";
+"messageCheckCredentialsCheckerService" = "Введите корректный логин или пароль";
+"title2CheckCredentialsCheckerService" = "Ввести";
+"title3CheckCredentialsCheckerService" = "Зарегестрироваться";
+"title1AddPostCoreDataManager" = "Добавлено в избранное";
+"title2AddPostCoreDataManager" = "Хорошо";
+"title3AddPostCoreDataManager" = "Уже в избранном";

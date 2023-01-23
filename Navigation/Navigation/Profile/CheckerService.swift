@@ -19,11 +19,9 @@ class CheckerService: CheckerServiceProtocol {
         Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
             if let error {
                 print(error.localizedDescription)
-                let alert = UIAlertController(title: "Неверный логин или пароль!", message: "Введите корректный логин или пароль", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ввести", style: .default, handler: { action in
-                    print("ввести корректный логин или пароль")
-                }))
-                alert.addAction(UIAlertAction(title: "Зарегистрироваться", style: .default, handler: { action in
+                let alert = UIAlertController(title: NSLocalizedString("title1CheckCredentialsCheckerService", comment: ""), message: NSLocalizedString("messageCheckCredentialsCheckerService", comment: ""), preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("title2CheckCredentialsCheckerService", comment: ""), style: .default, handler: { action in }))
+                alert.addAction(UIAlertAction(title: NSLocalizedString("title3CheckCredentialsCheckerService", comment: ""), style: .default, handler: { action in
                     self.signUp(email: email, password: password)
                 }))
                 completion?(alert, false)

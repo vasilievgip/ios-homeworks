@@ -22,7 +22,7 @@ class InfoViewController: UIViewController, UITableViewDelegate {
 
     let deleteButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Удалить пост", for: .normal)
+        button.setTitle(NSLocalizedString("deleteButtonInfoViewController", comment: ""), for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.toAutoLayout()
         return button
@@ -89,9 +89,9 @@ class InfoViewController: UIViewController, UITableViewDelegate {
     
     @objc
     func handleButtonTap() {
-        let alert = UIAlertController(title: "Удалить пост?", message: "Пост будет удален", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "ДА", style: .default, handler: { action in print("Пост удален") }))
-        alert.addAction(UIAlertAction(title: "НЕТ", style: .cancel, handler: { action in print("Отмена удаления") }))
+        let alert = UIAlertController(title: NSLocalizedString("title1HandleButtonTapInfoViewController", comment: ""), message: NSLocalizedString("messageHandleButtonTapInfoViewController", comment: ""), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("title2HandleButtonTapInfoViewController", comment: ""), style: .default, handler: { action in }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("title3HandleButtonTapInfoViewController", comment: ""), style: .cancel, handler: { action in }))
         self.present(alert, animated: true)
     }
 
