@@ -11,7 +11,7 @@ class PhotosTableViewCell: UITableViewCell {
 
     private let contentPhotosView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.createColor(lightMode: viewColorLight, darkMode: viewColorDark)
         view.toAutoLayout()
         return view
     }()

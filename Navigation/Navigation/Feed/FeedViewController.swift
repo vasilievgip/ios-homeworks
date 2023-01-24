@@ -15,7 +15,7 @@ class FeedViewController: UIViewController {
     
     private let label: UILabel = {
         let label = UILabel()
-        label.text = NSLocalizedString("labelFeedViewController", comment: "")
+        label.text = "labelFeedViewController".localized
         label.frame = CGRect(x: 170, y: 50, width: 100, height: 100)
         return label
     }()
@@ -24,7 +24,7 @@ class FeedViewController: UIViewController {
         let field = UITextField()
         field.backgroundColor = .systemGray6
         field.placeholder = NSLocalizedString("secretWordtextFieldViewController", comment: "")
-        field.textColor = .black
+        field.textColor = UIColor.createColor(lightMode: .black, darkMode: .white)
         field.font = . systemFont(ofSize: 16)
         field.tintColor = UIColor(named: "Color_IOS20")
         field.autocapitalizationType = .none
@@ -51,14 +51,14 @@ class FeedViewController: UIViewController {
     private let button1: UIButton = {
         let button = UIButton()
         button.setTitle(NSLocalizedString("button1FieldViewController", comment: ""), for: .normal)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(UIColor.createColor(lightMode: .black, darkMode: .white), for: .normal)
         return button
     }()
 
     private let button2: UIButton = {
         let button = UIButton()
         button.setTitle(NSLocalizedString("button2FieldViewController", comment: ""), for: .normal)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(UIColor.createColor(lightMode: .black, darkMode: .white), for: .normal)
         return button
     }()
 

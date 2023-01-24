@@ -46,7 +46,7 @@ class ProfileHeaderView: UIView {
     private let fullNameLabel: UILabel = {
         let label = UILabel()
         label.text = ProfileViewModel(user: user).fullName
-        label.textColor = .black
+        label.textColor = UIColor.createColor(lightMode: .black, darkMode: .white)
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.numberOfLines = 0
         label.toAutoLayout()
@@ -56,7 +56,7 @@ class ProfileHeaderView: UIView {
     private let statusLabel: UILabel = {
         let label = UILabel()
         label.text = ProfileViewModel(user: user).status
-        label.textColor = .gray
+        label.textColor = UIColor.createColor(lightMode: UIColor(red: 128/255, green: 128/255, blue: 128/255, alpha: 1), darkMode: UIColor(red: 138/255, green: 138/255, blue: 138/255, alpha: 1))
         label.font = UIFont.systemFont(ofSize: 14)
         label.numberOfLines = 0
         label.toAutoLayout()
@@ -65,18 +65,18 @@ class ProfileHeaderView: UIView {
 
     private let setStatusButton = CustomButton(title: NSLocalizedString("setStatusButtonProfileHeaderView", comment: ""),
                                                titleColor: .white,
-                                               backgroundColor: .systemBlue,
+                                               backgroundColor: UIColor(named: "Color_IOS20"),
                                                cornerRadius: 12)
 
     private let statusTextField: UITextField = {
         let field = UITextField()
         field.backgroundColor = .white
         field.placeholder = NSLocalizedString("statusTextFieldProfileHeaderView", comment: "")
-        field.textColor = .black
+        field.textColor = UIColor.createColor(lightMode: .black, darkMode: .white)
         field.font = UIFont.systemFont(ofSize: 15)
         field.layer.cornerRadius = 12
         field.layer.borderWidth = 1
-        field.layer.borderColor = UIColor.black.cgColor
+        field.layer.borderColor = UIColor.createColor(lightMode: .black, darkMode: .white).cgColor
         field.indent(size: 10)
         field.toAutoLayout()
         return field

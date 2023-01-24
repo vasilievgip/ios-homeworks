@@ -21,10 +21,9 @@ class LogInViewController: UIViewController {
         scrollView.toAutoLayout()
         return scrollView
     }()
-
     private let contentView: UIView = {
         let contentView = UIView()
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = UIColor.createColor(lightMode: viewColorLight, darkMode: viewColorDark)
         contentView.toAutoLayout()
         return contentView
     }()
@@ -38,9 +37,8 @@ class LogInViewController: UIViewController {
 
     private lazy var mailTextField: UITextField = {
         let field = UITextField()
-        field.backgroundColor = .systemGray6
         field.placeholder = NSLocalizedString("mailTextFieldLogInViewController", comment: "")
-        field.textColor = .black
+        field.textColor = UIColor.createColor(lightMode: .black, darkMode: .white)
         field.font = . systemFont(ofSize: 16)
         field.tintColor = UIColor(named: "Color_IOS20")
         field.autocapitalizationType = .none
@@ -56,9 +54,8 @@ class LogInViewController: UIViewController {
 
     private lazy var passwordTextField: UITextField = {
         let field = UITextField()
-        field.backgroundColor = .systemGray6
         field.placeholder = NSLocalizedString("passwordTextFieldLogInViewController", comment: "")
-        field.textColor = .black
+        field.textColor = UIColor.createColor(lightMode: .black, darkMode: .white)
         field.font = .systemFont(ofSize: 16)
         field.tintColor = UIColor(named: "Color_IOS20")
         field.autocapitalizationType = .none
@@ -114,7 +111,7 @@ class LogInViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.createColor(lightMode: viewColorLight, darkMode: viewColorDark)
         layout()
         loginButton.target = {
             self.handleButtonTap()

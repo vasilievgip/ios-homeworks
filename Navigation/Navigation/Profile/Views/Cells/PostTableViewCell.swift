@@ -12,7 +12,7 @@ class PostTableViewCell: UITableViewCell {
 
     private let contentWhiteView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.createColor(lightMode: .white, darkMode: .black)
         view.toAutoLayout()
         return view
     }()
@@ -28,7 +28,7 @@ class PostTableViewCell: UITableViewCell {
     let postImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
-        image.backgroundColor = .black
+        image.backgroundColor = UIColor.createColor(lightMode: viewColorLight, darkMode: viewColorDark)
         image.toAutoLayout()
         return image
     }()
