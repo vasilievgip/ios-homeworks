@@ -56,7 +56,7 @@ class PhotosViewController: UIViewController {
         Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
             seconds += 0.1
             let number = NSString(format: "%.1f", seconds)
-            self.timerLabel.text = "Время наложения фильтра составляет: \(number) сек."
+            self.timerLabel.text = NSLocalizedString("timerLabel1PhotosViewController", comment: "") + (number as String) + NSLocalizedString("timerLabel2PhotosViewController", comment: "")
             if filterPhotosArray.count != 0 {
                 timer.invalidate()
                 self.timerLabel.text = ""
@@ -94,8 +94,7 @@ class PhotosViewController: UIViewController {
 
             let endTime = DispatchTime.now()
             let nanoTime = endTime.uptimeNanoseconds - startTime.uptimeNanoseconds
-            let timeInterval = Double(nanoTime) / 1_000_000_000
-            print("\(timeInterval) секунд")
+            _ = Double(nanoTime) / 1_000_000_000
 
         }
     }
@@ -108,7 +107,7 @@ class PhotosViewController: UIViewController {
         layout()
         filterTimer()
         navigationController?.navigationBar.isHidden = false
-        navigationItem.title = "Photo Gallery"
+        navigationItem.title = NSLocalizedString("titlePhotosViewController", comment: "")
 //        imagePublisherFacade.subscribe(self)
 //        imagePublisherFacade.addImagesWithTimer(time: 0.5, repeat: 10)
 

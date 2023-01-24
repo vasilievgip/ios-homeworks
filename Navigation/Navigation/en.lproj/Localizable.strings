@@ -1,0 +1,84 @@
+/* 
+  Localizable.strings
+  Navigation
+
+  Created by Андрей Васильев on 22.01.2023.
+  
+*/
+
+"secretWordFeedModel" = "Hello";
+"labelFeedViewController" = "Feed";
+"secretWordtextFieldViewController" = "secret Word";
+"checkGuessButtonFieldViewController" = "Check";
+"button1FieldViewController" = "Go to the post";
+"button2FieldViewController" = "Go to the post";
+"mapButtonFieldViewController" = "Map";
+"tabBarFieldViewController" = "Feed";
+"title1CheckGuessButtonTapFieldViewControlle" = "Wrong word!";
+"messageCheckGuessButtonTapFieldViewControlle" = "Enter the correct word";
+"title2CheckGuessButtonTapFieldViewControlle" = "OK";
+"filterBarButtonItemMapViewController" = "Route";
+"noFilterBarButtonItemMapViewController" = "Remove points";
+"title1DirectionsMapViewController" = "Failed to get a route!";
+"title2DirectionsMapViewController" = "OK";
+"case1LocationManagerDidChangeAuthorization" = "Location determination not requested";
+"case2LocationManagerDidChangeAuthorization" = "Location determination not possible";
+"case3LocationManagerDidChangeAuthorization" = "Location determination not possible";
+"title1CapitalAnnotation" = "London";
+"info1CapitalAnnotation" = "capital of Great Britain";
+"title2CapitalAnnotation" = "Moscow";
+"info2CapitalAnnotation" = "capital of Russia";
+"title3CapitalAnnotation" = "Oslo";
+"info3CapitalAnnotation" = "The most popular name in Oslo is Mohammed";
+"title4CapitalAnnotation" = "Paris";
+"info4CapitalAnnotation" = "The oldest pet cemetery on the planet is located in Paris";
+"title5CapitalAnnotation" = "Rome";
+"info5CapitalAnnotation" = "Tourists annually throw up to 1.5 million euros into the Trevi Fountain";
+"title6CapitalAnnotation" = "Washington";
+"info6CapitalAnnotation" = "The release of candy on a stick is banned in Washington";
+"title7CapitalAnnotation" = "Minsk";
+"info7CapitalAnnotation" = "Minsk has its own sea – this is how the Zaslavskoye reservoir is often called";
+"title8CapitalAnnotation" = "Chisinau";
+"info8CapitalAnnotation" = "Chisinau is located on seven hills forming a circle.";
+"tabBarPostViewController" = "Favorites";
+"filterBarButtonItemPostViewController" = "Filter";
+"noFilterBarButtonItemPostViewController" = "Cancel";
+"title1FilterPostViewController" = "Filter by author";
+"placeholderFilterPostViewController" = "Enter text";
+"title2FilterPostViewController" = "Apply";
+"title3FilterPostViewController" = "Cancel";
+"deleteButtonInfoViewController" = "Delete Post";
+"titleHandleButtonTapInfoViewController" = "Delete a post?";
+"messageHandleButtonTapInfoViewController" = "The post will be deleted";
+"title2HandleButtonTapInfoViewController" = "YES";
+"title3HandleButtonTapInfoViewController" = "NO";
+"text2SetupCellPostTableViewCell" = "Views: ";
+"photosLabelPhotosTableViewCell" = "Photos";
+"mailTextFieldLogInViewController" = "Email";
+"passwordTextFieldLogInViewController" = "Password";
+"loginButtonLogInViewController" = "Log In";
+"tabBarLogInViewController" = "Profile";
+"title1HandleButtonTapLogInViewController" = "Empty fields";
+"messageHandleButtonTapLogInViewController" = "Enter the correct username or password";
+"title2HandleButtonTapLogInViewController" = "OK";
+"setStatusButtonProfileHeaderView" = "Show status";
+"statusTextFieldProfileHeaderView" = "something...";
+"timerLabel1PhotosViewController" = "The time of applying the filter is: ";
+"timerLabel2PhotosViewController" = " sec.";
+"titlePhotosViewController" = "Photo Gallery";
+"author1PostArrayProfileAssembly" = "Shuriban";
+"description1PostArrayProfileAssembly" = "Last night I decided to celebrate a professional holiday with a small script. Happy holidays to all colleagues!";
+"author2PostArrayProfileAssembly" = "Ruska - 50 best VKontakte posts per day";
+"description2PostArrayProfileAssembly" = "A bottomless lake in the crater of an extinct volcano. This crater with one of the deepest lakes in the world - up to 1500 meters deep is located in Uganda, on the territory of the Queen Elizabeth National Park.";
+"description3PostArrayProfileAssembly" = "French tightrope walker Philippe Petit makes a tightrope crossing between the towers of the World Trade Center. New York, August 7, 1974";
+"description4PostArrayProfileAssembly" = "Too often nowadays...";
+"description5PostArrayProfileAssembly" = "It is impossible «to drink little», «smoke rarely», «cheat on your wife within reason». There is no «golden mean» in determining the degree of depravity.It is impossible to degrade in moderation ... (c)";
+"fullNameUserPostArrayProfileAssembly" = "Andrey Alexandrovich Vasiliev";
+"statusNameUserPostArrayProfileAssembly" = "Waiting for something...";
+"title1CheckCredentialsCheckerService" = "Invalid username or password!";
+"messageCheckCredentialsCheckerService" = "Enter the correct username or password";
+"title2CheckCredentialsCheckerService" = "Enter";
+"title3CheckCredentialsCheckerService" = "Register";
+"title1AddPostCoreDataManager" = "Added to favorites";
+"title2AddPostCoreDataManager" = "OK";
+"title3AddPostCoreDataManager" = "Already in favorites";

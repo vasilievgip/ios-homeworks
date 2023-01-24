@@ -1,0 +1,11 @@
+/* 
+  InfoPlist.strings
+  Navigation
+
+  Created by Андрей Васильев on 23.01.2023.
+  
+*/
+
+"NSLocationWhenInUseUsageDescription" = "Используем геопозицию для точного отображения пользователя";
+"NSLocationAlwaysUsageDescription" = "Используем геопозицию для точного отображения пользователя";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Используем геопозицию для точного отображения пользователя";

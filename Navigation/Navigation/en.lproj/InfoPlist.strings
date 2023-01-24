@@ -1,0 +1,11 @@
+/* 
+  InfoPlist.strings
+  Navigation
+
+  Created by Андрей Васильев on 23.01.2023.
+  
+*/
+
+"NSLocationWhenInUseUsageDescription" = "We use geo-positioning to accurately display the user";
+"NSLocationAlwaysUsageDescription" = "We use geo-positioning to accurately display the user";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "We use geo-positioning to accurately display the user";

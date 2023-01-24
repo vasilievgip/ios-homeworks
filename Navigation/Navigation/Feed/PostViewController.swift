@@ -42,14 +42,14 @@ class PostViewController: UIViewController, UITableViewDelegate, NSFetchedResult
         super.viewDidLoad()
         self.view.backgroundColor = .systemBackground
 
-        self.tabBarItem = UITabBarItem(title: "Избранное", image: UIImage(systemName: "star.circle"), tag: 1)
+        self.tabBarItem = UITabBarItem(title: NSLocalizedString("tabBarPostViewController", comment: ""), image: UIImage(systemName: "star.circle"), tag: 1)
 
         let filterBarButtonItem: UIBarButtonItem = {
-            let barButtonItem = UIBarButtonItem(title: "Фильтр", style: .plain, target: self, action: #selector(filter))
+            let barButtonItem = UIBarButtonItem(title: NSLocalizedString("filterBarButtonItemPostViewController", comment: ""), style: .plain, target: self, action: #selector(filter))
             return barButtonItem
         }()
         let noFilterBarButtonItem: UIBarButtonItem = {
-            let barButtonItem = UIBarButtonItem(title: "Отмена", style: .plain, target: self, action: #selector(noFilter))
+            let barButtonItem = UIBarButtonItem(title: NSLocalizedString("noFilterBarButtonItemPostViewController", comment: ""), style: .plain, target: self, action: #selector(noFilter))
             return barButtonItem
         }()
         self.navigationItem.rightBarButtonItems = [noFilterBarButtonItem, filterBarButtonItem]
@@ -63,16 +63,16 @@ class PostViewController: UIViewController, UITableViewDelegate, NSFetchedResult
 
     @objc
     func filter() {
-        let alert = UIAlertController(title: "Фильтр по автору", message: "", preferredStyle: .alert)
+        let alert = UIAlertController(title: NSLocalizedString("title1FilterPostViewController", comment: ""), message: "", preferredStyle: .alert)
         alert.addTextField { textField in
-            textField.placeholder = "Enter text" }
-        alert.addAction(UIAlertAction(title: "Применить", style: .default, handler: { action in
+            textField.placeholder = NSLocalizedString("placeholderFilterPostViewController", comment: "") }
+        alert.addAction(UIAlertAction(title: NSLocalizedString("title2FilterPostViewController", comment: ""), style: .default, handler: { action in
             if alert.textFields?[0].text != nil {
                 CoreDataManager.defaultManager.filterPostAuthor(byAuthor: alert.textFields![0].text!)
                 //                self.tableView.reloadData()
             }
         }))
-        alert.addAction(UIAlertAction(title: "Отменить", style: .default, handler: { action in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("title3FilterPostViewController", comment: ""), style: .default, handler: { action in
         }))
         self.present(alert, animated: true)
     }

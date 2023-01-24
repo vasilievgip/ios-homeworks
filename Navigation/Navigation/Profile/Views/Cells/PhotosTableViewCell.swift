@@ -18,7 +18,7 @@ class PhotosTableViewCell: UITableViewCell {
 
     private let photosLabel: UILabel = {
         let label = UILabel()
-        label.text = "Photos"
+        label.text = NSLocalizedString("photosLabelPhotosTableViewCell", comment: "")
         label.font = .boldSystemFont(ofSize: 24)
         label.numberOfLines = 1
         label.toAutoLayout()

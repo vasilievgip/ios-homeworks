@@ -45,17 +45,14 @@ class CoreDataManager {
                 newPost.views = post.views
                 try? self.backgroundContext.save()
                 DispatchQueue.main.async {
-                    let alert = UIAlertController(title: "Добавлено в избранное", message: "", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Хорошо", style: .default, handler: { action in
-                    }))
+                    let alert = UIAlertController(title: NSLocalizedString("title1AddPostCoreDataManager", comment: ""), message: "", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: NSLocalizedString("title2AddPostCoreDataManager", comment: ""), style: .default, handler: { action in }))
                     ProfileViewController.defaultViewController.present(alert, animated: true)
                 }
             } else {
-                print("Уже есть в избранном")
                 DispatchQueue.main.async {
-                    let alert = UIAlertController(title: "Уже в избранном", message: "", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Хорошо", style: .default, handler: { action in
-                    }))
+                    let alert = UIAlertController(title: NSLocalizedString("title3AddPostCoreDataManager", comment: ""), message: "", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: NSLocalizedString("title2AddPostCoreDataManager", comment: ""), style: .default, handler: { action in }))
                     ProfileViewController.defaultViewController.present(alert, animated: true)
                 }
             }

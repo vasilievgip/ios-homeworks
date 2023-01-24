@@ -63,7 +63,7 @@ class ProfileHeaderView: UIView {
         return label
     }()
 
-    private let setStatusButton = CustomButton(title: "Show status",
+    private let setStatusButton = CustomButton(title: NSLocalizedString("setStatusButtonProfileHeaderView", comment: ""),
                                                titleColor: .white,
                                                backgroundColor: .systemBlue,
                                                cornerRadius: 12)
@@ -71,7 +71,7 @@ class ProfileHeaderView: UIView {
     private let statusTextField: UITextField = {
         let field = UITextField()
         field.backgroundColor = .white
-        field.placeholder = "something..."
+        field.placeholder = NSLocalizedString("statusTextFieldProfileHeaderView", comment: "")
         field.textColor = .black
         field.font = UIFont.systemFont(ofSize: 15)
         field.layer.cornerRadius = 12
@@ -161,7 +161,6 @@ class ProfileHeaderView: UIView {
     func handleButtonTap() {
         statusTextChanged(statusTextField)
         statusLabel.text = statusText
-        print("Show status")
     }
     
     @objc

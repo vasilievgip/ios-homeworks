@@ -11,7 +11,7 @@ class FeedModel {
 
     let secretWord: String
     init() {
-        secretWord = "Привет"
+        secretWord = NSLocalizedString("secretWordFeedModel", comment: "")
     }
     func check(word: String) -> Bool {
         self.secretWord == word

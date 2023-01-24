@@ -55,11 +55,11 @@ class MapViewController: UIViewController {
 
         navigationController?.navigationBar.isHidden = false
         let filterBarButtonItem: UIBarButtonItem = {
-            let barButtonItem = UIBarButtonItem(title: "Маршрут", style: .plain, target: self, action: #selector(routeOnMap))
+            let barButtonItem = UIBarButtonItem(title: NSLocalizedString("filterBarButtonItemMapViewController", comment: ""), style: .plain, target: self, action: #selector(routeOnMap))
             return barButtonItem
         }()
         let noFilterBarButtonItem: UIBarButtonItem = {
-            let barButtonItem = UIBarButtonItem(title: "Убрать точки", style: .plain, target: self, action: #selector(clearPoint))
+            let barButtonItem = UIBarButtonItem(title: NSLocalizedString("noFilterBarButtonItemMapViewController", comment: ""), style: .plain, target: self, action: #selector(clearPoint))
             return barButtonItem
         }()
         self.navigationItem.rightBarButtonItems = [noFilterBarButtonItem, filterBarButtonItem]
@@ -108,8 +108,8 @@ class MapViewController: UIViewController {
         let directions = MKDirections(request: request)
         directions.calculate { response, error in
             if (error != nil) {
-                let alert = UIAlertController(title: "Неудалось проложить маршрут!", message: "", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Понятно", style: .default, handler: { action in }))
+                let alert = UIAlertController(title: NSLocalizedString("title1DirectionsMapViewController", comment: ""), message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("title2DirectionsMapViewController", comment: ""), style: .default, handler: { action in }))
                 self.present(alert, animated: true)
             }
             guard let unwrappedResponse = response else { return }
@@ -154,11 +154,11 @@ extension MapViewController: CLLocationManagerDelegate, MKMapViewDelegate {
         switch manager.authorizationStatus {
 
         case .notDetermined:
-            print("Определение локации не запрошено")
+            print(NSLocalizedString("case1LocationManagerDidChangeAuthorization", comment: ""))
         case .restricted:
-            print("Определение локации невозможно")
+            print(NSLocalizedString("case2LocationManagerDidChangeAuthorization", comment: ""))
         case .denied:
-            print("Определение локации невозможно")
+            print(NSLocalizedString("case3LocationManagerDidChangeAuthorization", comment: ""))
         case .authorizedAlways:
             manager.requestLocation()
         case .authorizedWhenInUse:
