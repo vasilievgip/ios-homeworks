@@ -68,6 +68,7 @@
 		5EED920F297D43E5008304BD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5EED9211297D43E5008304BD /* Localizable.strings */; };
 		5EED9217297E9ED9008304BD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5EED9219297E9ED9008304BD /* InfoPlist.strings */; };
 		5EED921D297EA46E008304BD /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 5EED921F297EA46E008304BD /* Localizable.stringsdict */; };
+		5EED9222297FF43B008304BD /* MyColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EED9221297FF43B008304BD /* MyColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +159,7 @@
 		5EED921A297E9EDE008304BD /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5EED921E297EA46E008304BD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		5EED9220297EA474008304BD /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = ru.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		5EED9221297FF43B008304BD /* MyColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyColor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +225,7 @@
 				5E5387802947969000B1DAED /* CheckerServiceProtocol.swift */,
 				5E538782294798DA00B1DAED /* CheckerService.swift */,
 				5E298B00295B5F1C00B53A94 /* CoreDataManager.swift */,
+				5EED9221297FF43B008304BD /* MyColor.swift */,
 				5E298ADA295B5D3500B53A94 /* ModelCoreData.xcdatamodeld */,
 			);
 			path = Profile;
@@ -520,6 +523,7 @@
 				5ED936E4291D29B9005C815B /* MainTabBarController.swift in Sources */,
 				5EE2203B290ED1C0000C7DE2 /* CustomButton.swift in Sources */,
 				5EC1FFCF281FFD2500BFBB79 /* InfoViewController.swift in Sources */,
+				5EED9222297FF43B008304BD /* MyColor.swift in Sources */,
 				5EE2203D291422FE000C7DE2 /* FeedModel.swift in Sources */,
 				5E890616282FEBB20066A557 /* ProfileViewController.swift in Sources */,
 				5E298B03295CAE9D00B53A94 /* MainPostCoordinator.swift in Sources */,

@@ -69,7 +69,6 @@ class PostViewController: UIViewController, UITableViewDelegate, NSFetchedResult
         alert.addAction(UIAlertAction(title: NSLocalizedString("title2FilterPostViewController", comment: ""), style: .default, handler: { action in
             if alert.textFields?[0].text != nil {
                 CoreDataManager.defaultManager.filterPostAuthor(byAuthor: alert.textFields![0].text!)
-                //                self.tableView.reloadData()
             }
         }))
         alert.addAction(UIAlertAction(title: NSLocalizedString("title3FilterPostViewController", comment: ""), style: .default, handler: { action in

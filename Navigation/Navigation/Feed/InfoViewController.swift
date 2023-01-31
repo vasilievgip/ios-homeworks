@@ -23,7 +23,7 @@ class InfoViewController: UIViewController, UITableViewDelegate {
     let deleteButton: UIButton = {
         let button = UIButton()
         button.setTitle(NSLocalizedString("deleteButtonInfoViewController", comment: ""), for: .normal)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(UIColor.createColor(lightMode: .black, darkMode: .white), for: .normal)
         button.toAutoLayout()
         return button
     }()

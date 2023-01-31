@@ -26,7 +26,7 @@ class PhotosViewController: UIViewController {
 
     private let timerLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
+        label.textColor = UIColor.createColor(lightMode: .black, darkMode: .white)
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.textAlignment = .center
         label.numberOfLines = 0
@@ -102,7 +102,7 @@ class PhotosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .systemGray6
+        view.backgroundColor = UIColor.createColor(lightMode: viewColorLight, darkMode: viewColorDark)
         processImagesOnThread()
         layout()
         filterTimer()
