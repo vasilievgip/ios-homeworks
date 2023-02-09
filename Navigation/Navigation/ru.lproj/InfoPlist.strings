@@ -9,3 +9,4 @@
 "NSLocationWhenInUseUsageDescription" = "Используем геопозицию для точного отображения пользователя";
 "NSLocationAlwaysUsageDescription" = "Используем геопозицию для точного отображения пользователя";
 "NSLocationAlwaysAndWhenInUseUsageDescription" = "Используем геопозицию для точного отображения пользователя";
+"NSFaceIDUsageDescription" = "Мы используем Face ID/Touch ID для аутентификации";

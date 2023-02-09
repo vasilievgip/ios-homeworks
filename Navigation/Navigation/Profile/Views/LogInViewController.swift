@@ -16,6 +16,8 @@ class LogInViewController: UIViewController {
 
     private let nc = NotificationCenter.default
 
+    private let localAuthorizationService = LocalAuthorizationService()
+
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.toAutoLayout()
@@ -75,10 +77,36 @@ class LogInViewController: UIViewController {
                                            backgroundColor: UIColor(named: "Color_IOS20"),
                                            cornerRadius: 10)
 
+    //    private var faseIDtouchIDButton: UIButton = {
+    //        let button = UIButton()
+    //        button.setTitleColor(.white, for: .normal)
+    //        button.backgroundColor = UIColor(named: "Color_IOS20")
+    //        button.layer.cornerRadius = 10
+    //        button.toAutoLayout()
+    //        return button
+    //    }()
+    private var faseIDtouchIDButton = CustomButton(title: "GER", titleColor: .white, backgroundColor: UIColor(named: "Color_IOS20"), cornerRadius: 10)
+
     private func layout() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
-        contentView.addSubviews(logoImageView, mailTextField, passwordTextField, loginButton)
+        contentView.addSubviews(logoImageView, mailTextField, passwordTextField, loginButton, faseIDtouchIDButton)
+
+        localAuthorizationService.canEvaluate { (_, type, _) in
+            if type == .faceID {
+                faseIDtouchIDButton.setImage(UIImage(systemName: "faceid")?.withTintColor(.white, renderingMode: .alwaysOriginal), for: .normal)
+                faseIDtouchIDButton.setTitle("faseIDButton".localized, for: .normal)
+            } else {
+                if type == .touchID {
+                    faseIDtouchIDButton.setImage(UIImage(systemName: "touchid")?.withTintColor(.white, renderingMode: .alwaysOriginal), for: .normal)
+                    faseIDtouchIDButton.setTitle("touchIDButton".localized, for: .normal)
+                } else {
+                    faseIDtouchIDButton.setTitle("faseIDtouchIDButton".localized, for: .normal)
+                    faseIDtouchIDButton.backgroundColor = .systemGray
+                }
+            }
+        }
+
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
@@ -105,7 +133,11 @@ class LogInViewController: UIViewController {
             loginButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             loginButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             loginButton.heightAnchor.constraint(equalToConstant: 50),
-            loginButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            faseIDtouchIDButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 16),
+            faseIDtouchIDButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            faseIDtouchIDButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            faseIDtouchIDButton.heightAnchor.constraint(equalToConstant: 50),
+            faseIDtouchIDButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
 
@@ -115,6 +147,9 @@ class LogInViewController: UIViewController {
         layout()
         loginButton.target = {
             self.handleButtonTap()
+        }
+        faseIDtouchIDButton.target = {
+            self.faceIDtouchIDtap()
         }
         self.tabBarItem = UITabBarItem(title: NSLocalizedString("tabBarLogInViewController", comment: ""), image: UIImage(systemName: "person.fill"), tag: 2)
     }
@@ -162,6 +197,28 @@ class LogInViewController: UIViewController {
             }
         })
 
+    }
+
+    @objc
+    func faceIDtouchIDtap() {
+        localAuthorizationService.canEvaluate { (canEvaluate, _, canEvaluteError) in
+            guard canEvaluate else {
+                let alert = UIAlertController(title: "faceIDtouchIDtapAlertTitle".localized, message: canEvaluteError?.localizedDescription, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "faceIDtouchIDtapAlertTitle1".localized, style: .default))
+                self.present(alert, animated: true)
+                return
+            }
+            localAuthorizationService.evaluate {
+                [weak self] (success, error) in
+                guard success else {
+                    let alert = UIAlertController(title: "faceIDtouchIDtapAlertTitle".localized, message: error?.localizedDescription, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "faceIDtouchIDtapAlertTitle1".localized, style: .default))
+                    self?.present(alert, animated: true)
+                    return
+                }
+                self?.coordinator?.login()
+            }
+        }
     }
     
 }

@@ -107,7 +107,7 @@ class PostTableViewCell: UITableViewCell {
         authorLabel.text = model.author
         postImage.image = UIImage(data: (model.image ?? UIImage(named: "nophoto")?.pngData())!)
         descriptionLabel.text = model.descr
-        likesLabel.text = NSLocalizedString("text1SetupCellPostTableViewCell", comment: "") + String(model.likes)
+        likesLabel.text = String(format: NSLocalizedString("likesKey", comment: ""), model.likes)
         viewsLabel.text = NSLocalizedString("text2SetupCellPostTableViewCell", comment: "") + String(model.views)
     }
 
