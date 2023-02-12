@@ -27,6 +27,7 @@
 		5E53877F2945D2A000B1DAED /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 5E53877E2945D2A000B1DAED /* FirebaseAuth */; };
 		5E5387812947969000B1DAED /* CheckerServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5387802947969000B1DAED /* CheckerServiceProtocol.swift */; };
 		5E538783294798DA00B1DAED /* CheckerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E538782294798DA00B1DAED /* CheckerService.swift */; };
+		5E63E1142991627E00C54A74 /* LocalAuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E63E1132991627E00C54A74 /* LocalAuthorizationService.swift */; };
 		5E890614282FEB690066A557 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E890613282FEB690066A557 /* ProfileHeaderView.swift */; };
 		5E890616282FEBB20066A557 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E890615282FEBB20066A557 /* ProfileViewController.swift */; };
 		5E89061828453DBF0066A557 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E89061728453DBF0066A557 /* Extension.swift */; };
@@ -114,6 +115,7 @@
 		5E53877A2945C94300B1DAED /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5E5387802947969000B1DAED /* CheckerServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckerServiceProtocol.swift; sourceTree = "<group>"; };
 		5E538782294798DA00B1DAED /* CheckerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckerService.swift; sourceTree = "<group>"; };
+		5E63E1132991627E00C54A74 /* LocalAuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthorizationService.swift; sourceTree = "<group>"; };
 		5E890613282FEB690066A557 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		5E890615282FEBB20066A557 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		5E89061728453DBF0066A557 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				5E538782294798DA00B1DAED /* CheckerService.swift */,
 				5E298B00295B5F1C00B53A94 /* CoreDataManager.swift */,
 				5EED9221297FF43B008304BD /* MyColor.swift */,
+				5E63E1132991627E00C54A74 /* LocalAuthorizationService.swift */,
 				5E298ADA295B5D3500B53A94 /* ModelCoreData.xcdatamodeld */,
 			);
 			path = Profile;
@@ -525,6 +528,7 @@
 				5EC1FFCF281FFD2500BFBB79 /* InfoViewController.swift in Sources */,
 				5EED9222297FF43B008304BD /* MyColor.swift in Sources */,
 				5EE2203D291422FE000C7DE2 /* FeedModel.swift in Sources */,
+				5E63E1142991627E00C54A74 /* LocalAuthorizationService.swift in Sources */,
 				5E890616282FEBB20066A557 /* ProfileViewController.swift in Sources */,
 				5E298B03295CAE9D00B53A94 /* MainPostCoordinator.swift in Sources */,
 				5EC1FFCD281FE55000BFBB79 /* Posti.swift in Sources */,
@@ -769,6 +773,7 @@
 				DEVELOPMENT_TEAM = V2LRGYXQ73;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Используем геопозицию для точного отображения пользователя";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Используем геопозицию для точного отображения пользователя";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Используем геопозицию для точного отображения пользователя";
@@ -799,6 +804,7 @@
 				DEVELOPMENT_TEAM = V2LRGYXQ73;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Используем геопозицию для точного отображения пользователя";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Используем геопозицию для точного отображения пользователя";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Используем геопозицию для точного отображения пользователя";

@@ -9,3 +9,4 @@
 "NSLocationWhenInUseUsageDescription" = "We use geo-positioning to accurately display the user";
 "NSLocationAlwaysUsageDescription" = "We use geo-positioning to accurately display the user";
 "NSLocationAlwaysAndWhenInUseUsageDescription" = "We use geo-positioning to accurately display the user";
+"NSFaceIDUsageDescription" = "We use Face ID/Touch ID for authentication";

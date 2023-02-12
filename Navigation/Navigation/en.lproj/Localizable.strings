@@ -82,3 +82,20 @@
 "title1AddPostCoreDataManager" = "Added to favorites";
 "title2AddPostCoreDataManager" = "OK";
 "title3AddPostCoreDataManager" = "Already in favorites";
+"biometricErrorAuthenticationFailed" = "There was a problem verifying your identity.";
+"biometricErrorUserCancel" = "You pressed cancel.";
+"biometricUserFallback" = "You pressed password.";
+"biometricBiometryNotAvailable" = "Face ID/Touch ID is not available.";
+"biometricBiometryNotEnrolled" = "Face ID/Touch ID is not set up.";
+"biometricBiometryLockout" = "Face ID/Touch ID is locked.";
+"biometricUnknown" = "Face ID/Touch ID may not be configured";
+"localizedReason" = "Verify your Identity";
+"localizedFallbackTitle" = "Enter App Password";
+"localizedCancelTitle" = "Cancel";
+"faseIDButton" = "Verify using Face ID";
+"touchIDButton" = "Verify using Touch ID";
+"faseIDtouchIDButton" = "Face ID/Touch ID is not available";
+"faceIDtouchIDtapAlertTitle" = "Error";
+"faceIDtouchIDtapAlertTitle1" = "Fix";
+
+
