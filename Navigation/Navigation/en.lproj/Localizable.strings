@@ -97,5 +97,6 @@
 "faseIDtouchIDButton" = "Face ID/Touch ID is not available";
 "faceIDtouchIDtapAlertTitle" = "Error";
 "faceIDtouchIDtapAlertTitle1" = "Fix";
-
+"localNotificationsServiceContentTitle" = "Check out the latest updates";
+"localNotificationsServiceContentActionHide" = "Hide";
 
