@@ -97,3 +97,5 @@
 "faseIDtouchIDButton" = "Face ID/Touch ID не доступна";
 "faceIDtouchIDtapAlertTitle" = "Ошибка";
 "faceIDtouchIDtapAlertTitle1" = "Исправить";
+"localNotificationsServiceContentTitle" = "Посмотрите последние обновления";
+"localNotificationsServiceContentActionHide" = "Скрыть";

@@ -28,6 +28,7 @@
 		5E5387812947969000B1DAED /* CheckerServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5387802947969000B1DAED /* CheckerServiceProtocol.swift */; };
 		5E538783294798DA00B1DAED /* CheckerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E538782294798DA00B1DAED /* CheckerService.swift */; };
 		5E63E1142991627E00C54A74 /* LocalAuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E63E1132991627E00C54A74 /* LocalAuthorizationService.swift */; };
+		5E63E11629A4BCFE00C54A74 /* LocalNotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E63E11529A4BCFE00C54A74 /* LocalNotificationsService.swift */; };
 		5E890614282FEB690066A557 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E890613282FEB690066A557 /* ProfileHeaderView.swift */; };
 		5E890616282FEBB20066A557 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E890615282FEBB20066A557 /* ProfileViewController.swift */; };
 		5E89061828453DBF0066A557 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E89061728453DBF0066A557 /* Extension.swift */; };
@@ -116,6 +117,7 @@
 		5E5387802947969000B1DAED /* CheckerServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckerServiceProtocol.swift; sourceTree = "<group>"; };
 		5E538782294798DA00B1DAED /* CheckerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckerService.swift; sourceTree = "<group>"; };
 		5E63E1132991627E00C54A74 /* LocalAuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthorizationService.swift; sourceTree = "<group>"; };
+		5E63E11529A4BCFE00C54A74 /* LocalNotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationsService.swift; sourceTree = "<group>"; };
 		5E890613282FEB690066A557 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		5E890615282FEBB20066A557 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		5E89061728453DBF0066A557 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 				5ED936D9291ABA65005C815B /* Feed */,
 				5E89060E282FE9870066A557 /* Profile */,
 				5EAD6D772802C53D00091514 /* AppDelegate.swift */,
+				5E63E11529A4BCFE00C54A74 /* LocalNotificationsService.swift */,
 				5E89061728453DBF0066A557 /* Extension.swift */,
 				5EAD6D802802C53F00091514 /* Assets.xcassets */,
 				5EAD6D822802C53F00091514 /* LaunchScreen.storyboard */,
@@ -501,6 +504,7 @@
 				5E298B01295B5F1C00B53A94 /* CoreDataManager.swift in Sources */,
 				5E39A026286A15FB00F296C7 /* PostTableViewCell.swift in Sources */,
 				5E89061828453DBF0066A557 /* Extension.swift in Sources */,
+				5E63E11629A4BCFE00C54A74 /* LocalNotificationsService.swift in Sources */,
 				5EA096332907C0DF000A8034 /* LoginFactory.swift in Sources */,
 				5EED91F82976D826008304BD /* CapitalAnnotation.swift in Sources */,
 				5ED936EA29212468005C815B /* ProfileViewModel.swift in Sources */,
