@@ -20,6 +20,9 @@ class ProfileViewController: UIViewController {
         tableView.delegate = self
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifier)
         tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: PhotosTableViewCell.identifier)
+        tableView.dragInteractionEnabled = true
+        tableView.dragDelegate = self
+        tableView.dropDelegate = self
         return tableView
     }()
 
@@ -119,4 +122,72 @@ extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         CGFloat.leastNonzeroMagnitude
     }
+}
+
+extension ProfileViewController: UITableViewDragDelegate, UITableViewDropDelegate {
+
+    func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        let dragItem = dragItem(indexPath: indexPath)
+        return [dragItem]
+    }
+
+    private func dragItem(indexPath: IndexPath) -> UIDragItem {
+        var itemProvider: NSItemProvider!
+        if let cell = tableView.cellForRow(at: indexPath) as? PostTableViewCell {
+            itemProvider = NSItemProvider(object: cell.postImage.image! as NSItemProviderWriting)
+        } else if let cell = tableView.cellForRow(at: indexPath) as? PostTableViewCell {
+            itemProvider = NSItemProvider(object: cell.descriptionLabel.text! as NSItemProviderWriting)
+        }
+        let dragItem = UIDragItem(itemProvider: itemProvider)
+        return dragItem
+    }
+
+    func tableView(_ tableView: UITableView, itemsForAddingTo session: UIDragSession, at indexPath: IndexPath, point: CGPoint) -> [UIDragItem] {
+        let dragItem = dragItem(indexPath: indexPath)
+        return [dragItem]
+    }
+
+    func tableView(_ tableView: UITableView, performDropWith coordinator: UITableViewDropCoordinator) {
+
+        let destinationIndexPath: IndexPath
+
+        if let indexPath = coordinator.destinationIndexPath {
+            destinationIndexPath = indexPath
+        } else {
+            let section = tableView.numberOfSections - 1
+            let row = tableView.numberOfRows(inSection: section)
+            destinationIndexPath = IndexPath(row: row, section: section)
+        }
+
+        coordinator.session.loadObjects(ofClass: NSString.self) { items in
+            let stringItems = items as! [String]
+            addItems(stringItems)
+        }
+
+        coordinator.session.loadObjects(ofClass: UIImage.self) { items in
+            let imageItems = items as! [UIImage]
+            addItems(imageItems)
+        }
+
+        func addItems(_ items: [Any]) {
+            for (index, item) in items.enumerated() {
+                let indexPath = IndexPath(row: destinationIndexPath.row + index, section: destinationIndexPath.section)
+                
+            }
+        }
+
+    }
+
+    func tableView(_ tableView: UITableView, canHandle session: UIDropSession) -> Bool {
+
+        return session.canLoadObjects(ofClass: NSString.self) || session.canLoadObjects(ofClass: UIImage.self)
+
+    }
+
+    func tableView(_ tableView: UITableView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UITableViewDropProposal {
+
+        return UITableViewDropProposal(operation: .copy)
+
+    }
+
 }
